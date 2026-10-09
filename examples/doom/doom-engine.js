@@ -241,7 +241,7 @@ export class DoomEngine {
 
   pressKey(name) {
     if (!this.instance) return;
-    const code = this.keyCodes[name] ?? (name.length === 1 ? name.charCodeAt(0) : null);
+    const code = this.keyCodes[name] ?? (name.length === 1 ? name.toLowerCase().charCodeAt(0) : null);
     if (code !== null && !this.activeKeys.has(code)) {
       this.activeKeys.add(code);
       this.instance.exports.reportKeyDown(code);
@@ -250,7 +250,7 @@ export class DoomEngine {
 
   releaseKey(name) {
     if (!this.instance) return;
-    const code = this.keyCodes[name] ?? (name.length === 1 ? name.charCodeAt(0) : null);
+    const code = this.keyCodes[name] ?? (name.length === 1 ? name.toLowerCase().charCodeAt(0) : null);
     if (code !== null && this.activeKeys.has(code)) {
       this.activeKeys.delete(code);
       this.instance.exports.reportKeyUp(code);
@@ -273,22 +273,59 @@ export class DoomEngine {
   }
 
   /**
-   * Automates skipping title/menus straight into E1M1 Knee-Deep in the Dead
+   * Automates skipping title/menus straight into E1M1 Knee-Deep in the Dead.
+   * Deliberately timed to accommodate Doom's menu skull transitions.
    */
   async autoStartGame() {
     const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     if (this.onInfo) this.onInfo('[SYSTEM] Automated launch sequence initiating: Booting Knee-Deep in the Dead...');
 
-    // Wait for title splash to settle
+    this.releaseAllKeys();
+
+    // 1. Give Doom engine time to complete WAD parsing and title splash init
+    await sleep(1500);
+
+    // 2. Dismiss any accidental quit dialog by pressing 'N'
+    this.pressKey('n');
+    await sleep(80);
+    this.releaseKey('n');
+    await sleep(350);
+
+    // 3. Clear any active submenu with ESCAPE
+    this.pressKey('ESCAPE');
+    await sleep(100);
+    this.releaseKey('ESCAPE');
+    await sleep(650);
+
+    // 4. Press ENTER 1: Open Main Menu / select New Game
+    this.pressKey('ENTER');
+    await sleep(140);
+    this.releaseKey('ENTER');
+    await sleep(750);
+
+    // Press ENTER 2: Confirms "New Game" -> Opens Episode Selection (cursor defaults to "Knee-Deep in the Dead")
+    this.pressKey('ENTER');
+    await sleep(140);
+    this.releaseKey('ENTER');
+    await sleep(750);
+
+    // Press ENTER 3: Confirms "Knee-Deep in the Dead" -> Opens Skill Selection (defaults to "Hurt me plenty")
+    this.pressKey('ENTER');
+    await sleep(140);
+    this.releaseKey('ENTER');
+    await sleep(750);
+
+    // Press ENTER 4: Confirms Skill Selection -> Level wipe and spawn in E1M1 Hangar!
+    this.pressKey('ENTER');
+    await sleep(140);
+    this.releaseKey('ENTER');
+    await sleep(1200);
+
+    // Safety pulse in case title screen was in demo sequence
+    this.pressKey('ENTER');
+    await sleep(140);
+    this.releaseKey('ENTER');
     await sleep(600);
-    this.pulseKey('ENTER', 150);
-    await sleep(400);
-    this.pulseKey('ENTER', 150);
-    await sleep(400);
-    this.pulseKey('ENTER', 150);
-    await sleep(400);
-    this.pulseKey('ENTER', 150);
-    await sleep(800);
 
     if (this.onInfo) this.onInfo('[SYSTEM] Player spawned in E1M1 Hangar! AI Reflex Core engaged.');
   }
@@ -299,16 +336,43 @@ export class DoomEngine {
   async restartGame() {
     const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     this.releaseAllKeys();
-    this.pulseKey('ESCAPE', 120);
-    await sleep(350);
-    this.pulseKey('ENTER', 150);
-    await sleep(350);
-    this.pulseKey('ENTER', 150);
-    await sleep(350);
-    this.pulseKey('ENTER', 150);
-    await sleep(350);
-    this.pulseKey('ENTER', 150);
+
+    // Dismiss any dialog with 'n'
+    this.pressKey('n');
+    await sleep(80);
+    this.releaseKey('n');
+    await sleep(250);
+
+    // ESCAPE to bring up menu
+    this.pressKey('ESCAPE');
+    await sleep(100);
+    this.releaseKey('ESCAPE');
     await sleep(600);
+
+    // ENTER: New Game
+    this.pressKey('ENTER');
+    await sleep(140);
+    this.releaseKey('ENTER');
+    await sleep(700);
+
+    // ENTER: Episode 1
+    this.pressKey('ENTER');
+    await sleep(140);
+    this.releaseKey('ENTER');
+    await sleep(700);
+
+    // ENTER: Skill
+    this.pressKey('ENTER');
+    await sleep(140);
+    this.releaseKey('ENTER');
+    await sleep(1200);
+
+    // Safety ENTER
+    this.pressKey('ENTER');
+    await sleep(140);
+    this.releaseKey('ENTER');
+    await sleep(500);
+
     if (this.onInfo) this.onInfo('[SYSTEM] Session restarted in E1M1 Hangar.');
   }
 

@@ -39,6 +39,7 @@ const telemetry = new NerdTelemetry({
 });
 
 let isAiActive = true;
+let isGameSpawned = false;
 let isProcessingDecision = false;
 let decisionCount = 0;
 let decisionTimer = null;
@@ -139,7 +140,7 @@ function buildTacticalPrompt(perception) {
 
 // System 1 Reflex Cycle
 async function triggerDecisionCycle() {
-  if (!isAiActive || !doom.isRunning || isProcessingDecision) return;
+  if (!isGameSpawned || !isAiActive || !doom.isRunning || isProcessingDecision) return;
 
   const now = performance.now();
   if (now - lastActionTime < 110) return; // ~9 decisions per second (optimal reaction tempo)
@@ -246,9 +247,11 @@ function setupControls() {
   });
 
   autoStartBtn.addEventListener('click', async () => {
+    isGameSpawned = false;
     autoStartBtn.disabled = true;
     autoStartBtn.textContent = 'LAUNCHING...';
     await doom.autoStartGame();
+    isGameSpawned = true;
     autoStartBtn.disabled = false;
     autoStartBtn.textContent = 'E1M1 ACTIVE';
     autoStartBtn.classList.add('active');
@@ -277,10 +280,12 @@ function setupControls() {
   });
 
   resetBtn.addEventListener('click', async () => {
+    isGameSpawned = false;
     resetBtn.disabled = true;
     resetBtn.textContent = 'RESTARTING...';
     telemetry.logSystem('Session restart initiated.');
     await doom.restartGame();
+    isGameSpawned = true;
     resetBtn.disabled = false;
     resetBtn.textContent = 'RESTART GAME';
     telemetry.logSystem('Game restarted in E1M1 Hangar.');
@@ -353,11 +358,16 @@ async function boot() {
     telemetry.logSystem('Doom 1.9 Shareware Core online and ticking at 35Hz!');
     startLoops();
 
-    // Auto-boot knee deep in the dead after 1.2 seconds
+    // Auto-boot knee deep in the dead after engine settles
+    autoStartBtn.textContent = 'LAUNCHING...';
     setTimeout(() => {
       doom.autoStartGame().then(() => {
+        isGameSpawned = true;
         autoStartBtn.textContent = 'E1M1 ACTIVE';
         autoStartBtn.classList.add('active');
+      }).catch((err) => {
+        console.error('Doom auto start error:', err);
+        autoStartBtn.textContent = 'LAUNCH E1M1';
       });
     }, 1200);
   } catch (err) {
