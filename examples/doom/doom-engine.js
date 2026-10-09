@@ -28,8 +28,12 @@ export class DoomEngine {
       sectorThreat: { left: 0, center: 0, right: 0 },
       centerTargetScore: 0,
       averageLuminance: 0.5,
-      dangerDetected: false
+      dangerDetected: false,
+      motionDelta: 0,
+      isStuck: false
     };
+    this.prevLumGrid = null;
+    this.stuckCounter = 0;
 
     // Logging listeners
     this.onInfo = null;
@@ -167,6 +171,7 @@ export class DoomEngine {
   /**
    * Fast spatial perception sampler across viewport (excludes HUD status bar).
    * Computes sector lighting, red/orange fireball threats, and central crosshair enemy alignment.
+   * Masks player weapon and muzzle flash to avoid self-reinforcing shooting loops.
    */
   extractPerception(src32) {
     const w = this.width;
@@ -182,10 +187,17 @@ export class DoomEngine {
     let crosshairThreat = 0, crosshairCount = 0;
 
     const step = 8; // Sparse sub-sampling for sub-millisecond efficiency
-    const chYMin = Math.floor(viewHeight * 0.35);
-    const chYMax = Math.floor(viewHeight * 0.70);
-    const chXMin = Math.floor(w * 0.40);
-    const chXMax = Math.floor(w * 0.60);
+
+    // Crosshairs zone: upper-middle sector, strictly above player weapon sprite
+    const chYMin = Math.floor(viewHeight * 0.22);
+    const chYMax = Math.floor(viewHeight * 0.56);
+    const chXMin = Math.floor(w * 0.38);
+    const chXMax = Math.floor(w * 0.62);
+
+    // Player weapon & muzzle flash zone (lower-center) to mask out
+    const gunYMin = Math.floor(viewHeight * 0.58);
+    const gunXMin = Math.floor(w * 0.28);
+    const gunXMax = Math.floor(w * 0.72);
 
     for (let y = 0; y < viewHeight; y += step) {
       const rowOffset = y * w;
@@ -196,8 +208,16 @@ export class DoomEngine {
         const r = (px >> 16) & 0xFF;
 
         const lum = (r * 0.299 + g * 0.587 + b * 0.114) / 255;
-        // Hostile / projectile signature (red/orange fireballs, demon flesh, imp eyes/blood)
-        const isThreatColor = (r > 110 && r > g * 1.25 && r > b * 1.35) || (r > 135 && g < 110 && b < 110) || (r > 150 && g > 60 && g < 120 && b < 70);
+
+        // Mask out player's own weapon barrel and muzzle flashes
+        const inGunZone = (y >= gunYMin && x >= gunXMin && x <= gunXMax);
+
+        // Genuine threat signature (imp fireballs, demon flesh, crimson eyes/blood, toxic barrels)
+        // Strictly distinguished from standard brown wall/door textures which have low (r - g)
+        const isFireball = (r > 185 && g > 90 && g < 185 && b < 85 && (r - b) > 95);
+        const isDemonThreat = (r > 150 && (r - g) > 55 && (r - b) > 65 && b < 100);
+        const isBarrelThreat = (g > 165 && (g - r) > 50 && (g - b) > 50);
+        const isThreatColor = !inGunZone && (isFireball || isDemonThreat || isBarrelThreat);
         const threatVal = isThreatColor ? 1.0 : 0.0;
 
         if (x < leftWidth) {
@@ -209,7 +229,7 @@ export class DoomEngine {
           threatCenter += threatVal;
           countCenter++;
 
-          // Center crosshair evaluation
+          // Center crosshair evaluation strictly in upper-mid space
           if (x >= chXMin && x <= chXMax && y >= chYMin && y <= chYMax) {
             crosshairThreat += threatVal;
             crosshairCount++;
@@ -222,6 +242,34 @@ export class DoomEngine {
       }
     }
 
+    // Lightweight 8x8 optical flow / motion delta estimation to detect if marine is stuck
+    const gridW = 8, gridH = 8;
+    let frameDiff = 0;
+    const currentGrid = new Float32Array(gridW * gridH);
+    for (let gy = 0; gy < gridH; gy++) {
+      const py = Math.floor((viewHeight * (gy + 0.5)) / gridH);
+      for (let gx = 0; gx < gridW; gx++) {
+        const px = Math.floor((w * (gx + 0.5)) / gridW);
+        const pxi = src32[py * w + px];
+        const lum = (((pxi >> 16) & 0xFF) * 0.299 + ((pxi >> 8) & 0xFF) * 0.587 + (pxi & 0xFF) * 0.114) / 255;
+        const idx = gy * gridW + gx;
+        currentGrid[idx] = lum;
+        if (this.prevLumGrid) {
+          frameDiff += Math.abs(lum - this.prevLumGrid[idx]);
+        }
+      }
+    }
+    this.prevLumGrid = currentGrid;
+    const motionDelta = frameDiff / (gridW * gridH);
+
+    // If forward key is held and scene difference is virtually zero, marine is stuck against wall/corner
+    if (this.activeKeys.has(this.keyCodes?.UP ?? 173) && motionDelta < 0.012) {
+      this.stuckCounter = Math.min(20, (this.stuckCounter || 0) + 1);
+    } else {
+      this.stuckCounter = Math.max(0, (this.stuckCounter || 0) - 1);
+    }
+    const isStuck = (this.stuckCounter || 0) >= 6;
+
     this.perception = {
       sectorLum: {
         left: countLeft ? lumLeft / countLeft : 0.5,
@@ -229,13 +277,15 @@ export class DoomEngine {
         right: countRight ? lumRight / countRight : 0.5,
       },
       sectorThreat: {
-        left: countLeft ? Math.min(1.0, (threatLeft / countLeft) * 12.0) : 0,
-        center: countCenter ? Math.min(1.0, (threatCenter / countCenter) * 12.0) : 0,
-        right: countRight ? Math.min(1.0, (threatRight / countRight) * 12.0) : 0,
+        left: countLeft ? Math.min(1.0, (threatLeft / countLeft) * 14.0) : 0,
+        center: countCenter ? Math.min(1.0, (threatCenter / countCenter) * 14.0) : 0,
+        right: countRight ? Math.min(1.0, (threatRight / countRight) * 14.0) : 0,
       },
-      centerTargetScore: crosshairCount ? Math.min(1.0, (crosshairThreat / crosshairCount) * 15.0) : 0,
+      centerTargetScore: crosshairCount ? Math.min(1.0, (crosshairThreat / crosshairCount) * 16.0) : 0,
       averageLuminance: (lumLeft + lumCenter + lumRight) / (countLeft + countCenter + countRight || 1),
-      dangerDetected: (threatLeft + threatCenter + threatRight) > 4
+      dangerDetected: (threatLeft + threatCenter + threatRight) > 2,
+      motionDelta,
+      isStuck
     };
   }
 

@@ -44,6 +44,10 @@ let isProcessingDecision = false;
 let decisionCount = 0;
 let decisionTimer = null;
 let lastActionTime = 0;
+const WEAPON_COOLDOWN_MS = 750; // Shotgun/pistol mechanical refire cadence
+let lastShotTime = 0;
+let forwardStreak = 0;
+let lastTurnDir = 'TURN_LEFT';
 
 doom.onInfo = (msg) => {
   if (msg.includes('player') || msg.includes('startskill') || msg.includes('[ENGINE]')) {
@@ -85,44 +89,58 @@ function initActionBars() {
   }
 }
 
-// Map chosen action to Doom key operations
+// Map chosen action to Doom key operations with tuned pulse durations
 function executeReflexAction(action) {
   const actId = typeof action === 'string' ? action : (action?.id || action?.label || '');
-  const pulseMs = 140;
+  const movePulseMs = 180;    // Assertive running stride
+  const strafePulseMs = 160;  // Agile lateral dodge
+  const turnPulseMs = 125;    // Smooth ~30-35° rotation for fluid cornering
+  const firePulseMs = 80;     // Crisp trigger pull
+  const usePulseMs = 120;     // Switch / door activation
 
   switch (actId) {
     case 'FORWARD':
-      doom.pulseKey('UP', pulseMs);
+      doom.pulseKey('UP', movePulseMs);
+      forwardStreak++;
       break;
     case 'TURN_LEFT':
-      doom.pulseKey('LEFT', 90);
+      doom.pulseKey('LEFT', turnPulseMs);
+      lastTurnDir = 'TURN_LEFT';
+      forwardStreak = 0;
       break;
     case 'TURN_RIGHT':
-      doom.pulseKey('RIGHT', 90);
+      doom.pulseKey('RIGHT', turnPulseMs);
+      lastTurnDir = 'TURN_RIGHT';
+      forwardStreak = 0;
       break;
     case 'STRAFE_LEFT':
-      doom.pulseKey('STRAFE_L', pulseMs);
+      doom.pulseKey('STRAFE_L', strafePulseMs);
       break;
     case 'STRAFE_RIGHT':
-      doom.pulseKey('STRAFE_R', pulseMs);
+      doom.pulseKey('STRAFE_R', strafePulseMs);
       break;
     case 'FIRE':
-      doom.pulseKey('FIRE', 180);
+      doom.pulseKey('FIRE', firePulseMs);
+      lastShotTime = performance.now();
       break;
     case 'STRAFE_FIRE_L':
-      doom.pulseKey('STRAFE_L', pulseMs);
-      doom.pulseKey('FIRE', pulseMs);
+      doom.pulseKey('STRAFE_L', strafePulseMs);
+      doom.pulseKey('FIRE', firePulseMs);
+      lastShotTime = performance.now();
       break;
     case 'STRAFE_FIRE_R':
-      doom.pulseKey('STRAFE_R', pulseMs);
-      doom.pulseKey('FIRE', pulseMs);
+      doom.pulseKey('STRAFE_R', strafePulseMs);
+      doom.pulseKey('FIRE', firePulseMs);
+      lastShotTime = performance.now();
       break;
     case 'ADVANCE_FIRE':
-      doom.pulseKey('UP', pulseMs);
-      doom.pulseKey('FIRE', pulseMs);
+      doom.pulseKey('UP', movePulseMs);
+      doom.pulseKey('FIRE', firePulseMs);
+      lastShotTime = performance.now();
+      forwardStreak++;
       break;
     case 'USE':
-      doom.pulseKey('USE', 100);
+      doom.pulseKey('USE', usePulseMs);
       break;
   }
 }
@@ -150,39 +168,83 @@ async function triggerDecisionCycle() {
   try {
     const p = doom.perception;
     const statePrompt = buildTacticalPrompt(p);
+    const isGunReady = (now - lastShotTime >= WEAPON_COOLDOWN_MS);
 
-    // Dynamic Tactical Prior Biases based on real-time visual perception
+    // Dynamic Tactical Prior Biases based on real-time visual perception & weapon cycle
     const biases = {};
     const actions = DOOM_WEIGHTS.actions;
 
-    // Base exploration bias: keep moving forward unless engaged
-    biases['FORWARD'] = 1.2;
+    if (p.isStuck) {
+      // --- UNSTICK BEHAVIOR: Marine blocked on wall/door ---
+      // Reverse or pivot aggressively away from obstacle
+      biases['FORWARD'] = -2.0;
+      biases[lastTurnDir === 'TURN_LEFT' ? 'TURN_RIGHT' : 'TURN_LEFT'] = 2.4;
+      biases['STRAFE_LEFT'] = 1.6;
+      biases['STRAFE_RIGHT'] = 1.6;
+      biases['USE'] = 2.2; // Try opening obstruction (doors/switches)
+      biases['FIRE'] = -6.0;
+      biases['ADVANCE_FIRE'] = -4.0;
+    } else if (p.centerTargetScore > 0.25) {
+      // --- COMBAT LOCK: Enemy or projectile aligned in crosshairs ---
+      if (isGunReady) {
+        // Weapon primed: execute calculated attack while advancing
+        biases['ADVANCE_FIRE'] = 2.5 + p.centerTargetScore * 1.5;
+        biases['FIRE'] = 2.2 + p.centerTargetScore * 1.2;
+        biases['FORWARD'] = 1.4;
+      } else {
+        // Weapon cycling/reloading: DO NOT dry-fire! Circle-strafe & maneuver evasively
+        biases['FIRE'] = -6.0;
+        biases['ADVANCE_FIRE'] = -4.0;
+        biases['STRAFE_FIRE_L'] = -5.0;
+        biases['STRAFE_FIRE_R'] = -5.0;
+        biases['STRAFE_LEFT'] = 2.2;
+        biases['STRAFE_RIGHT'] = 2.2;
+        biases['FORWARD'] = 1.8;
+      }
+    } else if (p.sectorThreat.left > 0.3 || p.sectorThreat.right > 0.3) {
+      // --- FLANK THREAT: Lateral danger detected ---
+      if (p.sectorThreat.left > 0.3) {
+        biases['STRAFE_RIGHT'] = 2.2;
+        biases['TURN_LEFT'] = 2.0;
+        if (isGunReady) biases['STRAFE_FIRE_R'] = 2.0;
+        else biases['STRAFE_FIRE_R'] = -4.0;
+      }
+      if (p.sectorThreat.right > 0.3) {
+        biases['STRAFE_LEFT'] = 2.2;
+        biases['TURN_RIGHT'] = 2.0;
+        if (isGunReady) biases['STRAFE_FIRE_L'] = 2.0;
+        else biases['STRAFE_FIRE_L'] = -4.0;
+      }
+      biases['FIRE'] = -5.0;
+      biases['ADVANCE_FIRE'] = -3.0;
+    } else {
+      // --- AGILE EXPLORATION / PATROL: Clear space, navigate through E1M1 ---
+      // Absolutely forbid shooting into empty walls/air
+      biases['FIRE'] = -5.0;
+      biases['ADVANCE_FIRE'] = -3.5;
+      biases['STRAFE_FIRE_L'] = -5.0;
+      biases['STRAFE_FIRE_R'] = -5.0;
 
-    // Target in crosshairs -> heavy bias on aggressive fire
-    if (p.centerTargetScore > 0.25) {
-      biases['FIRE'] = 3.5 + p.centerTargetScore * 3.0;
-      biases['ADVANCE_FIRE'] = 3.0 + p.centerTargetScore * 2.5;
-    }
+      // Bold forward locomotion
+      biases['FORWARD'] = 2.2;
 
-    // Lateral threats detected -> tactical strafe and flank
-    if (p.sectorThreat.left > 0.3) {
-      biases['STRAFE_FIRE_R'] = 2.0;
-      biases['TURN_LEFT'] = 2.5;
-    }
-    if (p.sectorThreat.right > 0.3) {
-      biases['STRAFE_FIRE_L'] = 2.0;
-      biases['TURN_RIGHT'] = 2.5;
-    }
+      // Environmental navigation via sector luminance
+      const lumDiff = p.sectorLum.right - p.sectorLum.left;
+      if (lumDiff > 0.12) {
+        biases['TURN_RIGHT'] = 1.8;
+      } else if (lumDiff < -0.12) {
+        biases['TURN_LEFT'] = 1.8;
+      }
 
-    // Periodic room scanning if in dark corridor
-    if (p.averageLuminance < 0.25) {
-      biases['TURN_LEFT'] = 1.5;
-      biases['TURN_RIGHT'] = 1.5;
-    }
+      // Periodic corner patrol to avoid tunnel vision and turn into halls
+      if (forwardStreak >= 8) {
+        biases[Math.random() < 0.5 ? 'TURN_LEFT' : 'TURN_RIGHT'] = 1.9;
+      }
 
-    // Occasional interaction pulse to open doors or flip switches
-    if (Math.random() < 0.08) {
-      biases['USE'] = 1.8;
+      // Occasional environmental interaction (doors/switches)
+      if (Math.random() < 0.08) {
+        biases['USE'] = 2.0;
+      }
     }
 
     // Query sub-millisecond edge projection model
