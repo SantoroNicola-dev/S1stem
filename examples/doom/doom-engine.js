@@ -26,6 +26,8 @@ export class DoomEngine {
     this.perception = {
       sectorLum: { left: 0.5, center: 0.5, right: 0.5 },
       sectorThreat: { left: 0, center: 0, right: 0 },
+      corridorDepth: { left: 0.5, center: 0.5, right: 0.5 },
+      wallProximity: 0.2,
       centerTargetScore: 0,
       averageLuminance: 0.5,
       dangerDetected: false,
@@ -199,8 +201,14 @@ export class DoomEngine {
     const gunXMin = Math.floor(w * 0.28);
     const gunXMax = Math.floor(w * 0.72);
 
+    let lumUpperLeft = 0, countUpperLeft = 0;
+    let lumUpperCenter = 0, countUpperCenter = 0;
+    let lumUpperRight = 0, countUpperRight = 0;
+
     for (let y = 0; y < viewHeight; y += step) {
       const rowOffset = y * w;
+      const isUpper = (y < viewHeight * 0.50);
+
       for (let x = 0; x < w; x += step) {
         const px = src32[rowOffset + x];
         const b = px & 0xFF;
@@ -224,10 +232,12 @@ export class DoomEngine {
           lumLeft += lum;
           threatLeft += threatVal;
           countLeft++;
+          if (isUpper) { lumUpperLeft += lum; countUpperLeft++; }
         } else if (x < leftWidth + centerWidth) {
           lumCenter += lum;
           threatCenter += threatVal;
           countCenter++;
+          if (isUpper) { lumUpperCenter += lum; countUpperCenter++; }
 
           // Center crosshair evaluation strictly in upper-mid space
           if (x >= chXMin && x <= chXMax && y >= chYMin && y <= chYMax) {
@@ -238,9 +248,22 @@ export class DoomEngine {
           lumRight += lum;
           threatRight += threatVal;
           countRight++;
+          if (isUpper) { lumUpperRight += lum; countUpperRight++; }
         }
       }
     }
+
+    // Depth openness based on Doom's diminishing distance lighting (deep corridors are darker than close walls)
+    const avgUpperLeft = countUpperLeft ? lumUpperLeft / countUpperLeft : 0.3;
+    const avgUpperCenter = countUpperCenter ? lumUpperCenter / countUpperCenter : 0.3;
+    const avgUpperRight = countUpperRight ? lumUpperRight / countUpperRight : 0.3;
+
+    const corridorDepth = {
+      left: Math.max(0, Math.min(1.0, (0.42 - avgUpperLeft) * 3.8)),
+      center: Math.max(0, Math.min(1.0, (0.42 - avgUpperCenter) * 3.8)),
+      right: Math.max(0, Math.min(1.0, (0.42 - avgUpperRight) * 3.8)),
+    };
+    const wallProximity = Math.max(0, Math.min(1.0, (avgUpperCenter - 0.22) * 3.5));
 
     // Lightweight 8x8 optical flow / motion delta estimation to detect if marine is stuck
     const gridW = 8, gridH = 8;
@@ -281,6 +304,8 @@ export class DoomEngine {
         center: countCenter ? Math.min(1.0, (threatCenter / countCenter) * 14.0) : 0,
         right: countRight ? Math.min(1.0, (threatRight / countRight) * 14.0) : 0,
       },
+      corridorDepth,
+      wallProximity,
       centerTargetScore: crosshairCount ? Math.min(1.0, (crosshairThreat / crosshairCount) * 16.0) : 0,
       averageLuminance: (lumLeft + lumCenter + lumRight) / (countLeft + countCenter + countRight || 1),
       dangerDetected: (threatLeft + threatCenter + threatRight) > 2,

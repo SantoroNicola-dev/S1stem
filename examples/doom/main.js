@@ -22,6 +22,10 @@ const threatRightMeter = document.getElementById('threat-right');
 const radarCenterScore = document.getElementById('radar-center-score');
 const actionDistribution = document.getElementById('action-distribution');
 const crtOverlay = document.getElementById('crt-overlay');
+const missionObjectiveText = document.getElementById('mission-objective-text');
+const missionWaypointBadge = document.getElementById('mission-waypoint-badge');
+const missionCompassBadge = document.getElementById('mission-compass-badge');
+const missionDepthBadge = document.getElementById('mission-depth-badge');
 
 // Instantiate Doom WASM Engine and S1stem Reflex Core
 const doom = new DoomEngine(canvas);
@@ -48,6 +52,104 @@ const WEAPON_COOLDOWN_MS = 750; // Shotgun/pistol mechanical refire cadence
 let lastShotTime = 0;
 let forwardStreak = 0;
 let lastTurnDir = 'TURN_LEFT';
+
+// Tactical Mission Director for E1M1 Progression
+class TacticalMissionDirector {
+  constructor() {
+    this.startTime = 0;
+    this.phaseIndex = 0;
+    this.heading = 0; // 0 = East (Spawn), 90 = North (Zigzag entrance), 180 = West, 270 = South
+
+    // E1M1 Progression Waypoints
+    this.phases = [
+      {
+        id: 'CROSS_HANGAR',
+        name: 'PHASE 1: CROSS HANGAR TO PILLARS',
+        durationSec: 2.8,
+        targetHeading: 0,   // Sprint East straight toward pillars/armor
+        description: 'Advancing across hangar floor to retrieve green armor & health'
+      },
+      {
+        id: 'PIVOT_ZIGZAG',
+        name: 'PHASE 2: PIVOT & BREACH ZIGZAG HALL',
+        durationSec: 4.5,
+        targetHeading: 90,  // Turn North (left) to enter zigzag doorway
+        description: 'Entering northern corridor overlooking outdoor courtyard'
+      },
+      {
+        id: 'ZIGZAG_CORRIDOR',
+        name: 'PHASE 3: NAVIGATE ZIGZAG WALKWAY',
+        durationSec: 8.0,
+        targetHeading: 45,  // Follow corridor North-East towards computer stairs
+        description: 'Traversing zigzag bends with optical depth alignment'
+      },
+      {
+        id: 'COMPUTER_STAIRS',
+        name: 'PHASE 4: DESCEND TO COMPUTER ROOM',
+        durationSec: 10.0,
+        targetHeading: 90,  // Descend stairs into main computer facility
+        description: 'Breaching computer room and neutralizing sector hostiles'
+      },
+      {
+        id: 'SECURE_AND_EXIT',
+        name: 'PHASE 5: TACTICAL SWEEP & EXIT PATH',
+        durationSec: 35.0,
+        targetHeading: 0,   // Forward across bridge towards exit chamber
+        description: 'Securing walkway across toxic pool and reaching exit switch'
+      }
+    ];
+  }
+
+  reset() {
+    this.startTime = performance.now();
+    this.phaseIndex = 0;
+    this.heading = 0;
+  }
+
+  getCurrentPhase(perception) {
+    if (!this.startTime) this.startTime = performance.now();
+    const elapsedSec = (performance.now() - this.startTime) / 1000;
+
+    // Smart early phase transition: if Phase 1 has run for > 2.0s and wall/pillar is near, pivot immediately!
+    if (this.phaseIndex === 0 && elapsedSec > 2.0 && perception?.wallProximity > 0.55) {
+      this.phaseIndex = 1;
+      return this.phases[1];
+    }
+
+    let accum = 0;
+    for (let i = 0; i < this.phases.length; i++) {
+      accum += this.phases[i].durationSec;
+      if (elapsedSec < accum || i === this.phases.length - 1) {
+        this.phaseIndex = i;
+        return this.phases[i];
+      }
+    }
+    return this.phases[this.phases.length - 1];
+  }
+
+  registerAction(actionId) {
+    if (actionId === 'TURN_LEFT') {
+      this.heading = (this.heading + 35) % 360;
+    } else if (actionId === 'TURN_RIGHT') {
+      this.heading = (this.heading - 35 + 360) % 360;
+    }
+  }
+
+  getHeadingDiff(targetDeg) {
+    let diff = (targetDeg - this.heading) % 360;
+    if (diff > 180) diff -= 360;
+    if (diff < -180) diff += 360;
+    return diff; // > 0 means target is to the left; < 0 means to the right
+  }
+
+  formatCompass() {
+    const h = Math.round((this.heading % 360 + 360) % 360);
+    const cardinal = (h >= 315 || h < 45) ? 'E' : (h >= 45 && h < 135) ? 'N' : (h >= 135 && h < 225) ? 'W' : 'S';
+    return `${String(h).padStart(3, '0')}° ${cardinal}`;
+  }
+}
+
+const missionDirector = new TacticalMissionDirector();
 
 doom.onInfo = (msg) => {
   if (msg.includes('player') || msg.includes('startskill') || msg.includes('[ENGINE]')) {
@@ -98,6 +200,8 @@ function executeReflexAction(action) {
   const firePulseMs = 80;     // Crisp trigger pull
   const usePulseMs = 120;     // Switch / door activation
 
+  missionDirector.registerAction(actId);
+
   switch (actId) {
     case 'FORWARD':
       doom.pulseKey('UP', movePulseMs);
@@ -146,14 +250,15 @@ function executeReflexAction(action) {
 }
 
 // Tactical Perceptual State Formatter
-function buildTacticalPrompt(perception) {
+function buildTacticalPrompt(perception, phase) {
   const threatC = perception.sectorThreat.center.toFixed(2);
   const threatL = perception.sectorThreat.left.toFixed(2);
   const threatR = perception.sectorThreat.right.toFixed(2);
-  const target = perception.centerTargetScore > 0.25 ? 'ACQUIRED' : 'SCANNING';
-  const corridor = perception.averageLuminance > 0.35 ? 'OPEN' : 'SHADOW';
+  const target = perception.centerTargetScore > 0.20 ? 'ACQUIRED' : 'SCANNING';
+  const corridor = (perception.corridorDepth?.center ?? 0.5) > 0.35 ? 'OPEN' : 'SHADOW';
+  const phaseId = phase?.id || 'COMBAT_ADVANCE';
 
-  return `[DOOM_TACTICAL] TARGET: ${target} | THREAT_C: ${threatC} | THREAT_L: ${threatL} | THREAT_R: ${threatR} | CORRIDOR: ${corridor} | FOCUS: COMBAT_ADVANCE`;
+  return `[DOOM_TACTICAL] TARGET: ${target} | THREAT_C: ${threatC} | THREAT_L: ${threatL} | THREAT_R: ${threatR} | CORRIDOR: ${corridor} | FOCUS: ${phaseId}`;
 }
 
 // System 1 Reflex Cycle
@@ -167,83 +272,106 @@ async function triggerDecisionCycle() {
 
   try {
     const p = doom.perception;
-    const statePrompt = buildTacticalPrompt(p);
+    const phase = missionDirector.getCurrentPhase(p);
+    const statePrompt = buildTacticalPrompt(p, phase);
     const isGunReady = (now - lastShotTime >= WEAPON_COOLDOWN_MS);
+    const headingDiff = missionDirector.getHeadingDiff(phase.targetHeading);
+    const depthC = p.corridorDepth?.center ?? 0.5;
+    const depthL = p.corridorDepth?.left ?? 0.5;
+    const depthR = p.corridorDepth?.right ?? 0.5;
 
-    // Dynamic Tactical Prior Biases based on real-time visual perception & weapon cycle
+    let tacticalStance = 'ADVANCE';
     const biases = {};
     const actions = DOOM_WEIGHTS.actions;
 
-    if (p.isStuck) {
-      // --- UNSTICK BEHAVIOR: Marine blocked on wall/door ---
-      // Reverse or pivot aggressively away from obstacle
-      biases['FORWARD'] = -2.0;
-      biases[lastTurnDir === 'TURN_LEFT' ? 'TURN_RIGHT' : 'TURN_LEFT'] = 2.4;
-      biases['STRAFE_LEFT'] = 1.6;
-      biases['STRAFE_RIGHT'] = 1.6;
-      biases['USE'] = 2.2; // Try opening obstruction (doors/switches)
-      biases['FIRE'] = -6.0;
-      biases['ADVANCE_FIRE'] = -4.0;
-    } else if (p.centerTargetScore > 0.25) {
-      // --- COMBAT LOCK: Enemy or projectile aligned in crosshairs ---
+    if (p.centerTargetScore > 0.20) {
+      // --- PRIORITY 1: COMBAT LOCK (Hostile in crosshairs) ---
+      tacticalStance = 'COMBAT_LOCK';
       if (isGunReady) {
-        // Weapon primed: execute calculated attack while advancing
-        biases['ADVANCE_FIRE'] = 2.5 + p.centerTargetScore * 1.5;
-        biases['FIRE'] = 2.2 + p.centerTargetScore * 1.2;
-        biases['FORWARD'] = 1.4;
+        biases['ADVANCE_FIRE'] = 3.0 + p.centerTargetScore * 1.5;
+        biases['FIRE'] = 2.6 + p.centerTargetScore * 1.2;
+        biases['FORWARD'] = 1.0;
       } else {
-        // Weapon cycling/reloading: DO NOT dry-fire! Circle-strafe & maneuver evasively
+        // Weapon cycling/reloading: Circle-strafe & maneuver evasively
         biases['FIRE'] = -6.0;
-        biases['ADVANCE_FIRE'] = -4.0;
+        biases['ADVANCE_FIRE'] = -5.0;
         biases['STRAFE_FIRE_L'] = -5.0;
         biases['STRAFE_FIRE_R'] = -5.0;
-        biases['STRAFE_LEFT'] = 2.2;
-        biases['STRAFE_RIGHT'] = 2.2;
-        biases['FORWARD'] = 1.8;
+        biases['STRAFE_LEFT'] = 2.4;
+        biases['STRAFE_RIGHT'] = 2.4;
+        biases['FORWARD'] = 1.2;
       }
-    } else if (p.sectorThreat.left > 0.3 || p.sectorThreat.right > 0.3) {
-      // --- FLANK THREAT: Lateral danger detected ---
-      if (p.sectorThreat.left > 0.3) {
-        biases['STRAFE_RIGHT'] = 2.2;
-        biases['TURN_LEFT'] = 2.0;
-        if (isGunReady) biases['STRAFE_FIRE_R'] = 2.0;
-        else biases['STRAFE_FIRE_R'] = -4.0;
+    } else if (p.sectorThreat.left > 0.28 || p.sectorThreat.right > 0.28) {
+      // --- PRIORITY 2: FLANK THREAT (Lateral danger detected) ---
+      tacticalStance = 'FLANK_EVADE';
+      biases['FIRE'] = -6.0;
+      biases['ADVANCE_FIRE'] = -4.0;
+      biases['FORWARD'] = -3.0; // Stop running forward into crossfire
+      if (p.sectorThreat.left > 0.28) {
+        biases['STRAFE_RIGHT'] = 2.4;
+        biases['TURN_LEFT'] = 3.4;
       }
-      if (p.sectorThreat.right > 0.3) {
-        biases['STRAFE_LEFT'] = 2.2;
-        biases['TURN_RIGHT'] = 2.0;
-        if (isGunReady) biases['STRAFE_FIRE_L'] = 2.0;
-        else biases['STRAFE_FIRE_L'] = -4.0;
+      if (p.sectorThreat.right > 0.28) {
+        biases['STRAFE_LEFT'] = 2.4;
+        biases['TURN_RIGHT'] = 3.4;
       }
-      biases['FIRE'] = -5.0;
-      biases['ADVANCE_FIRE'] = -3.0;
+    } else if (p.isStuck || (p.wallProximity > 0.65 && depthC < 0.25 && forwardStreak > 3)) {
+      // --- PRIORITY 3: OBSTACLE / DOOR UNSTICK ---
+      tacticalStance = 'UNSTICK_BREACH';
+      // Suppress forward into wall!
+      biases['FORWARD'] = -5.0;
+      biases['FIRE'] = -6.0;
+      biases['ADVANCE_FIRE'] = -5.0;
+      // Pulse USE to open any door/switch
+      biases['USE'] = 2.5;
+
+      // Decisively steer toward the open hallway
+      if (depthL > depthR + 0.05) {
+        biases['TURN_LEFT'] = 3.6;
+        biases['STRAFE_LEFT'] = 2.0;
+      } else if (depthR > depthL + 0.05) {
+        biases['TURN_RIGHT'] = 3.6;
+        biases['STRAFE_RIGHT'] = 2.0;
+      } else {
+        biases['TURN_LEFT'] = 3.6;
+      }
     } else {
-      // --- AGILE EXPLORATION / PATROL: Clear space, navigate through E1M1 ---
-      // Absolutely forbid shooting into empty walls/air
-      biases['FIRE'] = -5.0;
-      biases['ADVANCE_FIRE'] = -3.5;
+      // --- PRIORITY 4: GOAL-DIRECTED MISSION NAVIGATION ---
+      tacticalStance = 'PATROL_ADVANCE';
+      biases['FIRE'] = -6.0;
+      biases['ADVANCE_FIRE'] = -4.0;
       biases['STRAFE_FIRE_L'] = -5.0;
       biases['STRAFE_FIRE_R'] = -5.0;
 
-      // Bold forward locomotion
-      biases['FORWARD'] = 2.2;
+      // Check alignment with target heading
+      if (Math.abs(headingDiff) > 25) {
+        // Must rotate to align! Suppress forward so we actually turn!
+        biases['FORWARD'] = -4.0;
+        if (headingDiff > 0) {
+          biases['TURN_LEFT'] = 3.6;
+        } else {
+          biases['TURN_RIGHT'] = 3.6;
+        }
+      } else {
+        // Aligned: sprint forward!
+        biases['FORWARD'] = 3.0;
+        biases['TURN_LEFT'] = -2.0;
+        biases['TURN_RIGHT'] = -2.0;
 
-      // Environmental navigation via sector luminance
-      const lumDiff = p.sectorLum.right - p.sectorLum.left;
-      if (lumDiff > 0.12) {
-        biases['TURN_RIGHT'] = 1.8;
-      } else if (lumDiff < -0.12) {
-        biases['TURN_LEFT'] = 1.8;
-      }
+        // Fine corridor centering using visual depth
+        const corridorDelta = depthR - depthL;
+        if (corridorDelta > 0.15) {
+          biases['TURN_RIGHT'] = 1.8;
+          biases['FORWARD'] = 1.5;
+        } else if (corridorDelta < -0.15) {
+          biases['TURN_LEFT'] = 1.8;
+          biases['FORWARD'] = 1.5;
+        }
 
-      // Periodic corner patrol to avoid tunnel vision and turn into halls
-      if (forwardStreak >= 8) {
-        biases[Math.random() < 0.5 ? 'TURN_LEFT' : 'TURN_RIGHT'] = 1.9;
-      }
-
-      // Occasional environmental interaction (doors/switches)
-      if (Math.random() < 0.08) {
-        biases['USE'] = 2.0;
+        // Periodic door / switch interaction pulse
+        if (Math.random() < 0.04) {
+          biases['USE'] = 1.8;
+        }
       }
     }
 
@@ -261,6 +389,15 @@ async function triggerDecisionCycle() {
     lastDecision.textContent = `${chosenActionId} (${(choice.confidence * 100).toFixed(0)}%)`;
     latencyCounter.textContent = `${choice.latencyMs.toFixed(3)} ms`;
     decisionsCounter.textContent = decisionCount.toLocaleString();
+
+    // Update Mission Directive HUD
+    if (missionObjectiveText) missionObjectiveText.textContent = phase.name;
+    if (missionWaypointBadge) missionWaypointBadge.textContent = `WP ${missionDirector.phaseIndex + 1}/${missionDirector.phases.length}`;
+    if (missionCompassBadge) missionCompassBadge.textContent = missionDirector.formatCompass();
+    if (missionDepthBadge) {
+      missionDepthBadge.textContent = `OPEN ${(depthC * 100).toFixed(0)}%`;
+      missionDepthBadge.className = `badge font-mono ${depthC > 0.35 ? 'badge-green' : 'badge-amber'}`;
+    }
 
     // Highlight winning action bar and probabilities
     for (const act of actions) {
@@ -287,13 +424,13 @@ async function triggerDecisionCycle() {
     radarCenterScore.textContent = `${(p.centerTargetScore * 100).toFixed(0)}%`;
 
     // Record into Nerd Telemetry & Live Diagnostic Stream with prominent %
-    const targetStatus = p.centerTargetScore > 0.25 ? 'TARGET_LOCK' : 'SCANNING';
+    const targetStatus = p.centerTargetScore > 0.20 ? 'TARGET_LOCK' : 'SCANNING';
     telemetry.record({
       action: chosenActionId,
       confidence: choice.confidence,
       latencyMs: choice.latencyMs,
       ranking: choice.ranking,
-      details: `${targetStatus} | C:${(p.centerTargetScore * 100).toFixed(0)}% L:${(p.sectorThreat.left * 100).toFixed(0)}% R:${(p.sectorThreat.right * 100).toFixed(0)}%`,
+      details: `${tacticalStance} | ${missionDirector.formatCompass()} | C:${(p.centerTargetScore * 100).toFixed(0)}%`,
     });
   } catch (err) {
     console.error('Decision cycle error:', err);
@@ -313,6 +450,7 @@ function setupControls() {
     autoStartBtn.disabled = true;
     autoStartBtn.textContent = 'LAUNCHING...';
     await doom.autoStartGame();
+    missionDirector.reset();
     isGameSpawned = true;
     autoStartBtn.disabled = false;
     autoStartBtn.textContent = 'E1M1 ACTIVE';
@@ -347,6 +485,7 @@ function setupControls() {
     resetBtn.textContent = 'RESTARTING...';
     telemetry.logSystem('Session restart initiated.');
     await doom.restartGame();
+    missionDirector.reset();
     isGameSpawned = true;
     resetBtn.disabled = false;
     resetBtn.textContent = 'RESTART GAME';
@@ -424,6 +563,7 @@ async function boot() {
     autoStartBtn.textContent = 'LAUNCHING...';
     setTimeout(() => {
       doom.autoStartGame().then(() => {
+        missionDirector.reset();
         isGameSpawned = true;
         autoStartBtn.textContent = 'E1M1 ACTIVE';
         autoStartBtn.classList.add('active');

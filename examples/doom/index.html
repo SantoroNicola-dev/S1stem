@@ -44,6 +44,50 @@
       overflow: hidden !important;
       text-overflow: ellipsis !important;
     }
+    .mission-hud-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+    .mission-hud-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .hud-label {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+    .hud-objective-text {
+      font-size: 0.82rem;
+      color: var(--accent-orange);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .mission-hud-metrics {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .hud-subitem {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+    }
     @media (max-width: 1100px) {
       .dashboard-grid {
         grid-template-columns: 1fr !important;
@@ -94,6 +138,28 @@
           <div class="viewport-stats">
             <span class="vstat">RENDER: <strong id="fps-counter">0 FPS</strong></span>
             <span class="vstat">DECISIONS: <strong id="decisions-counter">0</strong></span>
+          </div>
+        </div>
+
+        <!-- Real-time Mission Objective HUD -->
+        <div class="mission-hud-bar">
+          <div class="mission-hud-item">
+            <span class="hud-label">TACTICAL DIRECTIVE // E1M1</span>
+            <span id="mission-objective-text" class="hud-objective-text font-mono">PHASE 1: CROSS HANGAR TO PILLARS</span>
+          </div>
+          <div class="mission-hud-metrics">
+            <div class="hud-subitem">
+              <span class="hud-label">PHASE</span>
+              <span id="mission-waypoint-badge" class="badge badge-amber font-mono">WP 1/5</span>
+            </div>
+            <div class="hud-subitem">
+              <span class="hud-label">COMPASS</span>
+              <span id="mission-compass-badge" class="badge badge-cyan font-mono">000° E</span>
+            </div>
+            <div class="hud-subitem">
+              <span class="hud-label">CORRIDOR DEPTH</span>
+              <span id="mission-depth-badge" class="badge badge-green font-mono">OPEN 75%</span>
+            </div>
           </div>
         </div>
 
