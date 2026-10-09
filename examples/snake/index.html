@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SNAKE S1stem // Autonomous Spatial Reflexes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../core/tactical-theme.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Bar Navigation & Unified Header -->
+    <header class="top-nav">
+      <div class="brand">
+        <span class="brand-badge snk">SNK</span>
+        <div class="brand-text">
+          <h1>SNAKE TACTICAL EDGE CORE</h1>
+          <span class="subtext">System 1 Spatial Reflex // Geodesic BFS + 4-Goal Policy // S1stem</span>
+        </div>
+      </div>
+
+      <nav class="example-nav">
+        <a href="../../index.html" class="nav-link">⚡ Hub</a>
+        <a href="./index.html" class="nav-link active snk">🐍 Snake AI</a>
+        <a href="../tetris/index.html" class="nav-link">🧱 Tetris AI</a>
+        <a href="../doom/index.html" class="nav-link">🔥 Doom AI</a>
+      </nav>
+
+      <div class="header-badges">
+        <div class="badge-item">
+          <span class="badge-label">ENGINE</span>
+          <span id="status-badge" class="badge badge-green">RUNNING (MESH)</span>
+        </div>
+        <div class="badge-item">
+          <span class="badge-label">AI REFLEX</span>
+          <span id="ai-status-badge" class="badge badge-green">ONLINE (SYSTEM 1)</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Operational Grid -->
+    <main class="dashboard-grid">
+      <!-- Left Column: Arena Viewport & Controls -->
+      <section class="viewport-card">
+        <div class="viewport-header">
+          <div class="title-with-pulse">
+            <span class="pulse-indicator"></span>
+            <h2>SPATIAL ARENA // 16×16 CONTINUOUS MESH</h2>
+          </div>
+          <div class="viewport-stats">
+            <span class="vstat">SCORE: <strong id="game-score">0</strong></span>
+            <span class="vstat">MOVES: <strong id="game-moves">0</strong></span>
+            <span class="vstat">FOODS: <strong id="game-apples">0</strong></span>
+          </div>
+        </div>
+
+        <div class="canvas-wrapper">
+          <canvas id="snake-canvas" width="480" height="480"></canvas>
+        </div>
+
+        <!-- Controls Toolbar -->
+        <div class="toolbar">
+          <button id="btn-toggle-play" class="btn btn-emerald">▶ Play</button>
+          <button id="btn-step-frame" class="btn btn-secondary">Step Frame</button>
+          <button id="btn-reset-game" class="btn btn-secondary">Reset</button>
+          <div class="slider-group">
+            <label for="speed-slider">Speed: <span id="speed-val" class="font-mono">7 tps</span></label>
+            <input type="range" id="speed-slider" min="1" max="25" value="7" />
+          </div>
+        </div>
+
+        <!-- Real-time Tactical State Prompt Bar -->
+        <div class="state-prompt-box">
+          <span class="prompt-tag">SYSTEM 1 STATE PROMPT</span>
+          <div id="prompt-display" class="prompt-text">Synthesizing spatial geometry and food coordinates...</div>
+        </div>
+      </section>
+
+      <!-- Right Column: AI Telemetry, Neural Ranking & Nerd Stats -->
+      <aside class="sidebar-card">
+        <!-- Latency & Chosen Move Hero Banner -->
+        <div class="hero-metric-panel">
+          <div class="hero-metric">
+            <span class="metric-title">DECISION LATENCY</span>
+            <span id="decision-latency" class="metric-value highlight-cyan">&lt; 0.12 ms</span>
+            <span class="metric-sub">Zero-server edge projection</span>
+          </div>
+          <div class="hero-metric">
+            <span class="metric-title">CURRENT MOVE</span>
+            <span id="chosen-direction" class="metric-value highlight-emerald">-</span>
+            <span class="metric-sub">4-corridor spatial policy</span>
+          </div>
+        </div>
+
+        <!-- Hierarchical Goal Policy -->
+        <div class="panel-section">
+          <div class="section-title">
+            <span>HIERARCHICAL GOAL PRIORITIES</span>
+            <span class="section-sub">Policy Constraints</span>
+          </div>
+          <div id="goals-list" class="goals-container">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Candidate Corridor Ranking Distribution -->
+        <div class="panel-section">
+          <div class="section-title">
+            <span>CANDIDATE CORRIDOR RANKING</span>
+            <span class="section-sub">s&top;A / &tau; (&tau;=0.07)</span>
+          </div>
+          <div id="candidate-bars" class="action-distribution-list">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+
+        <!-- Diagnostic Decision Stream // Log with % -->
+        <div class="panel-section terminal-section">
+          <div class="section-title">
+            <span>DIAGNOSTIC DECISION STREAM</span>
+            <span class="section-sub">CONFIDENCE %</span>
+          </div>
+          <div id="log-stream" class="terminal-box"></div>
+        </div>
+
+        <!-- Deep Nerd Telemetry Panel -->
+        <div class="panel-section nerd-section">
+          <div class="section-title">
+            <span>NERD STATS // DEEP TELEMETRY</span>
+            <span class="section-sub">InfoNCE (384 &rarr; 128)</span>
+          </div>
+          <div id="nerd-stats-grid" class="nerd-stats-grid">
+            <!-- Populated dynamically by NerdTelemetry -->
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

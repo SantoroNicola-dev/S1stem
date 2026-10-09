@@ -1,0 +1,24 @@
+{
+  "name": "S1stem",
+  "version": "1.0.0",
+  "description": "S1stem — Sub-Millisecond In-Browser & Edge System 1 Decision Engine in Pure Vanilla JavaScript (<0.20ms latency, <25MB RAM, zero compile step, zero dependencies).",
+  "type": "module",
+  "main": "./core/s1stem.js",
+  "module": "./core/s1stem.js",
+  "exports": {
+    ".": "./core/s1stem.js",
+    "./core": "./core/s1stem.js",
+    "./s1stem": "./core/s1stem.js"
+  },
+  "scripts": {
+    "start": "python -m http.server 8080",
+    "serve": "npx serve .",
+    "test": "node test/test_games_verification.js"
+  },
+  "author": "Nicola Santoro SantoroNicola-dev",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SantoroNicola-dev/S1stem"
+  }
+}
