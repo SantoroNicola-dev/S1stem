@@ -52,6 +52,9 @@ const WEAPON_COOLDOWN_MS = 750; // Shotgun/pistol mechanical refire cadence
 let lastShotTime = 0;
 let forwardStreak = 0;
 let lastTurnDir = 'TURN_LEFT';
+let stuckCycles = 0;
+let unstickTurnDir = 'TURN_LEFT';
+let lastChosenAction = null;
 
 // Tactical Mission Director for E1M1 Progression
 class TacticalMissionDirector {
@@ -60,41 +63,42 @@ class TacticalMissionDirector {
     this.phaseIndex = 0;
     this.heading = 0; // 0 = East (Spawn), 90 = North (Zigzag entrance), 180 = West, 270 = South
 
-    // E1M1 Progression Waypoints
+    // Accurate E1M1 Progression Waypoints
+    // At spawn, turning 90° North immediately avoids dropping into the armor pit and enters northern hallway directly!
     this.phases = [
       {
-        id: 'CROSS_HANGAR',
-        name: 'PHASE 1: CROSS HANGAR TO PILLARS',
-        durationSec: 2.8,
-        targetHeading: 0,   // Sprint East straight toward pillars/armor
-        description: 'Advancing across hangar floor to retrieve green armor & health'
-      },
-      {
         id: 'PIVOT_ZIGZAG',
-        name: 'PHASE 2: PIVOT & BREACH ZIGZAG HALL',
-        durationSec: 4.5,
-        targetHeading: 90,  // Turn North (left) to enter zigzag doorway
-        description: 'Entering northern corridor overlooking outdoor courtyard'
+        name: 'PHASE 1: PIVOT TO ZIGZAG ENTRANCE',
+        durationSec: 1.2,
+        targetHeading: 90,  // Turn 90° North immediately at spawn to face northern hallway!
+        description: 'Pivoting 90° North to face the northern doorway on spawn platform'
       },
       {
-        id: 'ZIGZAG_CORRIDOR',
-        name: 'PHASE 3: NAVIGATE ZIGZAG WALKWAY',
-        durationSec: 8.0,
-        targetHeading: 45,  // Follow corridor North-East towards computer stairs
-        description: 'Traversing zigzag bends with optical depth alignment'
+        id: 'ENTER_ZIGZAG',
+        name: 'PHASE 2: ENTER ZIGZAG CORRIDOR',
+        durationSec: 4.0,
+        targetHeading: 90,  // Advance North through the doorway
+        description: 'Breaching northern entrance overlooking courtyard'
+      },
+      {
+        id: 'NAVIGATE_WALKWAY',
+        name: 'PHASE 3: NAVIGATE ACID WALKWAY',
+        durationSec: 7.0,
+        targetHeading: 50,  // Follow corridor North-East along the walkway
+        description: 'Traversing the zigzag walkway towards the computer stairs'
       },
       {
         id: 'COMPUTER_STAIRS',
         name: 'PHASE 4: DESCEND TO COMPUTER ROOM',
-        durationSec: 10.0,
-        targetHeading: 90,  // Descend stairs into main computer facility
-        description: 'Breaching computer room and neutralizing sector hostiles'
+        durationSec: 8.5,
+        targetHeading: 135, // Descend stairs South-East into main computer facility
+        description: 'Descending stairs and neutralizing sector hostiles'
       },
       {
         id: 'SECURE_AND_EXIT',
         name: 'PHASE 5: TACTICAL SWEEP & EXIT PATH',
         durationSec: 35.0,
-        targetHeading: 0,   // Forward across bridge towards exit chamber
+        targetHeading: 180, // Advance South through computer room towards bridge
         description: 'Securing walkway across toxic pool and reaching exit switch'
       }
     ];
@@ -104,17 +108,13 @@ class TacticalMissionDirector {
     this.startTime = performance.now();
     this.phaseIndex = 0;
     this.heading = 0;
+    stuckCycles = 0;
+    lastChosenAction = null;
   }
 
   getCurrentPhase(perception) {
     if (!this.startTime) this.startTime = performance.now();
     const elapsedSec = (performance.now() - this.startTime) / 1000;
-
-    // Smart early phase transition: if Phase 1 has run for > 2.0s and wall/pillar is near, pivot immediately!
-    if (this.phaseIndex === 0 && elapsedSec > 2.0 && perception?.wallProximity > 0.55) {
-      this.phaseIndex = 1;
-      return this.phases[1];
-    }
 
     let accum = 0;
     for (let i = 0; i < this.phases.length; i++) {
@@ -208,34 +208,44 @@ function executeReflexAction(action) {
       forwardStreak++;
       break;
     case 'TURN_LEFT':
+      doom.releaseKey('UP'); // Immediately stop pressing forward into walls!
       doom.pulseKey('LEFT', turnPulseMs);
       lastTurnDir = 'TURN_LEFT';
       forwardStreak = 0;
       break;
     case 'TURN_RIGHT':
+      doom.releaseKey('UP'); // Immediately stop pressing forward into walls!
       doom.pulseKey('RIGHT', turnPulseMs);
       lastTurnDir = 'TURN_RIGHT';
       forwardStreak = 0;
       break;
     case 'STRAFE_LEFT':
+      doom.releaseKey('UP');
       doom.pulseKey('STRAFE_L', strafePulseMs);
+      forwardStreak = 0;
       break;
     case 'STRAFE_RIGHT':
+      doom.releaseKey('UP');
       doom.pulseKey('STRAFE_R', strafePulseMs);
+      forwardStreak = 0;
       break;
     case 'FIRE':
       doom.pulseKey('FIRE', firePulseMs);
       lastShotTime = performance.now();
       break;
     case 'STRAFE_FIRE_L':
+      doom.releaseKey('UP');
       doom.pulseKey('STRAFE_L', strafePulseMs);
       doom.pulseKey('FIRE', firePulseMs);
       lastShotTime = performance.now();
+      forwardStreak = 0;
       break;
     case 'STRAFE_FIRE_R':
+      doom.releaseKey('UP');
       doom.pulseKey('STRAFE_R', strafePulseMs);
       doom.pulseKey('FIRE', firePulseMs);
       lastShotTime = performance.now();
+      forwardStreak = 0;
       break;
     case 'ADVANCE_FIRE':
       doom.pulseKey('UP', movePulseMs);
@@ -244,6 +254,7 @@ function executeReflexAction(action) {
       forwardStreak++;
       break;
     case 'USE':
+      doom.releaseKey('UP');
       doom.pulseKey('USE', usePulseMs);
       break;
   }
@@ -280,6 +291,14 @@ async function triggerDecisionCycle() {
     const depthL = p.corridorDepth?.left ?? 0.5;
     const depthR = p.corridorDepth?.right ?? 0.5;
 
+    // Robust collision / stuck detection using upper-viewport optical motion
+    const isStuck = p.isStuck || (forwardStreak >= 2 && (p.upperMotionDelta ?? 0) < 0.0035);
+    if (isStuck) {
+      stuckCycles++;
+    } else if ((p.upperMotionDelta ?? 0) > 0.008) {
+      stuckCycles = Math.max(0, stuckCycles - 1);
+    }
+
     let tacticalStance = 'ADVANCE';
     const biases = {};
     const actions = DOOM_WEIGHTS.actions;
@@ -315,25 +334,43 @@ async function triggerDecisionCycle() {
         biases['STRAFE_LEFT'] = 2.4;
         biases['TURN_RIGHT'] = 3.4;
       }
-    } else if (p.isStuck || (p.wallProximity > 0.65 && depthC < 0.25 && forwardStreak > 3)) {
-      // --- PRIORITY 3: OBSTACLE / DOOR UNSTICK ---
+    } else if (stuckCycles >= 2 || p.isStuck || (p.wallProximity > 0.70 && depthC < 0.20 && forwardStreak > 2)) {
+      // --- PRIORITY 3: ANTI-WALL UNSTICK & BREACH ---
       tacticalStance = 'UNSTICK_BREACH';
-      // Suppress forward into wall!
-      biases['FORWARD'] = -5.0;
+      doom.releaseKey('UP'); // Immediately stop pushing against the wall!
+      biases['FORWARD'] = -9.0; // Absolutely forbid forward motion into wall!
+      biases['ADVANCE_FIRE'] = -9.0;
       biases['FIRE'] = -6.0;
-      biases['ADVANCE_FIRE'] = -5.0;
-      // Pulse USE to open any door/switch
-      biases['USE'] = 2.5;
 
-      // Decisively steer toward the open hallway
-      if (depthL > depthR + 0.05) {
-        biases['TURN_LEFT'] = 3.6;
-        biases['STRAFE_LEFT'] = 2.0;
-      } else if (depthR > depthL + 0.05) {
-        biases['TURN_RIGHT'] = 3.6;
-        biases['STRAFE_RIGHT'] = 2.0;
+      // Prevent repetitive USE loops: never pulse USE twice in a row!
+      if (lastChosenAction === 'USE') {
+        biases['USE'] = -10.0;
+      }
+
+      if (stuckCycles === 2 && lastChosenAction !== 'USE') {
+        // Step 1: Single attempt to open door/switch (USE), while initiating lateral slide
+        biases['USE'] = 3.2;
+        if (depthL > depthR) {
+          biases['STRAFE_LEFT'] = 3.5;
+          biases['TURN_LEFT'] = 3.5;
+          unstickTurnDir = 'TURN_LEFT';
+        } else {
+          biases['STRAFE_RIGHT'] = 3.5;
+          biases['TURN_RIGHT'] = 3.5;
+          unstickTurnDir = 'TURN_RIGHT';
+        }
+      } else if (stuckCycles <= 5) {
+        // Step 2: Decisively pivot away from the wall with zero forward movement
+        biases['USE'] = -8.0;
+        biases[unstickTurnDir] = 5.2;
+        biases[unstickTurnDir === 'TURN_LEFT' ? 'STRAFE_LEFT' : 'STRAFE_RIGHT'] = 3.2;
       } else {
-        biases['TURN_LEFT'] = 3.6;
+        // Step 3: Deep corner escape: reverse rotation, pulse backward step and pivot
+        biases['USE'] = -8.0;
+        unstickTurnDir = (unstickTurnDir === 'TURN_LEFT') ? 'TURN_RIGHT' : 'TURN_LEFT';
+        biases[unstickTurnDir] = 5.5;
+        biases[unstickTurnDir === 'TURN_LEFT' ? 'STRAFE_LEFT' : 'STRAFE_RIGHT'] = 3.5;
+        doom.pulseKey('DOWN', 160); // Physically back away from the corner!
       }
     } else {
       // --- PRIORITY 4: GOAL-DIRECTED MISSION NAVIGATION ---
@@ -344,32 +381,33 @@ async function triggerDecisionCycle() {
       biases['STRAFE_FIRE_R'] = -5.0;
 
       // Check alignment with target heading
-      if (Math.abs(headingDiff) > 25) {
-        // Must rotate to align! Suppress forward so we actually turn!
-        biases['FORWARD'] = -4.0;
+      if (Math.abs(headingDiff) > 20) {
+        // Must rotate to align! Suppress forward so we actually turn cleanly without wall friction
+        doom.releaseKey('UP');
+        biases['FORWARD'] = -5.0;
         if (headingDiff > 0) {
-          biases['TURN_LEFT'] = 3.6;
+          biases['TURN_LEFT'] = 3.8;
         } else {
-          biases['TURN_RIGHT'] = 3.6;
+          biases['TURN_RIGHT'] = 3.8;
         }
       } else {
         // Aligned: sprint forward!
-        biases['FORWARD'] = 3.0;
-        biases['TURN_LEFT'] = -2.0;
-        biases['TURN_RIGHT'] = -2.0;
+        biases['FORWARD'] = 3.2;
+        biases['TURN_LEFT'] = -2.5;
+        biases['TURN_RIGHT'] = -2.5;
 
         // Fine corridor centering using visual depth
         const corridorDelta = depthR - depthL;
-        if (corridorDelta > 0.15) {
+        if (corridorDelta > 0.18) {
           biases['TURN_RIGHT'] = 1.8;
-          biases['FORWARD'] = 1.5;
-        } else if (corridorDelta < -0.15) {
+          biases['FORWARD'] = 1.8;
+        } else if (corridorDelta < -0.18) {
           biases['TURN_LEFT'] = 1.8;
-          biases['FORWARD'] = 1.5;
+          biases['FORWARD'] = 1.8;
         }
 
         // Periodic door / switch interaction pulse
-        if (Math.random() < 0.04) {
+        if (Math.random() < 0.04 && lastChosenAction !== 'USE') {
           biases['USE'] = 1.8;
         }
       }
@@ -380,6 +418,7 @@ async function triggerDecisionCycle() {
     decisionCount++;
 
     const chosenActionId = choice.winner || choice.selectedAction?.id || choice.selectedAction;
+    lastChosenAction = chosenActionId;
 
     // Execute tactical reflex
     executeReflexAction(chosenActionId);

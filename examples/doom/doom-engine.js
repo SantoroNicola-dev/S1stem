@@ -32,10 +32,13 @@ export class DoomEngine {
       averageLuminance: 0.5,
       dangerDetected: false,
       motionDelta: 0,
+      upperMotionDelta: 0.05,
       isStuck: false
     };
     this.prevLumGrid = null;
+    this.prevUpperLumGrid = null;
     this.stuckCounter = 0;
+    this.lastForwardPulseTime = 0;
 
     // Logging listeners
     this.onInfo = null;
@@ -258,40 +261,51 @@ export class DoomEngine {
     const avgUpperCenter = countUpperCenter ? lumUpperCenter / countUpperCenter : 0.3;
     const avgUpperRight = countUpperRight ? lumUpperRight / countUpperRight : 0.3;
 
-    const corridorDepth = {
-      left: Math.max(0, Math.min(1.0, (0.42 - avgUpperLeft) * 3.8)),
-      center: Math.max(0, Math.min(1.0, (0.42 - avgUpperCenter) * 3.8)),
-      right: Math.max(0, Math.min(1.0, (0.42 - avgUpperRight) * 3.8)),
-    };
-    const wallProximity = Math.max(0, Math.min(1.0, (avgUpperCenter - 0.22) * 3.5));
-
-    // Lightweight 8x8 optical flow / motion delta estimation to detect if marine is stuck
-    const gridW = 8, gridH = 8;
-    let frameDiff = 0;
-    const currentGrid = new Float32Array(gridW * gridH);
+    // Dedicated optical flow in UPPER-HALF scene (strictly above gun sprite: rows ~25 to ~155)
+    // Eliminates false-positives caused by gun bobbing and muzzle flashes!
+    const upperYMin = Math.floor(viewHeight * 0.08);
+    const upperYMax = Math.floor(viewHeight * 0.46);
+    const gridW = 8, gridH = 4;
+    let upperFrameDiff = 0;
+    const currentUpperGrid = new Float32Array(gridW * gridH);
     for (let gy = 0; gy < gridH; gy++) {
-      const py = Math.floor((viewHeight * (gy + 0.5)) / gridH);
+      const py = Math.floor(upperYMin + ((upperYMax - upperYMin) * (gy + 0.5)) / gridH);
       for (let gx = 0; gx < gridW; gx++) {
         const px = Math.floor((w * (gx + 0.5)) / gridW);
         const pxi = src32[py * w + px];
         const lum = (((pxi >> 16) & 0xFF) * 0.299 + ((pxi >> 8) & 0xFF) * 0.587 + (pxi & 0xFF) * 0.114) / 255;
         const idx = gy * gridW + gx;
-        currentGrid[idx] = lum;
-        if (this.prevLumGrid) {
-          frameDiff += Math.abs(lum - this.prevLumGrid[idx]);
+        currentUpperGrid[idx] = lum;
+        if (this.prevUpperLumGrid) {
+          upperFrameDiff += Math.abs(lum - this.prevUpperLumGrid[idx]);
         }
       }
     }
-    this.prevLumGrid = currentGrid;
-    const motionDelta = frameDiff / (gridW * gridH);
+    this.prevUpperLumGrid = currentUpperGrid;
+    const upperMotionDelta = upperFrameDiff / (gridW * gridH);
 
-    // If forward key is held and scene difference is virtually zero, marine is stuck against wall/corner
-    if (this.activeKeys.has(this.keyCodes?.UP ?? 173) && motionDelta < 0.012) {
-      this.stuckCounter = Math.min(20, (this.stuckCounter || 0) + 1);
-    } else {
-      this.stuckCounter = Math.max(0, (this.stuckCounter || 0) - 1);
+    // Forward motion intent check: true if UP is currently held or was pulsed in the last 280ms
+    const isForwardIntended = this.activeKeys.has(this.keyCodes?.UP ?? 173) || (performance.now() - this.lastForwardPulseTime < 280);
+
+    // If forward is intended but upper-half scene is completely static (< 0.0035), marine is blocked by wall!
+    if (isForwardIntended && upperMotionDelta < 0.0035) {
+      this.stuckCounter = Math.min(25, (this.stuckCounter || 0) + 1);
+    } else if (upperMotionDelta >= 0.007) {
+      this.stuckCounter = Math.max(0, (this.stuckCounter || 0) - 2);
     }
-    const isStuck = (this.stuckCounter || 0) >= 6;
+    const isStuck = (this.stuckCounter || 0) >= 3;
+
+    // Optical wall proximity & depth metrics
+    let wallProximity = isStuck ? 1.0 : Math.max(0, Math.min(1.0, (avgUpperCenter - 0.25) * 3.5));
+    if (isForwardIntended && this.stuckCounter >= 2) {
+      wallProximity = Math.max(wallProximity, 0.85);
+    }
+
+    const corridorDepth = {
+      left: isStuck ? 0.35 : Math.max(0, Math.min(1.0, (0.42 - avgUpperLeft) * 3.8)),
+      center: isStuck ? 0.05 : Math.max(0, Math.min(1.0, (0.42 - avgUpperCenter) * 3.8)),
+      right: isStuck ? 0.35 : Math.max(0, Math.min(1.0, (0.42 - avgUpperRight) * 3.8)),
+    };
 
     this.perception = {
       sectorLum: {
@@ -309,7 +323,8 @@ export class DoomEngine {
       centerTargetScore: crosshairCount ? Math.min(1.0, (crosshairThreat / crosshairCount) * 16.0) : 0,
       averageLuminance: (lumLeft + lumCenter + lumRight) / (countLeft + countCenter + countRight || 1),
       dangerDetected: (threatLeft + threatCenter + threatRight) > 2,
-      motionDelta,
+      motionDelta: upperMotionDelta,
+      upperMotionDelta,
       isStuck
     };
   }
@@ -333,6 +348,9 @@ export class DoomEngine {
   }
 
   pulseKey(name, durationMs = 120) {
+    if (name === 'UP') {
+      this.lastForwardPulseTime = performance.now();
+    }
     this.pressKey(name);
     setTimeout(() => {
       this.releaseKey(name);
