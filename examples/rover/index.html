@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyber-Rover // S1stem-CDR Two-Tier Hybrid Cascade Benchmark</title>
+  <meta name="description" content="Cyber-Rover adversarial pursuit-evasion benchmark powered by S1stem-CDR two-tier hybrid cascade routing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <script src="../theme.js"></script>
+  <script>
+    if (window.location.protocol === 'file:') {
+      document.addEventListener('DOMContentLoaded', () => {
+        const b = document.createElement('div');
+        b.style.cssText = 'background:#2d1d03;color:#f0f6fc;padding:10px 16px;font-size:12.5px;text-align:center;border-bottom:1px solid #d29922;font-family:sans-serif;z-index:99999;position:relative;';
+        b.innerHTML = '⚠️ <strong>Local file:// protocol detected:</strong> JavaScript ES Modules require a local HTTP server (CORS). Run <code>npm start</code> or <code>npx serve .</code> and open <a href="http://localhost:8080/examples/rover/index.html" style="color:#58a6ff;font-weight:700;">http://localhost:8080/examples/rover/index.html</a>.';
+        document.body.prepend(b);
+      });
+    }
+  </script>
+</head>
+<body>
+  <!-- Unified Microsoft Command Line Navigation Header -->
+  <header class="top-nav">
+    <div class="nav-inner">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <a href="../tetris/index.html" class="ms-brand">
+          <span class="cli-prompt">&gt;_</span>
+          <span>Command Line</span>
+        </a>
+        <span class="brand-tagline-ms">By builders, for builders.</span>
+      </div>
+
+      <nav class="example-nav">
+        <a href="../tetris/index.html" class="nav-link">Tetris AI</a>
+        <a href="../snake/index.html" class="nav-link">Snake AI</a>
+        <a href="../rover/index.html" class="nav-link active">Rover AI</a>
+        <a href="../dispatcher/index.html" class="nav-link">Agent Dispatcher</a>
+      </nav>
+
+      <div class="header-badges">
+        <div class="badge-item">
+          <span class="badge-label">AI ROUTER</span>
+          <span id="neural-status-pill" class="badge badge-green">S1STEM-CDR</span>
+        </div>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+          <span id="theme-icon">◐</span>
+          <span>THEME</span>
+        </button>
+        <a href="https://github.com/SantoroNicola-dev/S1stem" class="nav-github-btn" target="_blank" rel="noreferrer">
+          <span>GitHub</span>
+          <span class="font-mono">↗</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <!-- Main Operational Grid -->
+    <main class="dashboard-grid">
+      <!-- Left Column: Arena Viewport & Controls -->
+      <section class="viewport-card">
+        <div class="viewport-header">
+          <div class="title-with-pulse">
+            <span class="pulse-indicator purple"></span>
+            <h2>OUTPOST FACILITY // 19×22 ADVERSARIAL PURSUIT-EVASION</h2>
+          </div>
+          <div class="viewport-stats">
+            <span class="vstat">SCORE: <strong id="game-score">0</strong></span>
+            <span class="vstat">SHIELDS: <strong id="game-shields">3</strong></span>
+            <span class="vstat">PLASMA CELLS: <strong id="game-cells">154</strong></span>
+            <span class="vstat">CAPACITOR: <strong id="game-capacitor">STANDARD</strong></span>
+          </div>
+        </div>
+
+        <!-- Rover Canvas -->
+        <div class="canvas-wrapper">
+          <canvas id="rover-canvas" width="456" height="528"></canvas>
+        </div>
+
+        <!-- Controls Toolbar -->
+        <div class="toolbar">
+          <button id="btn-toggle-play" class="btn btn-emerald">
+            <span>⏸</span>
+            <span>Pause AI</span>
+          </button>
+          <button id="btn-step-frame" class="btn btn-secondary">
+            <span>⏭</span>
+            <span>Step Tick</span>
+          </button>
+          <button id="btn-reset-game" class="btn btn-secondary">
+            <span>↺</span>
+            <span>Reset</span>
+          </button>
+          <button id="btn-sound-toggle" class="btn btn-secondary">
+            <span>🔇</span>
+            <span>Sound: OFF</span>
+          </button>
+
+          <div class="slider-group">
+            <label for="speed-slider">Speed:</label>
+            <input type="range" id="speed-slider" min="1" max="25" value="10" />
+            <span id="speed-val" class="font-mono">10 Hz</span>
+          </div>
+        </div>
+
+        <!-- Tactical State Observation Prompt Bar -->
+        <div class="state-prompt-box">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="prompt-tag">TACTICAL OBSERVATION // UNIT HYPERSPHERE S¹²⁷</span>
+            <span id="chosen-action" class="font-mono" style="font-size: 0.65rem; color: var(--accent-cyan); font-weight: 700;">LEFT (88%)</span>
+          </div>
+          <p id="prompt-display" class="prompt-text">
+            Initializing Cyber-Rover tactical observation telemetry...
+          </p>
+        </div>
+
+        <!-- Tactical Scenario Stress-Test Injector -->
+        <div class="panel-section">
+          <div class="section-title">
+            <span>CDR TACTICAL SCENARIOS // STRESS-TESTS</span>
+            <span class="section-sub">ONE-CLICK INJECTION</span>
+          </div>
+          <div class="scenario-chips-grid">
+            <button class="scenario-chip" data-scenario="highway">
+              <span class="chip-title">⚡ Conduit Highway</span>
+              <span class="chip-desc">High affinity path &rarr; Tier 1 Fast Reflex Exit (&lt;0.15ms)</span>
+            </button>
+            <button class="scenario-chip" data-scenario="pincer">
+              <span class="chip-title">🧠 Double Sentry Pincer</span>
+              <span class="chip-desc">Vanguard &amp; Flanker converging &rarr; Tier 2 Neural Escalation</span>
+            </button>
+            <button class="scenario-chip" data-scenario="overclock">
+              <span class="chip-title">⚡ Overclock Blitz</span>
+              <span class="chip-desc">Supercharge capacitor active &rarr; Reflex neutralizing sentries</span>
+            </button>
+            <button class="scenario-chip" data-scenario="paraphrase">
+              <span class="chip-title">🧠 Semantic Paraphrase</span>
+              <span class="chip-desc">Zero lexical overlap &rarr; Transformer semantic grounding</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: S1stem-CDR Telemetry Matrix -->
+      <aside class="sidebar-card">
+        <!-- Hero Metrics -->
+        <div class="hero-metric-panel">
+          <div class="hero-metric">
+            <span class="metric-title">DECISION LATENCY</span>
+            <div id="decision-latency" class="metric-value highlight-emerald">&lt; 0.20 ms</div>
+            <span id="decision-latency-sub" class="metric-sub">Sub-millisecond unit hypersphere S¹²⁷ exit</span>
+          </div>
+          <div class="hero-metric">
+            <span class="metric-title">ACTIVE CDR ROUTING TIER</span>
+            <div style="margin-top: 4px;">
+              <span id="tier-badge" class="tier-badge reflex">
+                <span>⚡</span>
+                <span>TIER 1 FAST REFLEX (&lt;0.2ms)</span>
+              </span>
+            </div>
+            <div style="display: flex; gap: 8px; margin-top: 4px;">
+              <span class="metric-sub">CONF: <strong id="decision-confidence" style="color: var(--text-primary);">88.4%</strong></span>
+              <span class="metric-sub">MARGIN: <strong id="decision-margin" style="color: var(--accent-cyan);">&Delta; 0.32</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CDR Gating & Routing Breakdown -->
+        <div class="panel-section">
+          <div class="section-title">
+            <span>CASCADE DECISION ROUTING // TWO-TIER BREAKDOWN</span>
+            <span class="section-sub">S1STEM-CDR MATRIX</span>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 0.68rem;">
+            <span>Tier 1 Reflex Exits: <strong id="stat-tier1-pct" style="color: var(--accent-emerald);">100.0% (0)</strong></span>
+            <span>Tier 2 Escalations: <strong id="stat-tier2-pct" style="color: var(--accent-purple);">0.0% (0)</strong></span>
+          </div>
+
+          <!-- Dual Progress Bar -->
+          <div style="height: 6px; width: 100%; background: var(--bg-input); border-radius: 3px; overflow: hidden; display: flex;">
+            <div id="stat-tier1-bar" style="width: 100%; background: var(--accent-emerald); transition: width 0.3s ease;"></div>
+            <div id="stat-tier2-bar" style="width: 0%; background: var(--accent-purple); transition: width 0.3s ease;"></div>
+          </div>
+
+          <!-- Gating Reason Box -->
+          <div id="escalation-reason" style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent-emerald); background: var(--bg-input); padding: 6px 8px; border-radius: 4px; border-left: 3px solid currentColor;">
+            FAST PATH EXIT: High Affinity &amp; Confidence Margin Clear
+          </div>
+
+          <!-- Mode Selector Toolbar -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2px;">
+            <div class="mode-switch-group">
+              <button class="mode-btn active visual" data-mode="visual">👁️ Visual Frame Mode</button>
+              <button class="mode-btn text" data-mode="text">📝 Text Observation Mode</button>
+            </div>
+            <button id="btn-load-neural" class="btn btn-secondary" style="font-size: 0.65rem; padding: 3px 8px;">
+              <span>👁️ Qwen3.5 VLM WebGPU</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Action Candidate Ranking Bars -->
+        <div class="panel-section">
+          <div class="section-title">
+            <span>CANDIDATE ACTION MENU // SOFTMAX DISTRIBUTION</span>
+            <span class="section-sub">4-DIR REFLEX SPACE</span>
+          </div>
+          <div id="candidate-bars" class="action-distribution-list">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Polar Noul Reasoner (Binary Boolean Arbitrator) -->
+        <div class="panel-section">
+          <div class="section-title">
+            <span>POLAR NOUL ARBITER // LINGUISTIC CONTRAPOSITION</span>
+            <span class="section-sub">S1STEM.NOUL()</span>
+          </div>
+          <div class="noul-card">
+            <div class="noul-header">
+              <span class="noul-title">TACTICAL PROPOSITION (ZERO WORD LISTS)</span>
+              <span class="font-mono" style="font-size: 0.6rem; color: var(--text-muted);">CALIBRATED</span>
+            </div>
+            <div id="noul-question" class="noul-question">
+              "Is the nearest rogue sentry within dangerous intercept range?"
+            </div>
+            <div class="noul-meter">
+              <div id="noul-bar-yes" class="noul-bar-yes" style="width: 25%;">YES 25%</div>
+              <div id="noul-bar-no" class="noul-bar-no" style="width: 75%;">NO 75%</div>
+            </div>
+            <div class="noul-hypotheses">
+              <div class="noul-hypo-row">
+                <span class="noul-hypo-label yes">AFFIRMATIVE:</span>
+                <span id="noul-hypo-yes">nearest sentry is within dangerous intercept range (confirmed)</span>
+              </div>
+              <div class="noul-hypo-row">
+                <span class="noul-hypo-label no">NEGATIVE:</span>
+                <span id="noul-hypo-no">nearest sentry is not within dangerous intercept range (unconfirmed)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Situational Safety Index (Score Rubric) & Sentry Telemetry -->
+        <div class="panel-section">
+          <div class="section-title">
+            <span>TACTICAL SAFETY INDEX &amp; SENTRY SENSORS</span>
+            <span class="section-sub">S1STEM.SCORE() 1-5</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-input); padding: 8px 12px; border-radius: 4px;">
+            <div class="safety-gauge-wrap">
+              <span class="safety-score-val" id="safety-score-val">4/5</span>
+              <div class="safety-stars">
+                <div class="safety-dot active"></div>
+                <div class="safety-dot active"></div>
+                <div class="safety-dot active"></div>
+                <div class="safety-dot active"></div>
+                <div class="safety-dot"></div>
+              </div>
+            </div>
+            <span class="font-mono" style="font-size: 0.62rem; color: var(--text-muted);">Total Decisions: <strong id="stat-total-decisions" style="color: var(--text-primary);">0</strong></span>
+          </div>
+
+          <div id="sentry-strip" class="sentry-strip" style="margin-top: 6px;">
+            <!-- Dynamically populated 4 sentries telemetry -->
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <!-- Unified Scholarly Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <strong>S1stem-CDR</strong> &nbsp;·&nbsp; Two-Tier Cascade Decision Routing Engine &nbsp;·&nbsp; Apache-2.0
+      </div>
+      <div>
+        <a href="https://github.com/SantoroNicola-dev/S1stem" target="_blank" rel="noreferrer" style="margin-right: 14px;">GitHub Repository ↗</a>
+        <a href="../index.html" style="margin-right: 12px;">Overview</a>
+        <a href="../tetris/index.html" style="margin-right: 12px;">Tetris AI</a>
+        <a href="../snake/index.html" style="margin-right: 12px;">Snake AI</a>
+        <a href="../doom/index.html">Doom AI</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

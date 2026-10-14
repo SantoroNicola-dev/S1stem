@@ -1,0 +1,4257 @@
+{
+  "benchmark": "Glaive Function Calling v2",
+  "pillar": "Agent Tool Selection Dispatch",
+  "source": "https://huggingface.co/datasets/glaiveai/glaive-function-calling-v2",
+  "split": "train",
+  "global_tool_catalog": [
+    "analyze_customer_sentiment",
+    "analyze_image",
+    "analyze_sentiment",
+    "analyze_tweet",
+    "analyze_twitter_sentiment",
+    "analyze_website",
+    "analyze_website_performance",
+    "book_flight",
+    "calculate BMI",
+    "calculate_age",
+    "calculate_age_difference",
+    "calculate_area",
+    "calculate_average",
+    "calculate_bmi",
+    "calculate_discount",
+    "calculate_discounted_price",
+    "calculate_distance",
+    "calculate_factorial",
+    "calculate_fahrenheit_to_celsius",
+    "calculate_fibonacci",
+    "calculate_fibonacci_sequence",
+    "calculate_fuel_cost",
+    "calculate_fuel_efficiency",
+    "calculate_gpa",
+    "calculate_grade",
+    "calculate_interest",
+    "calculate_loan_payment",
+    "calculate_loan_repayment",
+    "calculate_median",
+    "calculate_mortgage",
+    "calculate_mortgage_payment",
+    "calculate_mortgage_repayment",
+    "calculate_pizza_cost",
+    "calculate_profit",
+    "calculate_sales_tax",
+    "calculate_shipping_cost",
+    "calculate_square",
+    "calculate_tax",
+    "calculate_tip",
+    "calculate_tip_split",
+    "calculate_triangle_area",
+    "calculate_volume",
+    "check_availability",
+    "check_email",
+    "check_email_availability",
+    "check_movie_showtimes",
+    "check_palindrome",
+    "check_text_sentiment",
+    "check_word_count",
+    "convert_currency",
+    "convert_temperature",
+    "convert_units",
+    "convert_weight",
+    "count_words",
+    "create_account",
+    "create_calendar_event",
+    "create_contact",
+    "create_event",
+    "create_invoice",
+    "create_note",
+    "create_poll",
+    "create_task",
+    "create_todo",
+    "create_todo_list",
+    "create_user",
+    "create_user_account",
+    "encrypt_text",
+    "execute_program",
+    "find_movie_recommendations",
+    "find_movie_showtimes",
+    "find_restaurants",
+    "generate_barcode",
+    "generate_invoice",
+    "generate_password",
+    "generate_password_reset_link",
+    "generate_qr_code",
+    "generate_qrcode",
+    "generate_random_color",
+    "generate_random_name",
+    "generate_random_number",
+    "generate_random_password",
+    "generate_random_quote",
+    "generate_random_username",
+    "generate_username",
+    "get_current_date",
+    "get_current_time",
+    "get_daily_quote",
+    "get_definition",
+    "get_lyrics",
+    "get_movie_details",
+    "get_movie_info",
+    "get_movie_recommendations",
+    "get_news",
+    "get_news_headlines",
+    "get_quote_of_the_day",
+    "get_random_cat_fact",
+    "get_random_fact",
+    "get_random_joke",
+    "get_random_quote",
+    "get_random_trivia",
+    "get_recipe",
+    "get_social_media_posts",
+    "get_song_lyrics",
+    "get_stock_price",
+    "get_translation",
+    "make_note",
+    "play_music",
+    "schedule_meeting",
+    "searchRestaurants",
+    "search_book",
+    "search_books",
+    "search_definition",
+    "search_files",
+    "search_for_product",
+    "search_hotels",
+    "search_lyrics",
+    "search_movie",
+    "search_movie_theater",
+    "search_movies",
+    "search_nearby_hotels",
+    "search_news",
+    "search_product",
+    "search_recipe",
+    "search_recipes",
+    "send_email",
+    "track_calories",
+    "track_fitness_progress",
+    "translate_text",
+    "update_calendar"
+  ],
+  "total_samples": 500,
+  "samples": [
+    {
+      "id": "tool_0",
+      "query": "Can you tell me the latest news headlines for the United States?",
+      "target_tool": "get_news_headlines",
+      "local_tools": [
+        "get_news_headlines"
+      ]
+    },
+    {
+      "id": "tool_1",
+      "query": "I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password",
+        "create_task"
+      ]
+    },
+    {
+      "id": "tool_2",
+      "query": "I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_3",
+      "query": "Hi, I have a list of numbers and I need to find the median. Can you help me with that?",
+      "target_tool": "calculate_median",
+      "local_tools": [
+        "calculate_median"
+      ]
+    },
+    {
+      "id": "tool_4",
+      "query": "Hi, I need to calculate my monthly loan payment. I have a loan of $50000 with an annual interest rate of 5% and a loan term of 10 years. Can you help me with that?",
+      "target_tool": "calculate_loan_payment",
+      "local_tools": [
+        "calculate_loan_payment"
+      ]
+    },
+    {
+      "id": "tool_5",
+      "query": "Hi, I need to convert a temperature from Celsius to Fahrenheit. The temperature is 30 degrees Celsius.",
+      "target_tool": "convert_temperature",
+      "local_tools": [
+        "convert_temperature",
+        "get_current_date"
+      ]
+    },
+    {
+      "id": "tool_6",
+      "query": "Hi, I need help with calculating a tip. My bill is $50 and I want to leave a 20% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip",
+        "track_calories"
+      ]
+    },
+    {
+      "id": "tool_7",
+      "query": "I need to create a new contact for my friend John Doe. His email is johndoe@example.com.",
+      "target_tool": "create_contact",
+      "local_tools": [
+        "create_contact"
+      ]
+    },
+    {
+      "id": "tool_8",
+      "query": "Can you help me create a calendar event for my meeting tomorrow?",
+      "target_tool": "create_calendar_event",
+      "local_tools": [
+        "create_calendar_event"
+      ]
+    },
+    {
+      "id": "tool_9",
+      "query": "Can you find information about the movie \"Inception\"?",
+      "target_tool": "search_movie",
+      "local_tools": [
+        "search_movie"
+      ]
+    },
+    {
+      "id": "tool_10",
+      "query": "Hey, can you tell me the current price of Apple's stock?",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price",
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_11",
+      "query": "Hi, I need some help with a loan I'm considering.",
+      "target_tool": "calculate_loan_payment",
+      "local_tools": [
+        "calculate_loan_payment",
+        "calculate_discounted_price"
+      ]
+    },
+    {
+      "id": "tool_12",
+      "query": "Hi, I need help with calculating a tip. My bill amount is $50 and I want to give a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_13",
+      "query": "I need a random number between 1 and 100.",
+      "target_tool": "generate_random_number",
+      "local_tools": [
+        "generate_random_number",
+        "encrypt_text"
+      ]
+    },
+    {
+      "id": "tool_14",
+      "query": "I am looking for a book but I can't remember the title. The author's name is George Orwell.",
+      "target_tool": "search_books",
+      "local_tools": [
+        "search_books"
+      ]
+    },
+    {
+      "id": "tool_15",
+      "query": "Hi, I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_16",
+      "query": "Hi, I need to convert 500 USD to EUR. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_17",
+      "query": "Hi, I need to know the distance between New York and Los Angeles. Can you help me with that?",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance",
+        "play_music"
+      ]
+    },
+    {
+      "id": "tool_18",
+      "query": "Hey, I want to know the lyrics of the song 'Shape of You' by Ed Sheeran.",
+      "target_tool": "get_lyrics",
+      "local_tools": [
+        "get_lyrics"
+      ]
+    },
+    {
+      "id": "tool_19",
+      "query": "I need a random number between 1 and 100.",
+      "target_tool": "generate_random_number",
+      "local_tools": [
+        "generate_random_number"
+      ]
+    },
+    {
+      "id": "tool_20",
+      "query": "Hey, can you tell me about the movie 'Inception' released in 2010?",
+      "target_tool": "get_movie_details",
+      "local_tools": [
+        "get_movie_details"
+      ]
+    },
+    {
+      "id": "tool_21",
+      "query": "Hi, I'm looking for books by J.K. Rowling. Can you help me find them?",
+      "target_tool": "search_books",
+      "local_tools": [
+        "search_books"
+      ]
+    },
+    {
+      "id": "tool_22",
+      "query": "Hey, can you find me some news articles about the latest technology trends?",
+      "target_tool": "search_news",
+      "local_tools": [
+        "search_news"
+      ]
+    },
+    {
+      "id": "tool_23",
+      "query": "Hi, I want to create a new email account. Can you check if the email address john.doe@gmail.com is available?",
+      "target_tool": "check_email_availability",
+      "local_tools": [
+        "check_email_availability"
+      ]
+    },
+    {
+      "id": "tool_24",
+      "query": "I'm looking for a movie to watch tonight. Can you help me find one?",
+      "target_tool": "search_movies",
+      "local_tools": [
+        "search_movies",
+        "calculate_gpa"
+      ]
+    },
+    {
+      "id": "tool_25",
+      "query": "Hi, I was born on 1990-05-15. Can you tell me how old I am?",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_26",
+      "query": "I saw a jacket I liked in a store. It was priced at $100 but there's a 20% discount. Can you tell me how much it will cost after the discount?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_27",
+      "query": "Can you tell me more about the movie \"Inception\"?",
+      "target_tool": "get_movie_info",
+      "local_tools": [
+        "get_movie_info"
+      ]
+    },
+    {
+      "id": "tool_28",
+      "query": "I have chicken, tomatoes, and garlic. Can you find me a recipe?",
+      "target_tool": "search_recipe",
+      "local_tools": [
+        "search_recipe",
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_29",
+      "query": "Can you find me some movies with Tom Hanks?",
+      "target_tool": "search_movies",
+      "local_tools": [
+        "search_movies"
+      ]
+    },
+    {
+      "id": "tool_30",
+      "query": "What does the word 'serendipity' mean?",
+      "target_tool": "get_definition",
+      "local_tools": [
+        "get_definition"
+      ]
+    },
+    {
+      "id": "tool_31",
+      "query": "Hi, I was born on 1990-05-15. Can you tell me how old I am today?",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_32",
+      "query": "I need to send an email to my boss. Can you help me with that?",
+      "target_tool": "send_email",
+      "local_tools": [
+        "send_email",
+        "search_recipes"
+      ]
+    },
+    {
+      "id": "tool_33",
+      "query": "Hi, I need help with calculating my loan payment.",
+      "target_tool": "calculate_loan_payment",
+      "local_tools": [
+        "calculate_loan_payment"
+      ]
+    },
+    {
+      "id": "tool_34",
+      "query": "Hi, I need to analyze my website. Can you help me with that?",
+      "target_tool": "analyze_website",
+      "local_tools": [
+        "analyze_website"
+      ]
+    },
+    {
+      "id": "tool_35",
+      "query": "Hi, I need help with calculating my mortgage payment.",
+      "target_tool": "calculate_mortgage_payment",
+      "local_tools": [
+        "calculate_mortgage_payment"
+      ]
+    },
+    {
+      "id": "tool_36",
+      "query": "Hi, can you tell me the current price of Apple's stock?",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price",
+        "create_task"
+      ]
+    },
+    {
+      "id": "tool_37",
+      "query": "Hi, can you tell me the current price of Apple's stock?",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_38",
+      "query": "Hi, I need to convert 1000 US dollars to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency",
+        "calculate_bmi"
+      ]
+    },
+    {
+      "id": "tool_39",
+      "query": "Hi, I need a new username. My name is John Doe and I was born in 1990.",
+      "target_tool": "generate_username",
+      "local_tools": [
+        "generate_username",
+        "get_news"
+      ]
+    },
+    {
+      "id": "tool_40",
+      "query": "Can you tell me the current stock price of Apple?",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price",
+        "create_poll"
+      ]
+    },
+    {
+      "id": "tool_41",
+      "query": "Hi, I have some ingredients in my fridge and I don't know what to cook with them. Can you help me find a recipe?",
+      "target_tool": "search_recipe",
+      "local_tools": [
+        "search_recipe"
+      ]
+    },
+    {
+      "id": "tool_42",
+      "query": "I need to generate an invoice for a customer named John Doe. The amount due is $500 and the due date is 2022-05-30.",
+      "target_tool": "generate_invoice",
+      "local_tools": [
+        "generate_invoice"
+      ]
+    },
+    {
+      "id": "tool_43",
+      "query": "Hi, I need help with calculating a tip. My bill amount is $50 and I want to give a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_44",
+      "query": "Hi, I was born on 1990-05-15. Can you tell me how old I am today?",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age",
+        "check_text_sentiment"
+      ]
+    },
+    {
+      "id": "tool_45",
+      "query": "Hi, I need to calculate my tax. My income is $50000 and the tax rate is 20%.",
+      "target_tool": "calculate_tax",
+      "local_tools": [
+        "calculate_tax"
+      ]
+    },
+    {
+      "id": "tool_46",
+      "query": "Hi, I need some help with my loan calculations.",
+      "target_tool": "calculate_loan_payment",
+      "local_tools": [
+        "calculate_loan_payment"
+      ]
+    },
+    {
+      "id": "tool_47",
+      "query": "Hey, can you analyze the website www.example.com for me? I want to know about its design, content quality, and user interface.",
+      "target_tool": "analyze_website",
+      "local_tools": [
+        "analyze_website"
+      ]
+    },
+    {
+      "id": "tool_48",
+      "query": "Hi, I recently sold an item and I want to calculate my profit percentage. The cost price was $50 and I sold it for $75.",
+      "target_tool": "calculate_profit",
+      "local_tools": [
+        "calculate_profit"
+      ]
+    },
+    {
+      "id": "tool_49",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_50",
+      "query": "I need some inspiration. Can you give me a quote?",
+      "target_tool": "get_random_quote",
+      "local_tools": [
+        "get_random_quote",
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_51",
+      "query": "I am looking for some books on artificial intelligence. Can you help me find some?",
+      "target_tool": "search_books",
+      "local_tools": [
+        "search_books"
+      ]
+    },
+    {
+      "id": "tool_52",
+      "query": "Hi, I need to convert 500 US dollars to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_53",
+      "query": "Hey, I need to calculate the tip for my bill. The total amount is $100 and I want to leave a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_54",
+      "query": "Hi, I would like to calculate my BMI. I weigh 70 kilograms and my height is 1.75 meters.",
+      "target_tool": "calculate_bmi",
+      "local_tools": [
+        "calculate_bmi",
+        "check_word_count"
+      ]
+    },
+    {
+      "id": "tool_55",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_56",
+      "query": "Hi, I need to calculate my BMI. I am 1.75 meters tall and weigh 70 kilograms.",
+      "target_tool": "calculate_bmi",
+      "local_tools": [
+        "calculate_bmi"
+      ]
+    },
+    {
+      "id": "tool_57",
+      "query": "Hi, I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password",
+        "check_email"
+      ]
+    },
+    {
+      "id": "tool_58",
+      "query": "Hi, I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_59",
+      "query": "I need to calculate the area of a rectangle. The length is 5 units and the width is 3 units.",
+      "target_tool": "calculate_area",
+      "local_tools": [
+        "calculate_area"
+      ]
+    },
+    {
+      "id": "tool_60",
+      "query": "Hi, I need to create a new to-do item for my project meeting next week.",
+      "target_tool": "create_todo",
+      "local_tools": [
+        "create_todo"
+      ]
+    },
+    {
+      "id": "tool_61",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_62",
+      "query": "Hi, I need a random number between 1 and 100.",
+      "target_tool": "generate_random_number",
+      "local_tools": [
+        "generate_random_number"
+      ]
+    },
+    {
+      "id": "tool_63",
+      "query": "Hi, can you check the showtimes for the movie \"Avengers: Endgame\" on 2022-03-20 in New York, NY?",
+      "target_tool": "check_movie_showtimes",
+      "local_tools": [
+        "check_movie_showtimes"
+      ]
+    },
+    {
+      "id": "tool_64",
+      "query": "Can you find information about the movie \"Inception\"?",
+      "target_tool": "search_movie",
+      "local_tools": [
+        "search_movie"
+      ]
+    },
+    {
+      "id": "tool_65",
+      "query": "Hi, I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_66",
+      "query": "Hi, I need to convert 500 USD to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_67",
+      "query": "I'm in New York and I'm craving Italian food. Can you find me a restaurant?",
+      "target_tool": "find_restaurants",
+      "local_tools": [
+        "find_restaurants"
+      ]
+    },
+    {
+      "id": "tool_68",
+      "query": "Hi, I would like to know the current stock price of Apple in the NASDAQ stock exchange.",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_69",
+      "query": "Hi, I would like to calculate my BMI. I weigh 70 kilograms and my height is 1.75 meters.",
+      "target_tool": "calculate_bmi",
+      "local_tools": [
+        "calculate_bmi"
+      ]
+    },
+    {
+      "id": "tool_70",
+      "query": "Hi, I have some ingredients and I want to cook something. Can you help me find a recipe?",
+      "target_tool": "search_recipes",
+      "local_tools": [
+        "search_recipes"
+      ]
+    },
+    {
+      "id": "tool_71",
+      "query": "Can you tell me more about the movie with ID 12345?",
+      "target_tool": "get_movie_details",
+      "local_tools": [
+        "get_movie_details"
+      ]
+    },
+    {
+      "id": "tool_72",
+      "query": "I have some chicken, broccoli, and cheese. Can you find a recipe for me?",
+      "target_tool": "search_recipes",
+      "local_tools": [
+        "search_recipes"
+      ]
+    },
+    {
+      "id": "tool_73",
+      "query": "Hi, can you tell me the distance between New York and Los Angeles?",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_74",
+      "query": "Can you analyze the sentiment of this text for me? \"I am feeling really happy today because I got a promotion at work.\"",
+      "target_tool": "analyze_sentiment",
+      "local_tools": [
+        "analyze_sentiment"
+      ]
+    },
+    {
+      "id": "tool_75",
+      "query": "Hi, can you get me the latest news headlines for the United States?",
+      "target_tool": "get_news_headlines",
+      "local_tools": [
+        "get_news_headlines"
+      ]
+    },
+    {
+      "id": "tool_76",
+      "query": "Hi, I need a QR code for my website. The URL is www.mywebsite.com. I want the size to be 500 pixels and the error correction level to be high.",
+      "target_tool": "generate_qr_code",
+      "local_tools": [
+        "generate_qr_code",
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_77",
+      "query": "Hi, I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_78",
+      "query": "I have some tomatoes, onions, and garlic. Can you find me a recipe?",
+      "target_tool": "search_recipes",
+      "local_tools": [
+        "search_recipes"
+      ]
+    },
+    {
+      "id": "tool_79",
+      "query": "Hi, I need a QR code for my website.",
+      "target_tool": "generate_qr_code",
+      "local_tools": [
+        "generate_qr_code"
+      ]
+    },
+    {
+      "id": "tool_80",
+      "query": "Hi, I need help with splitting a bill. The total amount is $150 and we are 5 people. Can you calculate how much each person should tip if we want to leave a 20% tip?",
+      "target_tool": "calculate_tip_split",
+      "local_tools": [
+        "calculate_tip_split"
+      ]
+    },
+    {
+      "id": "tool_81",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_82",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_83",
+      "query": "Hi, can you tell me the latest news headlines?",
+      "target_tool": "get_news_headlines",
+      "local_tools": [
+        "get_news_headlines"
+      ]
+    },
+    {
+      "id": "tool_84",
+      "query": "I am looking for books by J.K. Rowling.",
+      "target_tool": "search_books",
+      "local_tools": [
+        "search_books",
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_85",
+      "query": "Hi, I need help calculating my GPA. I have the grades for my courses.",
+      "target_tool": "calculate_gpa",
+      "local_tools": [
+        "calculate_gpa",
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_86",
+      "query": "Hi, I need to track my calorie intake for today. I had a bowl of oatmeal for breakfast, a chicken salad for lunch, and a steak for dinner.",
+      "target_tool": "track_calories",
+      "local_tools": [
+        "track_calories"
+      ]
+    },
+    {
+      "id": "tool_87",
+      "query": "Can you tell me about the movie \"Inception\"?",
+      "target_tool": "get_movie_details",
+      "local_tools": [
+        "get_movie_details",
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_88",
+      "query": "Hi, I need help with calculating my mortgage payment.",
+      "target_tool": "calculate_mortgage",
+      "local_tools": [
+        "calculate_mortgage"
+      ]
+    },
+    {
+      "id": "tool_89",
+      "query": "Hi, can you tell me how old I am? My birthdate is 1990-05-15.",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_90",
+      "query": "Hi, I need to convert 500 USD to EUR. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_91",
+      "query": "Hi, I need some help with my mortgage calculations.",
+      "target_tool": "calculate_mortgage",
+      "local_tools": [
+        "calculate_mortgage"
+      ]
+    },
+    {
+      "id": "tool_92",
+      "query": "I need to find a hotel in New York for 2 people from 1st May to 7th May.",
+      "target_tool": "search_hotels",
+      "local_tools": [
+        "search_hotels"
+      ]
+    },
+    {
+      "id": "tool_93",
+      "query": "Hey, can you tell me the current stock price of Apple?",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_94",
+      "query": "Hi, I need to calculate my BMI. My weight is 75 kg and my height is 1.8 meters.",
+      "target_tool": "calculate_bmi",
+      "local_tools": [
+        "calculate_bmi"
+      ]
+    },
+    {
+      "id": "tool_95",
+      "query": "Hi, I want to know the age difference between my brother and me. My birthdate is 1990-05-15 and my brother's birthdate is 1995-08-20.",
+      "target_tool": "calculate_age_difference",
+      "local_tools": [
+        "calculate_age_difference"
+      ]
+    },
+    {
+      "id": "tool_96",
+      "query": "Hi, I want to calculate my BMI. I weigh 70 kg and my height is 1.75 meters.",
+      "target_tool": "calculate BMI",
+      "local_tools": [
+        "calculate BMI",
+        "create_calendar_event"
+      ]
+    },
+    {
+      "id": "tool_97",
+      "query": "Hi, I need to convert 50 kilograms into pounds. Can you help me with that?",
+      "target_tool": "convert_weight",
+      "local_tools": [
+        "convert_weight"
+      ]
+    },
+    {
+      "id": "tool_98",
+      "query": "What's the current time in New York?",
+      "target_tool": "get_current_time",
+      "local_tools": [
+        "get_current_time",
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_99",
+      "query": "Can you tell me how many words are in this text? \"The quick brown fox jumps over the lazy dog.\"",
+      "target_tool": "check_word_count",
+      "local_tools": [
+        "check_word_count"
+      ]
+    },
+    {
+      "id": "tool_100",
+      "query": "I need a new password. Can you generate one for me?",
+      "target_tool": "generate_random_password",
+      "local_tools": [
+        "generate_random_password"
+      ]
+    },
+    {
+      "id": "tool_101",
+      "query": "Hi, I need to know the distance between New York and Los Angeles. Can you help me with that?",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_102",
+      "query": "Can you find me some news articles about climate change from BBC in English from the last week?",
+      "target_tool": "search_news",
+      "local_tools": [
+        "search_news"
+      ]
+    },
+    {
+      "id": "tool_103",
+      "query": "I need a random number between 1 and 100.",
+      "target_tool": "generate_random_number",
+      "local_tools": [
+        "generate_random_number"
+      ]
+    },
+    {
+      "id": "tool_104",
+      "query": "I have some chicken, tomatoes and cheese. Can you find me a recipe?",
+      "target_tool": "search_recipes",
+      "local_tools": [
+        "search_recipes"
+      ]
+    },
+    {
+      "id": "tool_105",
+      "query": "Hi, can you help me with something?",
+      "target_tool": "generate_random_color",
+      "local_tools": [
+        "generate_random_color"
+      ]
+    },
+    {
+      "id": "tool_106",
+      "query": "I need to convert 100 degrees Fahrenheit to Celsius. Can you help me with that?",
+      "target_tool": "convert_temperature",
+      "local_tools": [
+        "convert_temperature"
+      ]
+    },
+    {
+      "id": "tool_107",
+      "query": "I saw a dress that I liked. It was originally priced at $200 but it's on a 20% discount. How much will I save?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount",
+        "generate_random_number"
+      ]
+    },
+    {
+      "id": "tool_108",
+      "query": "Can you find the lyrics for the song \"Bohemian Rhapsody\"?",
+      "target_tool": "search_lyrics",
+      "local_tools": [
+        "search_lyrics"
+      ]
+    },
+    {
+      "id": "tool_109",
+      "query": "Hi, I need to generate a QR code for my website. Can you help me with that?",
+      "target_tool": "generate_qr_code",
+      "local_tools": [
+        "generate_qr_code"
+      ]
+    },
+    {
+      "id": "tool_110",
+      "query": "Hi, I need to convert 1000 USD to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_111",
+      "query": "Hi, I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_112",
+      "query": "Hi, I need to convert 500 USD to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency",
+        "generate_random_password"
+      ]
+    },
+    {
+      "id": "tool_113",
+      "query": "Hi, I need to know the distance between New York and Los Angeles. Can you help me with that?",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_114",
+      "query": "I need to create an event in my calendar.",
+      "target_tool": "create_event",
+      "local_tools": [
+        "create_event"
+      ]
+    },
+    {
+      "id": "tool_115",
+      "query": "Hey, I have some chicken, bell peppers and tomatoes. Can you find me a recipe using these ingredients?",
+      "target_tool": "search_recipe",
+      "local_tools": [
+        "search_recipe"
+      ]
+    },
+    {
+      "id": "tool_116",
+      "query": "Hi, can you tell me the distance between New York and Los Angeles?",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_117",
+      "query": "Hey, I need to add an event to my calendar. It's a meeting with my team on 15th March from 10 AM to 12 PM. The title should be \"Team Meeting\".",
+      "target_tool": "update_calendar",
+      "local_tools": [
+        "update_calendar",
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_118",
+      "query": "Hi, I need help calculating the tip for my bill. The total bill amount is $100 and I want to leave a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip",
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_119",
+      "query": "Hi, I saw a dress that I really liked. It's originally priced at $200 but there's a 20% discount on it. Can you tell me how much it would cost after the discount?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_120",
+      "query": "I'm feeling a bit down. Can you tell me a joke to cheer me up?",
+      "target_tool": "get_random_joke",
+      "local_tools": [
+        "get_random_joke"
+      ]
+    },
+    {
+      "id": "tool_121",
+      "query": "Hi, I need a QR code for my website.",
+      "target_tool": "generate_qrcode",
+      "local_tools": [
+        "generate_qrcode"
+      ]
+    },
+    {
+      "id": "tool_122",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_123",
+      "query": "I need a random number between 1 and 100.",
+      "target_tool": "generate_random_number",
+      "local_tools": [
+        "generate_random_number",
+        "analyze_website_performance"
+      ]
+    },
+    {
+      "id": "tool_124",
+      "query": "What's the current stock price of AAPL?",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price",
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_125",
+      "query": "I need to create a new task.",
+      "target_tool": "create_task",
+      "local_tools": [
+        "create_task"
+      ]
+    },
+    {
+      "id": "tool_126",
+      "query": "I need a random number between 1 and 100.",
+      "target_tool": "generate_random_number",
+      "local_tools": [
+        "generate_random_number"
+      ]
+    },
+    {
+      "id": "tool_127",
+      "query": "Hi, I need a secure password of length 10.",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_128",
+      "query": "Hi, I just bought a new laptop for $1500. Can you help me calculate how much sales tax I would have to pay if the tax rate is 7%?",
+      "target_tool": "calculate_sales_tax",
+      "local_tools": [
+        "calculate_sales_tax"
+      ]
+    },
+    {
+      "id": "tool_129",
+      "query": "Hi, I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_130",
+      "query": "Hi, I need to calculate the tax I owe this year. My income was $75,000 and the tax rate is 20%.",
+      "target_tool": "calculate_tax",
+      "local_tools": [
+        "calculate_tax"
+      ]
+    },
+    {
+      "id": "tool_131",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_132",
+      "query": "Hi, I need to encrypt a text. Can you help me with that?",
+      "target_tool": "encrypt_text",
+      "local_tools": [
+        "encrypt_text"
+      ]
+    },
+    {
+      "id": "tool_133",
+      "query": "Hi, I need help with calculating my tax. My annual income is $70,000 and the tax rate is 20%.",
+      "target_tool": "calculate_tax",
+      "local_tools": [
+        "calculate_tax"
+      ]
+    },
+    {
+      "id": "tool_134",
+      "query": "I have a circle with a radius of 5. Can you calculate the area for me?",
+      "target_tool": "calculate_area",
+      "local_tools": [
+        "calculate_area"
+      ]
+    },
+    {
+      "id": "tool_135",
+      "query": "Hi, I was born on 1990-05-15. Can you tell me how old I am today?",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_136",
+      "query": "Hi, I am looking for a book but I can't remember the full title. I know it's something like \"To Kill a...\" and it's written by Harper Lee. Can you help me find it?",
+      "target_tool": "search_book",
+      "local_tools": [
+        "search_book"
+      ]
+    },
+    {
+      "id": "tool_137",
+      "query": "Hi, I was born on 1990-05-15. Can you tell me how old I am today?",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age",
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_138",
+      "query": "I need a random number between 1 and 100.",
+      "target_tool": "generate_random_number",
+      "local_tools": [
+        "generate_random_number",
+        "get_recipe"
+      ]
+    },
+    {
+      "id": "tool_139",
+      "query": "Can you find a movie called \"Inception\"?",
+      "target_tool": "search_movies",
+      "local_tools": [
+        "search_movies",
+        "analyze_customer_sentiment"
+      ]
+    },
+    {
+      "id": "tool_140",
+      "query": "I'm looking for a vegan Italian recipe with tomatoes and basil.",
+      "target_tool": "search_recipe",
+      "local_tools": [
+        "search_recipe"
+      ]
+    },
+    {
+      "id": "tool_141",
+      "query": "I saw a jacket I liked for $200 but it's 15% off. How much would it cost after the discount?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_142",
+      "query": "Can you tell me about the movie \"Inception\" released in 2010?",
+      "target_tool": "get_movie_details",
+      "local_tools": [
+        "get_movie_details"
+      ]
+    },
+    {
+      "id": "tool_143",
+      "query": "Hi, I need to convert 1000 USD to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_144",
+      "query": "I saw a dress that I liked in a store. It was priced at $100 and they are offering a 20% discount. Can you tell me how much I will have to pay after the discount?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_145",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_146",
+      "query": "Hi, I would like to create a new account.",
+      "target_tool": "create_user_account",
+      "local_tools": [
+        "create_user_account"
+      ]
+    },
+    {
+      "id": "tool_147",
+      "query": "Hi, I need some help with my loan.",
+      "target_tool": "calculate_loan_payment",
+      "local_tools": [
+        "calculate_loan_payment"
+      ]
+    },
+    {
+      "id": "tool_148",
+      "query": "Hi, can you get me the latest news headlines for the United States?",
+      "target_tool": "get_news_headlines",
+      "local_tools": [
+        "get_news_headlines"
+      ]
+    },
+    {
+      "id": "tool_149",
+      "query": "Hi, I was born on 1990-05-15. Can you tell me how old I am today?",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_150",
+      "query": "I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password",
+        "get_movie_details"
+      ]
+    },
+    {
+      "id": "tool_151",
+      "query": "Hi, I need to convert 500 US dollars to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_152",
+      "query": "Hey, I have 1000 Euros. Can you convert it into US dollars for me?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_153",
+      "query": "I need to schedule a meeting titled \"Project Review\" from 2022-05-15 10:00 to 2022-05-15 12:00.",
+      "target_tool": "create_calendar_event",
+      "local_tools": [
+        "create_calendar_event"
+      ]
+    },
+    {
+      "id": "tool_154",
+      "query": "Hi, I would like to calculate my BMI. I weigh 70 kilograms and my height is 1.75 meters.",
+      "target_tool": "calculate_bmi",
+      "local_tools": [
+        "calculate_bmi",
+        "get_recipe"
+      ]
+    },
+    {
+      "id": "tool_155",
+      "query": "Hey, I want to know the lyrics of the song 'Shape of You' by Ed Sheeran.",
+      "target_tool": "get_lyrics",
+      "local_tools": [
+        "get_lyrics"
+      ]
+    },
+    {
+      "id": "tool_156",
+      "query": "Hi, I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_157",
+      "query": "I am looking for a movie to watch tonight. Can you suggest something based on the keyword \"adventure\"?",
+      "target_tool": "search_movies",
+      "local_tools": [
+        "search_movies"
+      ]
+    },
+    {
+      "id": "tool_158",
+      "query": "Can you tell me about the movie \"Inception\" released in 2010?",
+      "target_tool": "get_movie_details",
+      "local_tools": [
+        "get_movie_details"
+      ]
+    },
+    {
+      "id": "tool_159",
+      "query": "I need to calculate the area of a circle with a radius of 5 units. Can you help me with that?",
+      "target_tool": "calculate_area",
+      "local_tools": [
+        "calculate_area"
+      ]
+    },
+    {
+      "id": "tool_160",
+      "query": "I am looking for a file named \"project\".",
+      "target_tool": "search_files",
+      "local_tools": [
+        "search_files"
+      ]
+    },
+    {
+      "id": "tool_161",
+      "query": "I need to schedule a meeting titled \"Project Update\" from 2022-03-01T10:00:00 to 2022-03-01T12:00:00. The attendees are John, Sarah, and Mike.",
+      "target_tool": "schedule_meeting",
+      "local_tools": [
+        "schedule_meeting",
+        "create_calendar_event"
+      ]
+    },
+    {
+      "id": "tool_162",
+      "query": "Hi, I need to create a note for my meeting tomorrow.",
+      "target_tool": "create_note",
+      "local_tools": [
+        "create_note"
+      ]
+    },
+    {
+      "id": "tool_163",
+      "query": "Hi, I need to ship a package to New York. It weighs about 5 kilograms. Can you tell me how much it will cost?",
+      "target_tool": "calculate_shipping_cost",
+      "local_tools": [
+        "calculate_shipping_cost"
+      ]
+    },
+    {
+      "id": "tool_164",
+      "query": "I need to create a new task in my to-do list.",
+      "target_tool": "create_todo",
+      "local_tools": [
+        "create_todo"
+      ]
+    },
+    {
+      "id": "tool_165",
+      "query": "Hi, I need help with calculating a tip. My bill amount is $85 and I want to leave a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_166",
+      "query": "Hi, I need a QR code for my website. Can you help me with that?",
+      "target_tool": "generate_qr_code",
+      "local_tools": [
+        "generate_qr_code",
+        "get_news"
+      ]
+    },
+    {
+      "id": "tool_167",
+      "query": "Hey, can you get me the recent posts from the Instagram account of @john_doe?",
+      "target_tool": "get_social_media_posts",
+      "local_tools": [
+        "get_social_media_posts"
+      ]
+    },
+    {
+      "id": "tool_168",
+      "query": "I need to create a note for my meeting tomorrow.",
+      "target_tool": "create_note",
+      "local_tools": [
+        "create_note"
+      ]
+    },
+    {
+      "id": "tool_169",
+      "query": "I saw a dress that I liked. It was originally priced at $100 but it's on a 20% discount. Can you tell me how much it will cost after the discount?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount",
+        "play_music"
+      ]
+    },
+    {
+      "id": "tool_170",
+      "query": "I saw a dress that I liked in a store. It was originally priced at $200 but there's a 20% discount on it. Can you tell me how much it would cost after the discount?",
+      "target_tool": "calculate_discounted_price",
+      "local_tools": [
+        "calculate_discounted_price"
+      ]
+    },
+    {
+      "id": "tool_171",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_172",
+      "query": "Hi, I need help with calculating my loan payment.",
+      "target_tool": "calculate_loan_payment",
+      "local_tools": [
+        "calculate_loan_payment",
+        "analyze_sentiment"
+      ]
+    },
+    {
+      "id": "tool_173",
+      "query": "I'm feeling a bit down today. Can you play some uplifting music for me?",
+      "target_tool": "play_music",
+      "local_tools": [
+        "play_music"
+      ]
+    },
+    {
+      "id": "tool_174",
+      "query": "Hi, I need help with calculating a tip. My bill amount is $50 and I want to leave a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_175",
+      "query": "Hi, I need help with calculating my mortgage payment. I have a loan amount of $200,000, an annual interest rate of 3.5%, and a loan term of 30 years.",
+      "target_tool": "calculate_mortgage",
+      "local_tools": [
+        "calculate_mortgage"
+      ]
+    },
+    {
+      "id": "tool_176",
+      "query": "Hi, I need a QR code for my website.",
+      "target_tool": "generate_qr_code",
+      "local_tools": [
+        "generate_qr_code"
+      ]
+    },
+    {
+      "id": "tool_177",
+      "query": "Hi, I was born on 1990-05-15. Can you tell me how old I am?",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_178",
+      "query": "I need to make a note for my meeting tomorrow.",
+      "target_tool": "make_note",
+      "local_tools": [
+        "make_note",
+        "search_books"
+      ]
+    },
+    {
+      "id": "tool_179",
+      "query": "Hi, I need help with calculating the tip for my dinner bill. The total amount is $50 and I want to leave a 20% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_180",
+      "query": "I need a random number between 1 and 100.",
+      "target_tool": "generate_random_number",
+      "local_tools": [
+        "generate_random_number",
+        "generate_random_quote"
+      ]
+    },
+    {
+      "id": "tool_181",
+      "query": "Hi, I need help with calculating my mortgage payment.",
+      "target_tool": "calculate_mortgage_payment",
+      "local_tools": [
+        "calculate_mortgage_payment"
+      ]
+    },
+    {
+      "id": "tool_182",
+      "query": "Hi, I would like to know the latest technology news in the United States.",
+      "target_tool": "get_news",
+      "local_tools": [
+        "get_news"
+      ]
+    },
+    {
+      "id": "tool_183",
+      "query": "Hi, I need a new password. Can you generate a random one for me?",
+      "target_tool": "generate_random_password",
+      "local_tools": [
+        "generate_random_password"
+      ]
+    },
+    {
+      "id": "tool_184",
+      "query": "Hi, I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password",
+        "calculate_bmi"
+      ]
+    },
+    {
+      "id": "tool_185",
+      "query": "I need to calculate the area of a rectangle. The length is 5 units and the width is 3 units.",
+      "target_tool": "calculate_area",
+      "local_tools": [
+        "calculate_area",
+        "search_recipe"
+      ]
+    },
+    {
+      "id": "tool_186",
+      "query": "Hi, I have a sentence in French that I need translated to English. The sentence is \"Je suis très heureux de vous rencontrer\".",
+      "target_tool": "translate_text",
+      "local_tools": [
+        "translate_text"
+      ]
+    },
+    {
+      "id": "tool_187",
+      "query": "Hi, I need some motivation. Can you generate a random quote for me from the category of 'Success'?",
+      "target_tool": "generate_random_quote",
+      "local_tools": [
+        "generate_random_quote"
+      ]
+    },
+    {
+      "id": "tool_188",
+      "query": "Hi, can you tell me the current stock price of Apple?",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_189",
+      "query": "Hi, I was born on 1990-05-15. Can you tell me how old I am today?",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_190",
+      "query": "I need a random number between 1 and 100.",
+      "target_tool": "generate_random_number",
+      "local_tools": [
+        "generate_random_number",
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_191",
+      "query": "Hi, I need to analyze a website. Can you help me with that?",
+      "target_tool": "analyze_website",
+      "local_tools": [
+        "analyze_website"
+      ]
+    },
+    {
+      "id": "tool_192",
+      "query": "I need to send an email to my boss. Can you help me with that?",
+      "target_tool": "send_email",
+      "local_tools": [
+        "send_email"
+      ]
+    },
+    {
+      "id": "tool_193",
+      "query": "Hi, I need to convert 500 USD to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_194",
+      "query": "Hey, I am looking for a book but I can't remember the full title. I think it was something like 'The Great...' and it was a classic novel.",
+      "target_tool": "search_books",
+      "local_tools": [
+        "search_books"
+      ]
+    },
+    {
+      "id": "tool_195",
+      "query": "Hi, I need a QR code for my website. Can you help me with that?",
+      "target_tool": "generate_qr_code",
+      "local_tools": [
+        "generate_qr_code"
+      ]
+    },
+    {
+      "id": "tool_196",
+      "query": "What does the word 'serendipity' mean?",
+      "target_tool": "search_definition",
+      "local_tools": [
+        "search_definition"
+      ]
+    },
+    {
+      "id": "tool_197",
+      "query": "Hi, I need help with calculating my loan payment.",
+      "target_tool": "calculate_loan_payment",
+      "local_tools": [
+        "calculate_loan_payment"
+      ]
+    },
+    {
+      "id": "tool_198",
+      "query": "Hi, I need to translate a sentence to French. The sentence is \"Hello, how are you?\"",
+      "target_tool": "translate_text",
+      "local_tools": [
+        "translate_text"
+      ]
+    },
+    {
+      "id": "tool_199",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance",
+        "generate_random_number"
+      ]
+    },
+    {
+      "id": "tool_200",
+      "query": "Hi, I need a barcode for my product. The product id is \"123XYZ\".",
+      "target_tool": "generate_barcode",
+      "local_tools": [
+        "generate_barcode"
+      ]
+    },
+    {
+      "id": "tool_201",
+      "query": "Hi, I need help with my website's SEO. Can you analyze it for me?",
+      "target_tool": "analyze_website",
+      "local_tools": [
+        "analyze_website"
+      ]
+    },
+    {
+      "id": "tool_202",
+      "query": "Hi, can you check if my email address is valid?",
+      "target_tool": "check_email",
+      "local_tools": [
+        "check_email"
+      ]
+    },
+    {
+      "id": "tool_203",
+      "query": "Can you find a movie for me?",
+      "target_tool": "search_movie",
+      "local_tools": [
+        "search_movie"
+      ]
+    },
+    {
+      "id": "tool_204",
+      "query": "Hi, I was born on 1990-05-15. Can you tell me how old I am today?",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age",
+        "get_lyrics"
+      ]
+    },
+    {
+      "id": "tool_205",
+      "query": "Can you tell me the current stock price of Apple?",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_206",
+      "query": "Hi, I want to calculate my BMI. My height is 1.75 meters and my weight is 70 kilograms.",
+      "target_tool": "calculate_bmi",
+      "local_tools": [
+        "calculate_bmi"
+      ]
+    },
+    {
+      "id": "tool_207",
+      "query": "Hi, can you get me the latest news headlines in technology?",
+      "target_tool": "get_news_headlines",
+      "local_tools": [
+        "get_news_headlines"
+      ]
+    },
+    {
+      "id": "tool_208",
+      "query": "Hi, can you generate a random number between 1 and 100 for me?",
+      "target_tool": "generate_random_number",
+      "local_tools": [
+        "generate_random_number"
+      ]
+    },
+    {
+      "id": "tool_209",
+      "query": "Hi, I need to calculate the factorial of 5. Can you help me with that?",
+      "target_tool": "calculate_factorial",
+      "local_tools": [
+        "calculate_factorial"
+      ]
+    },
+    {
+      "id": "tool_210",
+      "query": "I'm in the mood for a movie. Can you recommend something?",
+      "target_tool": "get_movie_recommendations",
+      "local_tools": [
+        "get_movie_recommendations"
+      ]
+    },
+    {
+      "id": "tool_211",
+      "query": "Hi, I need help with calculating a tip. My bill amount is $50 and I want to give a 15% tip. Can you help me calculate that?",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_212",
+      "query": "Hi, can you help me calculate my age? I was born on 1990-05-15.",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_213",
+      "query": "I'm looking for a recipe that uses chicken and broccoli.",
+      "target_tool": "search_recipe",
+      "local_tools": [
+        "search_recipe"
+      ]
+    },
+    {
+      "id": "tool_214",
+      "query": "Can you get me the latest sports news from the United States?",
+      "target_tool": "get_news",
+      "local_tools": [
+        "get_news"
+      ]
+    },
+    {
+      "id": "tool_215",
+      "query": "Hi, I need the definition of the word \"serendipity\".",
+      "target_tool": "get_definition",
+      "local_tools": [
+        "get_definition"
+      ]
+    },
+    {
+      "id": "tool_216",
+      "query": "Hi, I need help with calculating my loan payment.",
+      "target_tool": "calculate_loan_payment",
+      "local_tools": [
+        "calculate_loan_payment"
+      ]
+    },
+    {
+      "id": "tool_217",
+      "query": "Hi, I need a new password. Can you generate a random one for me?",
+      "target_tool": "generate_random_password",
+      "local_tools": [
+        "generate_random_password",
+        "calculate_discounted_price"
+      ]
+    },
+    {
+      "id": "tool_218",
+      "query": "Hi, I just went on a road trip and I want to calculate the fuel efficiency of my car. I traveled 500 kilometers and consumed 40 liters of fuel.",
+      "target_tool": "calculate_fuel_efficiency",
+      "local_tools": [
+        "calculate_fuel_efficiency",
+        "generate_qr_code"
+      ]
+    },
+    {
+      "id": "tool_219",
+      "query": "I saw a jacket I liked in a store. It was originally priced at $200 but there's a 20% discount on it. Can you tell me how much it will cost after the discount?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount",
+        "calculate_loan_payment"
+      ]
+    },
+    {
+      "id": "tool_220",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_221",
+      "query": "Hi, I need to calculate my BMI. I weigh 75 kg and my height is 1.8 meters.",
+      "target_tool": "calculate_bmi",
+      "local_tools": [
+        "calculate_bmi",
+        "get_random_joke"
+      ]
+    },
+    {
+      "id": "tool_222",
+      "query": "Hi, I need a QR code for my website.",
+      "target_tool": "generate_qr_code",
+      "local_tools": [
+        "generate_qr_code"
+      ]
+    },
+    {
+      "id": "tool_223",
+      "query": "Hi, I need to convert 500 US dollars to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_224",
+      "query": "Hi, I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_225",
+      "query": "I need a random name for my new character in my book. Can you help?",
+      "target_tool": "generate_random_name",
+      "local_tools": [
+        "generate_random_name",
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_226",
+      "query": "I saw a dress that I liked. It was originally priced at $200 but it's on a 20% discount. Can you tell me how much it will cost after the discount?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_227",
+      "query": "I need to send an email to my boss. Can you help me with that?",
+      "target_tool": "send_email",
+      "local_tools": [
+        "send_email"
+      ]
+    },
+    {
+      "id": "tool_228",
+      "query": "I want to create a new account.",
+      "target_tool": "create_user",
+      "local_tools": [
+        "create_user",
+        "generate_random_number"
+      ]
+    },
+    {
+      "id": "tool_229",
+      "query": "Hi, I have a list of numbers and I need to find the average. Can you help me with that?",
+      "target_tool": "calculate_average",
+      "local_tools": [
+        "calculate_average"
+      ]
+    },
+    {
+      "id": "tool_230",
+      "query": "Hi, I'm looking for a book but I can't remember the full title. I know it's by George Orwell.",
+      "target_tool": "search_books",
+      "local_tools": [
+        "search_books"
+      ]
+    },
+    {
+      "id": "tool_231",
+      "query": "Hi, I need help calculating my GPA. I have my grades and credit hours for each course.",
+      "target_tool": "calculate_gpa",
+      "local_tools": [
+        "calculate_gpa",
+        "generate_random_username"
+      ]
+    },
+    {
+      "id": "tool_232",
+      "query": "Hi, I need to convert 1000 USD to EUR. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency",
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_233",
+      "query": "Hi, I need help with calculating the tip for my dinner bill. The total is $85 and I want to leave a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_234",
+      "query": "Hey, can you get me the lyrics of the song 'Shape of You' by Ed Sheeran?",
+      "target_tool": "get_song_lyrics",
+      "local_tools": [
+        "get_song_lyrics"
+      ]
+    },
+    {
+      "id": "tool_235",
+      "query": "Hi, I saw a dress that I liked. It was originally priced at $100 but it's on a 20% discount. Can you tell me how much it will cost now?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_236",
+      "query": "Hi, I need to calculate my monthly loan payment. I have a loan of $50000 at an interest rate of 5% for a term of 60 months. Can you help me with that?",
+      "target_tool": "calculate_loan_payment",
+      "local_tools": [
+        "calculate_loan_payment"
+      ]
+    },
+    {
+      "id": "tool_237",
+      "query": "I need to send an email to my boss. Can you help me with that?",
+      "target_tool": "send_email",
+      "local_tools": [
+        "send_email"
+      ]
+    },
+    {
+      "id": "tool_238",
+      "query": "Hi, I need help with calculating a tip. My bill amount is $50 and I want to leave a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_239",
+      "query": "Hi, I have some ingredients at home and I want to cook something. Can you help me find a recipe?",
+      "target_tool": "search_recipes",
+      "local_tools": [
+        "search_recipes"
+      ]
+    },
+    {
+      "id": "tool_240",
+      "query": "I need a random name for a character in my story. Can you help?",
+      "target_tool": "generate_random_name",
+      "local_tools": [
+        "generate_random_name",
+        "send_email"
+      ]
+    },
+    {
+      "id": "tool_241",
+      "query": "I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_242",
+      "query": "I have a temperature of 100 degrees Fahrenheit. Can you convert it to Celsius for me?",
+      "target_tool": "convert_temperature",
+      "local_tools": [
+        "convert_temperature"
+      ]
+    },
+    {
+      "id": "tool_243",
+      "query": "Hi, I need to calculate the interest on a loan. The principal amount is $5000, the interest rate is 5% and the time period is 3 years. Can you help me with that?",
+      "target_tool": "calculate_interest",
+      "local_tools": [
+        "calculate_interest",
+        "calculate_average"
+      ]
+    },
+    {
+      "id": "tool_244",
+      "query": "Hi, I need to convert 500 USD to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_245",
+      "query": "Can you find me some action movies?",
+      "target_tool": "search_movies",
+      "local_tools": [
+        "search_movies"
+      ]
+    },
+    {
+      "id": "tool_246",
+      "query": "I am looking for a book but I can't remember the title. The author's name is George Orwell.",
+      "target_tool": "search_books",
+      "local_tools": [
+        "search_books"
+      ]
+    },
+    {
+      "id": "tool_247",
+      "query": "I'm looking for a good movie to watch. I prefer action movies, preferably released after 2010 and with a rating of at least 7.",
+      "target_tool": "find_movie_recommendations",
+      "local_tools": [
+        "find_movie_recommendations"
+      ]
+    },
+    {
+      "id": "tool_248",
+      "query": "Hi, I need to convert 500 USD to EUR. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency",
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_249",
+      "query": "Hi, I need to send an email to my colleague. Can you help me with that?",
+      "target_tool": "send_email",
+      "local_tools": [
+        "send_email"
+      ]
+    },
+    {
+      "id": "tool_250",
+      "query": "Hi, I need help with calculating my tax. My total income is $50000 and the tax rate is 20%.",
+      "target_tool": "calculate_tax",
+      "local_tools": [
+        "calculate_tax"
+      ]
+    },
+    {
+      "id": "tool_251",
+      "query": "Hi, I just got my exam results back and I scored 85%. Can you tell me what grade that is?",
+      "target_tool": "calculate_grade",
+      "local_tools": [
+        "calculate_grade"
+      ]
+    },
+    {
+      "id": "tool_252",
+      "query": "Hi, I need help with calculating a tip. My bill is $50 and I want to leave a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_253",
+      "query": "Hey, I need a random number between 1 and 100.",
+      "target_tool": "generate_random_number",
+      "local_tools": [
+        "generate_random_number",
+        "search_book"
+      ]
+    },
+    {
+      "id": "tool_254",
+      "query": "Hi, can you help me find some information about a movie?",
+      "target_tool": "get_movie_details",
+      "local_tools": [
+        "get_movie_details"
+      ]
+    },
+    {
+      "id": "tool_255",
+      "query": "Hi, I need a random number between 1 and 100.",
+      "target_tool": "generate_random_number",
+      "local_tools": [
+        "generate_random_number"
+      ]
+    },
+    {
+      "id": "tool_256",
+      "query": "Hi, I need to create a new todo item for my project meeting.",
+      "target_tool": "create_todo",
+      "local_tools": [
+        "create_todo"
+      ]
+    },
+    {
+      "id": "tool_257",
+      "query": "Hi, I need a QR code for my website.",
+      "target_tool": "generate_qr_code",
+      "local_tools": [
+        "generate_qr_code",
+        "schedule_meeting"
+      ]
+    },
+    {
+      "id": "tool_258",
+      "query": "Hi, I need some help with calculating my loan payment.",
+      "target_tool": "calculate_loan_payment",
+      "local_tools": [
+        "calculate_loan_payment"
+      ]
+    },
+    {
+      "id": "tool_259",
+      "query": "Hi, I want to know the latest news about technology in the United States.",
+      "target_tool": "get_news",
+      "local_tools": [
+        "get_news"
+      ]
+    },
+    {
+      "id": "tool_260",
+      "query": "Hi, I need to encrypt a text message. Can you help me with that?",
+      "target_tool": "encrypt_text",
+      "local_tools": [
+        "encrypt_text"
+      ]
+    },
+    {
+      "id": "tool_261",
+      "query": "I saw a dress that I liked. It was originally priced at $100 but it's on a 20% discount. How much will it cost now?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_262",
+      "query": "Can you translate this French sentence for me: \"Je suis très heureux de vous rencontrer\"?",
+      "target_tool": "translate_text",
+      "local_tools": [
+        "translate_text"
+      ]
+    },
+    {
+      "id": "tool_263",
+      "query": "Hi, I want to watch the movie \"Inception\" tomorrow in New York. Can you find the showtimes for me?",
+      "target_tool": "find_movie_showtimes",
+      "local_tools": [
+        "find_movie_showtimes"
+      ]
+    },
+    {
+      "id": "tool_264",
+      "query": "Hi, I have a product that costs $100 and there's a 20% discount on it. Can you calculate the discounted price for me?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_265",
+      "query": "I want to listen to some music.",
+      "target_tool": "play_music",
+      "local_tools": [
+        "play_music"
+      ]
+    },
+    {
+      "id": "tool_266",
+      "query": "Hi, I need to run a program. Can you help me with that?",
+      "target_tool": "execute_program",
+      "local_tools": [
+        "execute_program"
+      ]
+    },
+    {
+      "id": "tool_267",
+      "query": "Hi, I have some ingredients and I want to cook something. Can you help me find a recipe?",
+      "target_tool": "search_recipes",
+      "local_tools": [
+        "search_recipes"
+      ]
+    },
+    {
+      "id": "tool_268",
+      "query": "Hi, I am looking for a specific product. Can you help me check its availability?",
+      "target_tool": "check_availability",
+      "local_tools": [
+        "check_availability"
+      ]
+    },
+    {
+      "id": "tool_269",
+      "query": "Hey, I need to remember to buy groceries tomorrow. Can you add that to my to-do list with high priority?",
+      "target_tool": "create_todo",
+      "local_tools": [
+        "create_todo"
+      ]
+    },
+    {
+      "id": "tool_270",
+      "query": "Hi, I need some motivation. Can you share the quote of the day?",
+      "target_tool": "get_quote_of_the_day",
+      "local_tools": [
+        "get_quote_of_the_day",
+        "search_movies"
+      ]
+    },
+    {
+      "id": "tool_271",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_272",
+      "query": "Hi, can you tell me the current stock price of Microsoft?",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_273",
+      "query": "I want to watch a movie tonight. Can you suggest me some good action movies?",
+      "target_tool": "search_movies",
+      "local_tools": [
+        "search_movies"
+      ]
+    },
+    {
+      "id": "tool_274",
+      "query": "Hi, can you tell me the current stock price of Apple?",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_275",
+      "query": "I need to generate an invoice for a customer named John Doe. The total amount of the order is $200. The items are a book named \"AI for Beginners\" with a quantity of 2 and a price of $50 each, and a notebook with a quantity of 5 and a price of $20 each.",
+      "target_tool": "generate_invoice",
+      "local_tools": [
+        "generate_invoice",
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_276",
+      "query": "Hey, can you get me the latest news on technology?",
+      "target_tool": "get_news",
+      "local_tools": [
+        "get_news"
+      ]
+    },
+    {
+      "id": "tool_277",
+      "query": "I have some chicken, broccoli, and cheese. Can you find me a recipe?",
+      "target_tool": "search_recipes",
+      "local_tools": [
+        "search_recipes"
+      ]
+    },
+    {
+      "id": "tool_278",
+      "query": "I am looking for books by J.K. Rowling.",
+      "target_tool": "search_books",
+      "local_tools": [
+        "search_books"
+      ]
+    },
+    {
+      "id": "tool_279",
+      "query": "Hi, I need to calculate my BMI. I weigh 70 kilograms and my height is 1.75 meters.",
+      "target_tool": "calculate_bmi",
+      "local_tools": [
+        "calculate_bmi",
+        "calculate_area"
+      ]
+    },
+    {
+      "id": "tool_280",
+      "query": "Can you get me the latest news headlines from the United States in English?",
+      "target_tool": "get_news_headlines",
+      "local_tools": [
+        "get_news_headlines"
+      ]
+    },
+    {
+      "id": "tool_281",
+      "query": "Hi, I need to calculate my BMI. I weigh 70 kilograms and I am 1.75 meters tall.",
+      "target_tool": "calculate_bmi",
+      "local_tools": [
+        "calculate_bmi"
+      ]
+    },
+    {
+      "id": "tool_282",
+      "query": "Hi, can you tell me the distance between New York and Los Angeles?",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_283",
+      "query": "Hey, can you tell me what's happening in the world today?",
+      "target_tool": "get_news_headlines",
+      "local_tools": [
+        "get_news_headlines"
+      ]
+    },
+    {
+      "id": "tool_284",
+      "query": "Hi, I'm working on a design project and I need some inspiration. Can you generate a random color for me?",
+      "target_tool": "generate_random_color",
+      "local_tools": [
+        "generate_random_color"
+      ]
+    },
+    {
+      "id": "tool_285",
+      "query": "Hi, I have a list of numbers and I need to find the average. The numbers are 5, 10, 15, 20, 25.",
+      "target_tool": "calculate_average",
+      "local_tools": [
+        "calculate_average"
+      ]
+    },
+    {
+      "id": "tool_286",
+      "query": "I'm in the mood for a comedy movie. Can you suggest some?",
+      "target_tool": "search_movies",
+      "local_tools": [
+        "search_movies"
+      ]
+    },
+    {
+      "id": "tool_287",
+      "query": "Hi, can you help me calculate the square of 7?",
+      "target_tool": "calculate_square",
+      "local_tools": [
+        "calculate_square"
+      ]
+    },
+    {
+      "id": "tool_288",
+      "query": "Hi, I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_289",
+      "query": "I need to create a note for my meeting tomorrow.",
+      "target_tool": "create_note",
+      "local_tools": [
+        "create_note"
+      ]
+    },
+    {
+      "id": "tool_290",
+      "query": "I need to generate an invoice for a customer named John Doe. He bought 5 units of the product \"Super Widget\" at a price of $20 each.",
+      "target_tool": "generate_invoice",
+      "local_tools": [
+        "generate_invoice"
+      ]
+    },
+    {
+      "id": "tool_291",
+      "query": "Can you tell me about the movie \"Inception\"?",
+      "target_tool": "get_movie_details",
+      "local_tools": [
+        "get_movie_details",
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_292",
+      "query": "Hi, I need to convert 1000 USD to EUR. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_293",
+      "query": "Hi, I would like to calculate my BMI. I weigh 70 kilograms and my height is 1.75 meters.",
+      "target_tool": "calculate_bmi",
+      "local_tools": [
+        "calculate_bmi",
+        "get_news"
+      ]
+    },
+    {
+      "id": "tool_294",
+      "query": "I saw a jacket I liked in a store. It was originally priced at $200 but there's a 20% discount. Can you tell me how much it will cost after the discount?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_295",
+      "query": "Hi, I need to calculate the Fibonacci sequence up to 10. Can you help me with that?",
+      "target_tool": "calculate_fibonacci_sequence",
+      "local_tools": [
+        "calculate_fibonacci_sequence"
+      ]
+    },
+    {
+      "id": "tool_296",
+      "query": "Can you help me find books by J.K. Rowling?",
+      "target_tool": "search_books",
+      "local_tools": [
+        "search_books"
+      ]
+    },
+    {
+      "id": "tool_297",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance",
+        "generate_random_color"
+      ]
+    },
+    {
+      "id": "tool_298",
+      "query": "Hi, I need help with calculating a tip. My bill amount is $50 and I want to give a 20% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_299",
+      "query": "I'm feeling a bit down today. Can you share something inspiring?",
+      "target_tool": "generate_random_quote",
+      "local_tools": [
+        "generate_random_quote"
+      ]
+    },
+    {
+      "id": "tool_300",
+      "query": "Hi, can you play the song 'Shape of You' by Ed Sheeran?",
+      "target_tool": "play_music",
+      "local_tools": [
+        "play_music"
+      ]
+    },
+    {
+      "id": "tool_301",
+      "query": "Hi, I need help with calculating my loan payment.",
+      "target_tool": "calculate_loan_payment",
+      "local_tools": [
+        "calculate_loan_payment",
+        "get_movie_details"
+      ]
+    },
+    {
+      "id": "tool_302",
+      "query": "I am looking for a book but I can't remember the title. I know it's a mystery novel by Agatha Christie.",
+      "target_tool": "search_books",
+      "local_tools": [
+        "search_books"
+      ]
+    },
+    {
+      "id": "tool_303",
+      "query": "Hi, I saw a dress that I liked in a store. It was originally priced at $200 but there's a 20% discount on it. Can you tell me how much I will have to pay after the discount?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_304",
+      "query": "I need a random name for my new character in the novel I'm writing. Can you help?",
+      "target_tool": "generate_random_name",
+      "local_tools": [
+        "generate_random_name",
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_305",
+      "query": "Hi, I need to convert 500 US dollars to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_306",
+      "query": "Can you tell me about the movie \"Inception\"?",
+      "target_tool": "get_movie_details",
+      "local_tools": [
+        "get_movie_details"
+      ]
+    },
+    {
+      "id": "tool_307",
+      "query": "I have some chicken, tomatoes and garlic. Can you find me a recipe?",
+      "target_tool": "search_recipes",
+      "local_tools": [
+        "search_recipes"
+      ]
+    },
+    {
+      "id": "tool_308",
+      "query": "Hi, I need to convert 500 USD to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_309",
+      "query": "Hi, I would like to calculate my BMI. I weigh 70 kilograms and my height is 1.75 meters.",
+      "target_tool": "calculate_bmi",
+      "local_tools": [
+        "calculate_bmi",
+        "get_movie_details"
+      ]
+    },
+    {
+      "id": "tool_310",
+      "query": "I need to create a note for my meeting tomorrow.",
+      "target_tool": "create_note",
+      "local_tools": [
+        "create_note"
+      ]
+    },
+    {
+      "id": "tool_311",
+      "query": "Hi, I need a QR code for my website.",
+      "target_tool": "generate_qr_code",
+      "local_tools": [
+        "generate_qr_code"
+      ]
+    },
+    {
+      "id": "tool_312",
+      "query": "Can you help me find books written by J.K. Rowling?",
+      "target_tool": "search_books",
+      "local_tools": [
+        "search_books",
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_313",
+      "query": "Hi, I want to know the sentiment of tweets about the new iPhone. Can you analyze 100 tweets for me?",
+      "target_tool": "analyze_twitter_sentiment",
+      "local_tools": [
+        "analyze_twitter_sentiment"
+      ]
+    },
+    {
+      "id": "tool_314",
+      "query": "Can you analyze the sentiment of this text for me? \"I am feeling really happy today. The sun is shining and the birds are singing.\"",
+      "target_tool": "analyze_sentiment",
+      "local_tools": [
+        "analyze_sentiment",
+        "calculate_bmi"
+      ]
+    },
+    {
+      "id": "tool_315",
+      "query": "Hey, I need a random color for my art project. Can you help?",
+      "target_tool": "generate_random_color",
+      "local_tools": [
+        "generate_random_color"
+      ]
+    },
+    {
+      "id": "tool_316",
+      "query": "Hi, can you help me with something?",
+      "target_tool": "get_random_trivia",
+      "local_tools": [
+        "get_random_trivia"
+      ]
+    },
+    {
+      "id": "tool_317",
+      "query": "Hi, I was born on 1990-05-15. Can you tell me how old I am today?",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_318",
+      "query": "Hi, I need help with calculating a tip. My bill is $85 and I want to leave a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip",
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_319",
+      "query": "Hi, I need to convert 1000 US dollars to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_320",
+      "query": "Hi, I need to convert 1000 USD to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_321",
+      "query": "I saw a dress that I liked in a store. It was priced at $200 but there's a 20% discount. Can you tell me how much I will have to pay after the discount?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_322",
+      "query": "I am a vegan and I am allergic to peanuts. Can you suggest a recipe for me?",
+      "target_tool": "get_recipe",
+      "local_tools": [
+        "get_recipe"
+      ]
+    },
+    {
+      "id": "tool_323",
+      "query": "Can you tell me the distance between New York and Los Angeles?",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance",
+        "calculate_loan_payment"
+      ]
+    },
+    {
+      "id": "tool_324",
+      "query": "Hi, I need to convert 1000 USD to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_325",
+      "query": "I need to generate an invoice for a customer named John Doe. He bought 2 apples for $1 each and 3 bananas for $0.5 each.",
+      "target_tool": "generate_invoice",
+      "local_tools": [
+        "generate_invoice"
+      ]
+    },
+    {
+      "id": "tool_326",
+      "query": "Hi, I was born on 1990-05-15. Can you tell me how old I am today?",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age",
+        "send_email"
+      ]
+    },
+    {
+      "id": "tool_327",
+      "query": "I need to schedule a meeting for tomorrow.",
+      "target_tool": "create_event",
+      "local_tools": [
+        "create_event"
+      ]
+    },
+    {
+      "id": "tool_328",
+      "query": "Hi, can you help me with something?",
+      "target_tool": "generate_random_color",
+      "local_tools": [
+        "generate_random_color"
+      ]
+    },
+    {
+      "id": "tool_329",
+      "query": "Hi, I just bought a new laptop for $1500. Can you help me calculate how much sales tax I would have to pay if the tax rate is 7%?",
+      "target_tool": "calculate_sales_tax",
+      "local_tools": [
+        "calculate_sales_tax"
+      ]
+    },
+    {
+      "id": "tool_330",
+      "query": "Hi, I need to calculate my BMI. I weigh 70 kilograms and my height is 1.75 meters.",
+      "target_tool": "calculate_bmi",
+      "local_tools": [
+        "calculate_bmi"
+      ]
+    },
+    {
+      "id": "tool_331",
+      "query": "I have some chicken, broccoli, and cheese. What can I make with these?",
+      "target_tool": "search_recipes",
+      "local_tools": [
+        "search_recipes",
+        "calculate_mortgage_payment"
+      ]
+    },
+    {
+      "id": "tool_332",
+      "query": "Hi, I need to calculate the fuel efficiency of my car. I traveled 500 miles and consumed 20 gallons of fuel.",
+      "target_tool": "calculate_fuel_efficiency",
+      "local_tools": [
+        "calculate_fuel_efficiency"
+      ]
+    },
+    {
+      "id": "tool_333",
+      "query": "Hi, I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_334",
+      "query": "Hi, I need to convert 500 US dollars to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_335",
+      "query": "Hi, I need help with calculating the tip for my bill. The total amount is $50 and I want to leave a 20% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_336",
+      "query": "Hi, I need to convert 1000 USD to EUR. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_337",
+      "query": "Hi, I need a barcode for a product.",
+      "target_tool": "generate_barcode",
+      "local_tools": [
+        "generate_barcode"
+      ]
+    },
+    {
+      "id": "tool_338",
+      "query": "I am looking for a comedy movie released in 2015. Can you help me find one?",
+      "target_tool": "search_movies",
+      "local_tools": [
+        "search_movies"
+      ]
+    },
+    {
+      "id": "tool_339",
+      "query": "Hi, I was born on 1990-05-15. Can you tell me how old I am today?",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_340",
+      "query": "I want to create a new account.",
+      "target_tool": "create_account",
+      "local_tools": [
+        "create_account"
+      ]
+    },
+    {
+      "id": "tool_341",
+      "query": "Hi, can you help me calculate my age? I was born on 1990-05-15.",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_342",
+      "query": "I need to create a new task for my day.",
+      "target_tool": "create_todo",
+      "local_tools": [
+        "create_todo"
+      ]
+    },
+    {
+      "id": "tool_343",
+      "query": "I saw a dress that I liked. It was originally priced at $200 but it's on a 20% discount. How much will it cost now?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_344",
+      "query": "What does the word 'serendipity' mean?",
+      "target_tool": "get_definition",
+      "local_tools": [
+        "get_definition"
+      ]
+    },
+    {
+      "id": "tool_345",
+      "query": "Hi, I need a new password. Can you generate a random one for me?",
+      "target_tool": "generate_random_password",
+      "local_tools": [
+        "generate_random_password"
+      ]
+    },
+    {
+      "id": "tool_346",
+      "query": "Hi, I need a barcode for my new product. It's called \"Super Clean Detergent\" and the product code is \"SCD123\".",
+      "target_tool": "generate_barcode",
+      "local_tools": [
+        "generate_barcode"
+      ]
+    },
+    {
+      "id": "tool_347",
+      "query": "Hi, I need a QR code for my website. Can you help me with that?",
+      "target_tool": "generate_qr_code",
+      "local_tools": [
+        "generate_qr_code",
+        "calculate_loan_repayment"
+      ]
+    },
+    {
+      "id": "tool_348",
+      "query": "Hi, can you tell me the current price of Apple's stock?",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_349",
+      "query": "I need a random number between 1 and 100.",
+      "target_tool": "generate_random_number",
+      "local_tools": [
+        "generate_random_number"
+      ]
+    },
+    {
+      "id": "tool_350",
+      "query": "Hi, I need to convert 1000 USD to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_351",
+      "query": "Hi, can you help me calculate my age? I was born on 1990-05-15.",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_352",
+      "query": "What does the word 'serendipity' mean?",
+      "target_tool": "get_definition",
+      "local_tools": [
+        "get_definition",
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_353",
+      "query": "Hi, I need some help with a loan I'm considering.",
+      "target_tool": "calculate_interest",
+      "local_tools": [
+        "calculate_interest",
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_354",
+      "query": "I need a new password. Can you generate one for me?",
+      "target_tool": "generate_random_password",
+      "local_tools": [
+        "generate_random_password"
+      ]
+    },
+    {
+      "id": "tool_355",
+      "query": "Hi, I need to convert 1000 USD to EUR. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_356",
+      "query": "Hi, I want to order a pizza. Can you help me calculate the cost?",
+      "target_tool": "calculate_pizza_cost",
+      "local_tools": [
+        "calculate_pizza_cost",
+        "generate_qr_code"
+      ]
+    },
+    {
+      "id": "tool_357",
+      "query": "Hi, I need to convert 500 US dollars to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_358",
+      "query": "I need to calculate the area of a rectangle. The length is 5 and the width is 3.",
+      "target_tool": "calculate_area",
+      "local_tools": [
+        "calculate_area",
+        "analyze_sentiment"
+      ]
+    },
+    {
+      "id": "tool_359",
+      "query": "Hi, can you tell me the distance between New York and Los Angeles?",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_360",
+      "query": "What's the current time in London, UK?",
+      "target_tool": "get_current_time",
+      "local_tools": [
+        "get_current_time",
+        "calculate_sales_tax"
+      ]
+    },
+    {
+      "id": "tool_361",
+      "query": "Hi, I need help calculating the tip for my bill. The total amount is $100 and I want to leave a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_362",
+      "query": "Hi, I was wondering if you could help me with something.",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_363",
+      "query": "Hi, I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_364",
+      "query": "Hi, I have a list of numbers and I need to find the average. The numbers are 5, 10, 15, 20, 25.",
+      "target_tool": "calculate_average",
+      "local_tools": [
+        "calculate_average"
+      ]
+    },
+    {
+      "id": "tool_365",
+      "query": "I am looking for a book but I can't remember the full title. I know it has the word \"Sun\" in it and it's by an author whose last name is Ishiguro.",
+      "target_tool": "search_books",
+      "local_tools": [
+        "search_books"
+      ]
+    },
+    {
+      "id": "tool_366",
+      "query": "Hi, can you tell me the distance between New York and Los Angeles?",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_367",
+      "query": "I need to create a new todo item.",
+      "target_tool": "create_todo",
+      "local_tools": [
+        "create_todo"
+      ]
+    },
+    {
+      "id": "tool_368",
+      "query": "Hi, I have a text in French that I need to translate to English. The text is \"Bonjour, comment ça va?\"",
+      "target_tool": "translate_text",
+      "local_tools": [
+        "translate_text"
+      ]
+    },
+    {
+      "id": "tool_369",
+      "query": "I am looking for a book but I can't remember the full title. I know it's by George Orwell.",
+      "target_tool": "search_books",
+      "local_tools": [
+        "search_books"
+      ]
+    },
+    {
+      "id": "tool_370",
+      "query": "Hi, I need a new password. Can you generate a random one for me?",
+      "target_tool": "generate_random_password",
+      "local_tools": [
+        "generate_random_password"
+      ]
+    },
+    {
+      "id": "tool_371",
+      "query": "I need a random name for a character in my story. Can you help?",
+      "target_tool": "generate_random_name",
+      "local_tools": [
+        "generate_random_name"
+      ]
+    },
+    {
+      "id": "tool_372",
+      "query": "Can you tell me more about the movie with ID 12345?",
+      "target_tool": "get_movie_details",
+      "local_tools": [
+        "get_movie_details"
+      ]
+    },
+    {
+      "id": "tool_373",
+      "query": "I need to create a note for my meeting tomorrow.",
+      "target_tool": "create_note",
+      "local_tools": [
+        "create_note"
+      ]
+    },
+    {
+      "id": "tool_374",
+      "query": "I need to create a new todo list for my upcoming trip.",
+      "target_tool": "create_todo_list",
+      "local_tools": [
+        "create_todo_list"
+      ]
+    },
+    {
+      "id": "tool_375",
+      "query": "I have some chicken, broccoli, and cheese. What can I make with these?",
+      "target_tool": "search_recipes",
+      "local_tools": [
+        "search_recipes"
+      ]
+    },
+    {
+      "id": "tool_376",
+      "query": "Hi, I need a new password. Can you generate one for me?",
+      "target_tool": "generate_random_password",
+      "local_tools": [
+        "generate_random_password"
+      ]
+    },
+    {
+      "id": "tool_377",
+      "query": "Hi, I was born on 1990-05-15. Can you tell me how old I am today?",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age",
+        "get_random_quote"
+      ]
+    },
+    {
+      "id": "tool_378",
+      "query": "Can you analyze the content of this tweet for me? The tweet ID is 12345.",
+      "target_tool": "analyze_tweet",
+      "local_tools": [
+        "analyze_tweet"
+      ]
+    },
+    {
+      "id": "tool_379",
+      "query": "I am looking for a book but I can't remember the full title. I think it had the word 'Sun' in it and it was a science fiction novel.",
+      "target_tool": "search_books",
+      "local_tools": [
+        "search_books"
+      ]
+    },
+    {
+      "id": "tool_380",
+      "query": "Hi, I need help with calculating the tip for my bill. The total bill is $50 and I want to give a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_381",
+      "query": "I am currently at the coordinates 40.7128 N, 74.0060 W. Can you find me a hotel within a 5000 meter radius with a minimum rating of 4?",
+      "target_tool": "search_nearby_hotels",
+      "local_tools": [
+        "search_nearby_hotels"
+      ]
+    },
+    {
+      "id": "tool_382",
+      "query": "Hi, I have an image that I need help analyzing. Can you assist me with that?",
+      "target_tool": "analyze_image",
+      "local_tools": [
+        "analyze_image"
+      ]
+    },
+    {
+      "id": "tool_383",
+      "query": "I am looking for a laptop under $1000. Can you help me find one?",
+      "target_tool": "search_product",
+      "local_tools": [
+        "search_product"
+      ]
+    },
+    {
+      "id": "tool_384",
+      "query": "Hi, I need to know the distance between New York and Los Angeles. Can you help me with that?",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance",
+        "get_definition"
+      ]
+    },
+    {
+      "id": "tool_385",
+      "query": "I am looking for a book but I can't remember the title. The author's name is George Orwell.",
+      "target_tool": "search_book",
+      "local_tools": [
+        "search_book"
+      ]
+    },
+    {
+      "id": "tool_386",
+      "query": "I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password",
+        "calculate_loan_payment"
+      ]
+    },
+    {
+      "id": "tool_387",
+      "query": "I need to create an invoice for a customer named John Doe. The total amount is $500 and the due date is 2022-05-30.",
+      "target_tool": "create_invoice",
+      "local_tools": [
+        "create_invoice"
+      ]
+    },
+    {
+      "id": "tool_388",
+      "query": "What's the current stock price of Apple?",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price",
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_389",
+      "query": "Hi, I need help with calculating the tip for my bill. The total amount is $50 and I want to leave a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_390",
+      "query": "Hey, I want to know the lyrics of the song 'Imagine' by John Lennon.",
+      "target_tool": "get_song_lyrics",
+      "local_tools": [
+        "get_song_lyrics",
+        "calculate_bmi"
+      ]
+    },
+    {
+      "id": "tool_391",
+      "query": "Hi, I need to convert 500 USD to EUR. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency"
+      ]
+    },
+    {
+      "id": "tool_392",
+      "query": "Hi, I need a QR code for my website.",
+      "target_tool": "generate_qr_code",
+      "local_tools": [
+        "generate_qr_code"
+      ]
+    },
+    {
+      "id": "tool_393",
+      "query": "Hi, I need help with calculating the tip for my bill. The total bill amount is $100 and I want to give a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_394",
+      "query": "Hi, I have a list of numbers and I need to find the average. The numbers are 5, 10, 15, 20, 25.",
+      "target_tool": "calculate_average",
+      "local_tools": [
+        "calculate_average",
+        "generate_random_password"
+      ]
+    },
+    {
+      "id": "tool_395",
+      "query": "Hey, I'm feeling a bit bored. Can you tell me something interesting?",
+      "target_tool": "get_random_fact",
+      "local_tools": [
+        "get_random_fact"
+      ]
+    },
+    {
+      "id": "tool_396",
+      "query": "Hi, can you tell me the current price of Apple's stock?",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price",
+        "calculate_mortgage_payment"
+      ]
+    },
+    {
+      "id": "tool_397",
+      "query": "Hi, I need help with calculating a tip. My bill total is $85 and I want to leave a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_398",
+      "query": "Hi, I need help with calculating a tip. My total bill is $50 and I want to leave a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_399",
+      "query": "I need to schedule a meeting for tomorrow.",
+      "target_tool": "create_calendar_event",
+      "local_tools": [
+        "create_calendar_event"
+      ]
+    },
+    {
+      "id": "tool_400",
+      "query": "I need to create a new task.",
+      "target_tool": "create_todo",
+      "local_tools": [
+        "create_todo"
+      ]
+    },
+    {
+      "id": "tool_401",
+      "query": "Hi, I need to know the distance between New York and Los Angeles. Can you help?",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_402",
+      "query": "Hi, I need help with calculating the tip for my bill. The bill amount is $50 and I want to give a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_403",
+      "query": "Hi, can you tell me the current stock price of Apple?",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_404",
+      "query": "Hi, I was born on 1990-05-15. Can you tell me how old I am today?",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_405",
+      "query": "Hi, I need some help with calculating my mortgage payment.",
+      "target_tool": "calculate_mortgage",
+      "local_tools": [
+        "calculate_mortgage"
+      ]
+    },
+    {
+      "id": "tool_406",
+      "query": "Hi, I need to convert 500 USD to EUR. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency",
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_407",
+      "query": "Hi, I have a temperature reading in Fahrenheit and I need to convert it to Celsius. The reading is 98.6 degrees Fahrenheit.",
+      "target_tool": "calculate_fahrenheit_to_celsius",
+      "local_tools": [
+        "calculate_fahrenheit_to_celsius",
+        "generate_qr_code"
+      ]
+    },
+    {
+      "id": "tool_408",
+      "query": "Hi, I have a paragraph here and I need to know how many words it contains. Can you help me with that?",
+      "target_tool": "count_words",
+      "local_tools": [
+        "count_words"
+      ]
+    },
+    {
+      "id": "tool_409",
+      "query": "Hi, I need help with calculating my tax. My income is $50000 and the tax rate is 20%.",
+      "target_tool": "calculate_tax",
+      "local_tools": [
+        "calculate_tax",
+        "calculate_bmi"
+      ]
+    },
+    {
+      "id": "tool_410",
+      "query": "Hi, I could use some motivation today. Can you share a quote?",
+      "target_tool": "get_daily_quote",
+      "local_tools": [
+        "get_daily_quote"
+      ]
+    },
+    {
+      "id": "tool_411",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance",
+        "search_product"
+      ]
+    },
+    {
+      "id": "tool_412",
+      "query": "Hi, I need a QR code for my website.",
+      "target_tool": "generate_qr_code",
+      "local_tools": [
+        "generate_qr_code"
+      ]
+    },
+    {
+      "id": "tool_413",
+      "query": "Hi, I need help calculating my GPA. I have the grades and credit hours for each course.",
+      "target_tool": "calculate_gpa",
+      "local_tools": [
+        "calculate_gpa"
+      ]
+    },
+    {
+      "id": "tool_414",
+      "query": "Hi, I need to book a flight to Paris. I want to leave on the 15th of next month and return on the 30th. We are a group of 5.",
+      "target_tool": "book_flight",
+      "local_tools": [
+        "book_flight",
+        "create_calendar_event"
+      ]
+    },
+    {
+      "id": "tool_415",
+      "query": "I want to watch a comedy movie in New York on 2022-10-15.",
+      "target_tool": "search_movie_theater",
+      "local_tools": [
+        "search_movie_theater",
+        "get_movie_details"
+      ]
+    },
+    {
+      "id": "tool_416",
+      "query": "Hi, I am planning a road trip and I need to calculate the fuel cost. The total distance of the trip is 500 kilometers. My car's fuel efficiency is 8 liters per 100 kilometers and the current fuel price is 1.5 dollars per liter. Can you help me with this?",
+      "target_tool": "calculate_fuel_cost",
+      "local_tools": [
+        "calculate_fuel_cost"
+      ]
+    },
+    {
+      "id": "tool_417",
+      "query": "I want to watch a movie tonight. Can you suggest me some good action movies from 2020?",
+      "target_tool": "search_movies",
+      "local_tools": [
+        "search_movies"
+      ]
+    },
+    {
+      "id": "tool_418",
+      "query": "I need to create a note for my meeting tomorrow.",
+      "target_tool": "create_note",
+      "local_tools": [
+        "create_note",
+        "search_books"
+      ]
+    },
+    {
+      "id": "tool_419",
+      "query": "I want to listen to some music. Can you play 'Shape of You' by Ed Sheeran?",
+      "target_tool": "play_music",
+      "local_tools": [
+        "play_music",
+        "get_movie_recommendations"
+      ]
+    },
+    {
+      "id": "tool_420",
+      "query": "I have some chicken, broccoli, and cheese. Can you find me a recipe?",
+      "target_tool": "search_recipes",
+      "local_tools": [
+        "search_recipes",
+        "get_random_cat_fact"
+      ]
+    },
+    {
+      "id": "tool_421",
+      "query": "Hi, I need help with calculating my loan payment.",
+      "target_tool": "calculate_loan_payment",
+      "local_tools": [
+        "calculate_loan_payment",
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_422",
+      "query": "Hi, I want to know the lyrics of the song \"Imagine\" by John Lennon.",
+      "target_tool": "get_lyrics",
+      "local_tools": [
+        "get_lyrics"
+      ]
+    },
+    {
+      "id": "tool_423",
+      "query": "Hi, I need help with calculating my mortgage payment.",
+      "target_tool": "calculate_mortgage_payment",
+      "local_tools": [
+        "calculate_mortgage_payment",
+        "generate_random_number"
+      ]
+    },
+    {
+      "id": "tool_424",
+      "query": "I saw a dress that I liked in a store. It was originally priced at $100 but there's a 20% discount on it. Can you tell me how much it will cost after the discount?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_425",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_426",
+      "query": "Hey, can you tell me the distance between New York and Los Angeles?",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_427",
+      "query": "I saw a dress that I liked. It was originally priced at $100 but it's on a 20% discount. How much will it cost now?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_428",
+      "query": "Hi, I need to generate a barcode for a new product.",
+      "target_tool": "generate_barcode",
+      "local_tools": [
+        "generate_barcode",
+        "schedule_meeting"
+      ]
+    },
+    {
+      "id": "tool_429",
+      "query": "Hi, I need to calculate my BMI. I weigh 70 kilograms and my height is 1.75 meters.",
+      "target_tool": "calculate_bmi",
+      "local_tools": [
+        "calculate_bmi",
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_430",
+      "query": "I forgot my password. Can you help me reset it?",
+      "target_tool": "generate_password_reset_link",
+      "local_tools": [
+        "generate_password_reset_link"
+      ]
+    },
+    {
+      "id": "tool_431",
+      "query": "Hi, I need some help.",
+      "target_tool": "search_news",
+      "local_tools": [
+        "search_news"
+      ]
+    },
+    {
+      "id": "tool_432",
+      "query": "Hi, can you tell me how old I am if I was born on 1995-07-15?",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_433",
+      "query": "I am in the mood to watch a comedy movie from the 90s. Can you suggest some?",
+      "target_tool": "search_movies",
+      "local_tools": [
+        "search_movies",
+        "analyze_image"
+      ]
+    },
+    {
+      "id": "tool_434",
+      "query": "Hi, I need a QR code for my website. Can you help me with that?",
+      "target_tool": "generate_qr_code",
+      "local_tools": [
+        "generate_qr_code"
+      ]
+    },
+    {
+      "id": "tool_435",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_436",
+      "query": "Hi, I need help with calculating my mortgage payments.",
+      "target_tool": "calculate_mortgage",
+      "local_tools": [
+        "calculate_mortgage",
+        "create_calendar_event"
+      ]
+    },
+    {
+      "id": "tool_437",
+      "query": "Hi, I need some help with my business calculations.",
+      "target_tool": "calculate_profit",
+      "local_tools": [
+        "calculate_profit"
+      ]
+    },
+    {
+      "id": "tool_438",
+      "query": "Hi, I need to translate a phrase from English to French. The phrase is \"Good Morning\".",
+      "target_tool": "get_translation",
+      "local_tools": [
+        "get_translation",
+        "create_user"
+      ]
+    },
+    {
+      "id": "tool_439",
+      "query": "Hi, I need to calculate my BMI. I weigh 75 kilograms and my height is 1.8 meters.",
+      "target_tool": "calculate_bmi",
+      "local_tools": [
+        "calculate_bmi"
+      ]
+    },
+    {
+      "id": "tool_440",
+      "query": "Hi, I need to calculate my BMI. I weigh 75 kilograms and my height is 1.8 meters.",
+      "target_tool": "calculate_bmi",
+      "local_tools": [
+        "calculate_bmi"
+      ]
+    },
+    {
+      "id": "tool_441",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance",
+        "calculate_tax"
+      ]
+    },
+    {
+      "id": "tool_442",
+      "query": "I need to create a new todo item.",
+      "target_tool": "create_todo",
+      "local_tools": [
+        "create_todo"
+      ]
+    },
+    {
+      "id": "tool_443",
+      "query": "Can you calculate my GPA for this semester? I have the grades and credit hours.",
+      "target_tool": "calculate_gpa",
+      "local_tools": [
+        "calculate_gpa"
+      ]
+    },
+    {
+      "id": "tool_444",
+      "query": "Hi, I need help with calculating the tip for my bill. The total bill amount is $100 and I want to give a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_445",
+      "query": "Hi, I need help calculating my GPA. I have grades and credit hours for each course.",
+      "target_tool": "calculate_gpa",
+      "local_tools": [
+        "calculate_gpa"
+      ]
+    },
+    {
+      "id": "tool_446",
+      "query": "Hey, can you check if the word 'racecar' is a palindrome?",
+      "target_tool": "check_palindrome",
+      "local_tools": [
+        "check_palindrome"
+      ]
+    },
+    {
+      "id": "tool_447",
+      "query": "Hi, I need to calculate my BMI. I weigh 75 kilograms and my height is 1.8 meters.",
+      "target_tool": "calculate_bmi",
+      "local_tools": [
+        "calculate_bmi"
+      ]
+    },
+    {
+      "id": "tool_448",
+      "query": "Hi, I need help with calculating my tax. My income is $50000 and the tax rate is 20%.",
+      "target_tool": "calculate_tax",
+      "local_tools": [
+        "calculate_tax"
+      ]
+    },
+    {
+      "id": "tool_449",
+      "query": "Hi, I need to know the current stock price of AAPL.",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_450",
+      "query": "Hi, I'm looking for some movie recommendations. I prefer action movies from the 2000s with a rating of at least 7.",
+      "target_tool": "search_movies",
+      "local_tools": [
+        "search_movies"
+      ]
+    },
+    {
+      "id": "tool_451",
+      "query": "Hi, I need some help with calculating my mortgage repayment.",
+      "target_tool": "calculate_mortgage_repayment",
+      "local_tools": [
+        "calculate_mortgage_repayment"
+      ]
+    },
+    {
+      "id": "tool_452",
+      "query": "Hi, I need help with calculating a discount. The original price of the item is $200 and the discount is 15%. Can you tell me the discounted price?",
+      "target_tool": "calculate_discount",
+      "local_tools": [
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_453",
+      "query": "Hi, can you generate a random number between 1 and 100 for me?",
+      "target_tool": "generate_random_number",
+      "local_tools": [
+        "generate_random_number"
+      ]
+    },
+    {
+      "id": "tool_454",
+      "query": "Hi, I need help with calculating a tip. My bill is $50 and I want to leave a 15% tip.",
+      "target_tool": "calculate_tip",
+      "local_tools": [
+        "calculate_tip"
+      ]
+    },
+    {
+      "id": "tool_455",
+      "query": "Hi, I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_456",
+      "query": "Hi, I need to create a new user account.",
+      "target_tool": "create_user",
+      "local_tools": [
+        "create_user"
+      ]
+    },
+    {
+      "id": "tool_457",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_458",
+      "query": "What's the current stock price of Apple?",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_459",
+      "query": "I need a random number between 1 and 100.",
+      "target_tool": "generate_random_number",
+      "local_tools": [
+        "generate_random_number",
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_460",
+      "query": "I need to create an invoice for my client, John Doe. The amount is $5000 and it's due on 30th of this month.",
+      "target_tool": "create_invoice",
+      "local_tools": [
+        "create_invoice"
+      ]
+    },
+    {
+      "id": "tool_461",
+      "query": "Can you get me the latest news from the United States?",
+      "target_tool": "get_news",
+      "local_tools": [
+        "get_news"
+      ]
+    },
+    {
+      "id": "tool_462",
+      "query": "Hi, I was born on 1990-05-15. Can you tell me how old I am today?",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_463",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance"
+      ]
+    },
+    {
+      "id": "tool_464",
+      "query": "Hi, I need some help with a loan I'm considering.",
+      "target_tool": "calculate_loan_payment",
+      "local_tools": [
+        "calculate_loan_payment"
+      ]
+    },
+    {
+      "id": "tool_465",
+      "query": "Hi, I need to convert 500 US dollars to Euros. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency",
+        "calculate_volume"
+      ]
+    },
+    {
+      "id": "tool_466",
+      "query": "Hi, I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_467",
+      "query": "Hi, I need to know the 10th number in the Fibonacci sequence.",
+      "target_tool": "calculate_fibonacci",
+      "local_tools": [
+        "calculate_fibonacci",
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_468",
+      "query": "Hi, I need some help with calculating my loan payment.",
+      "target_tool": "calculate_loan_payment",
+      "local_tools": [
+        "calculate_loan_payment"
+      ]
+    },
+    {
+      "id": "tool_469",
+      "query": "Hi, I have a list of numbers and I need to find the average. Can you help me with that?",
+      "target_tool": "calculate_average",
+      "local_tools": [
+        "calculate_average"
+      ]
+    },
+    {
+      "id": "tool_470",
+      "query": "I have some chicken, tomatoes and basil. Can you find me a recipe?",
+      "target_tool": "search_recipes",
+      "local_tools": [
+        "search_recipes"
+      ]
+    },
+    {
+      "id": "tool_471",
+      "query": "I have a rectangle and its length is 5 units and width is 3 units. Can you calculate its area?",
+      "target_tool": "calculate_area",
+      "local_tools": [
+        "calculate_area",
+        "generate_random_quote"
+      ]
+    },
+    {
+      "id": "tool_472",
+      "query": "I need some inspiration. Can you give me a quote?",
+      "target_tool": "generate_random_quote",
+      "local_tools": [
+        "generate_random_quote",
+        "calculate_tax"
+      ]
+    },
+    {
+      "id": "tool_473",
+      "query": "I need to calculate the area of a triangle with a base of 5 and a height of 10.",
+      "target_tool": "calculate_triangle_area",
+      "local_tools": [
+        "calculate_triangle_area"
+      ]
+    },
+    {
+      "id": "tool_474",
+      "query": "Hi, can you tell me the current price of Apple's stock?",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_475",
+      "query": "I need to schedule a meeting for tomorrow.",
+      "target_tool": "create_calendar_event",
+      "local_tools": [
+        "create_calendar_event"
+      ]
+    },
+    {
+      "id": "tool_476",
+      "query": "Hi, I need a new password for my account. Can you generate a random one for me?",
+      "target_tool": "generate_random_password",
+      "local_tools": [
+        "generate_random_password"
+      ]
+    },
+    {
+      "id": "tool_477",
+      "query": "Hi, I need a new password. Can you generate a secure one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password",
+        "search_books"
+      ]
+    },
+    {
+      "id": "tool_478",
+      "query": "I need to send an email to my boss. Can you help me with that?",
+      "target_tool": "send_email",
+      "local_tools": [
+        "send_email"
+      ]
+    },
+    {
+      "id": "tool_479",
+      "query": "I need to create a task for my project.",
+      "target_tool": "create_task",
+      "local_tools": [
+        "create_task"
+      ]
+    },
+    {
+      "id": "tool_480",
+      "query": "I have some chicken, broccoli, and cheese. Can you find a recipe for me?",
+      "target_tool": "search_recipes",
+      "local_tools": [
+        "search_recipes"
+      ]
+    },
+    {
+      "id": "tool_481",
+      "query": "Hi, I need to convert a temperature from Fahrenheit to Celsius. The temperature is 98.6 degrees Fahrenheit.",
+      "target_tool": "convert_temperature",
+      "local_tools": [
+        "convert_temperature"
+      ]
+    },
+    {
+      "id": "tool_482",
+      "query": "Hi, I need to translate a sentence to French. The sentence is \"Hello, how are you?\"",
+      "target_tool": "get_translation",
+      "local_tools": [
+        "get_translation"
+      ]
+    },
+    {
+      "id": "tool_483",
+      "query": "Hi, I need to calculate my tax for this year. My annual income is $80,000 and the tax rate is 25%.",
+      "target_tool": "calculate_tax",
+      "local_tools": [
+        "calculate_tax"
+      ]
+    },
+    {
+      "id": "tool_484",
+      "query": "Hey, can you tell me the current stock price of Apple?",
+      "target_tool": "get_stock_price",
+      "local_tools": [
+        "get_stock_price",
+        "calculate_discounted_price"
+      ]
+    },
+    {
+      "id": "tool_485",
+      "query": "Hi, I have a paragraph here and I need to know how many words it contains. Can you help me with that?",
+      "target_tool": "count_words",
+      "local_tools": [
+        "count_words"
+      ]
+    },
+    {
+      "id": "tool_486",
+      "query": "Hi, I need to convert 500 USD to EUR. Can you help me with that?",
+      "target_tool": "convert_currency",
+      "local_tools": [
+        "convert_currency",
+        "generate_random_number"
+      ]
+    },
+    {
+      "id": "tool_487",
+      "query": "I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_488",
+      "query": "Hi, I was born on 1990-05-15. Can you tell me how old I am today?",
+      "target_tool": "calculate_age",
+      "local_tools": [
+        "calculate_age"
+      ]
+    },
+    {
+      "id": "tool_489",
+      "query": "I need to calculate the area of a circle with a radius of 5.",
+      "target_tool": "calculate_area",
+      "local_tools": [
+        "calculate_area",
+        "calculate_discount"
+      ]
+    },
+    {
+      "id": "tool_490",
+      "query": "Hi, I need a new password. Can you generate one for me?",
+      "target_tool": "generate_password",
+      "local_tools": [
+        "generate_password",
+        "calculate_bmi"
+      ]
+    },
+    {
+      "id": "tool_491",
+      "query": "I am looking for a new laptop. Can you help me find one?",
+      "target_tool": "search_for_product",
+      "local_tools": [
+        "search_for_product",
+        "get_stock_price"
+      ]
+    },
+    {
+      "id": "tool_492",
+      "query": "I just finished a 30 minute run and I think I burned around 200 calories. Can you track this for me?",
+      "target_tool": "track_fitness_progress",
+      "local_tools": [
+        "track_fitness_progress"
+      ]
+    },
+    {
+      "id": "tool_493",
+      "query": "Hi, I need help with calculating my monthly loan payment.",
+      "target_tool": "calculate_loan_payment",
+      "local_tools": [
+        "calculate_loan_payment",
+        "generate_password"
+      ]
+    },
+    {
+      "id": "tool_494",
+      "query": "Hi, I need a QR code for my website.",
+      "target_tool": "generate_qr_code",
+      "local_tools": [
+        "generate_qr_code"
+      ]
+    },
+    {
+      "id": "tool_495",
+      "query": "Hi, I need help with calculating my mortgage payment. I have a loan amount of $200,000, an annual interest rate of 3.5%, and a loan term of 30 years.",
+      "target_tool": "calculate_mortgage",
+      "local_tools": [
+        "calculate_mortgage"
+      ]
+    },
+    {
+      "id": "tool_496",
+      "query": "I am looking for a restaurant in New York. I prefer Italian cuisine and my budget is medium.",
+      "target_tool": "searchRestaurants",
+      "local_tools": [
+        "searchRestaurants"
+      ]
+    },
+    {
+      "id": "tool_497",
+      "query": "I need to convert 10 miles into kilometers. Can you help me with that?",
+      "target_tool": "convert_units",
+      "local_tools": [
+        "convert_units"
+      ]
+    },
+    {
+      "id": "tool_498",
+      "query": "Hi, I need to send an email to my boss. Can you help me with that?",
+      "target_tool": "send_email",
+      "local_tools": [
+        "send_email"
+      ]
+    },
+    {
+      "id": "tool_499",
+      "query": "Hi, I need to know the distance between New York and Los Angeles.",
+      "target_tool": "calculate_distance",
+      "local_tools": [
+        "calculate_distance",
+        "create_task"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "xbox_research_labeling": {
+    "themes": [
+      { "id": "GAMEPLAY", "label": "Core Gameplay & Mechanics", "description": "Driving physics, gun handling, movement, control responsiveness, difficulty balance" },
+      { "id": "PERFORMANCE", "label": "Performance & Stability", "description": "Frame rate drops, stuttering, crashes, memory leaks, optimization, load times" },
+      { "id": "NETCODE", "label": "Multiplayer & Netcode", "description": "Matchmaking latency, desync, hit registration, server disconnects, lobby queue" },
+      { "id": "AUDIO_VISUAL", "label": "Graphics & Sound Design", "description": "Visual fidelity, ray tracing, textures, engine sounds, soundtrack, voice acting" },
+      { "id": "MONETIZATION", "label": "Monetization & Economy", "description": "Battle pass progression, cosmetic pricing, microtransactions, paywall, grind" },
+      { "id": "CONTENT", "label": "Content & Updates", "description": "Track variety, weapon roster, seasonal events, roadmap, patch frequency" }
+    ],
+    "datasets": {
+      "racing_title": [
+        { "id": "race_01", "text": "The tire grip physics in the rain feel unrealistically slippery when using a force feedback steering wheel.", "expected": "GAMEPLAY" },
+        { "id": "race_02", "text": "Severe micro-stuttering and FPS drops when more than 12 cars are on the screen during Monaco turns.", "expected": "PERFORMANCE" },
+        { "id": "race_03", "text": "The V10 engine roar and exhaust crackles sound phenomenal with 3D spatial audio headphones.", "expected": "AUDIO_VISUAL" },
+        { "id": "race_04", "text": "Cars are locked behind a ridiculous 40-hour grind unless you buy the premium car pass tokens.", "expected": "MONETIZATION" },
+        { "id": "race_05", "text": "Multiplayer ghosting causes cars behind me to teleport through my bumper at 200 mph.", "expected": "NETCODE" },
+        { "id": "race_06", "text": "We need more historical circuits like Silverstone 1988 and Watkins Glen in the next content update.", "expected": "CONTENT" },
+        { "id": "race_07", "text": "Steering wheel force feedback deadzone is completely broken after the latest v1.4 patch.", "expected": "GAMEPLAY" },
+        { "id": "race_08", "text": "Game crashes directly to desktop on PC when transitioning from qualifying to the main race grid.", "expected": "PERFORMANCE" }
+      ],
+      "fps_title": [
+        { "id": "fps_01", "text": "Bullet hit registration is completely desynced; I dumped a full magazine into an enemy and did zero damage.", "expected": "NETCODE" },
+        { "id": "fps_02", "text": "Weapon recoil patterns feel crisp, punchy, and reward tap-firing at long range.", "expected": "GAMEPLAY" },
+        { "id": "fps_03", "text": "Memory leak causes the game to consume 16GB of VRAM and crash after three competitive matches.", "expected": "PERFORMANCE" },
+        { "id": "fps_04", "text": "$25 for an animated weapon camo skin in the store is outrageous price gouging.", "expected": "MONETIZATION" },
+        { "id": "fps_05", "text": "Enemy footstep directional audio is muffled and impossible to pinpoint in building interiors.", "expected": "AUDIO_VISUAL" },
+        { "id": "fps_06", "text": "Ranked queue times take over 8 minutes even in peak European server hours.", "expected": "NETCODE" },
+        { "id": "fps_07", "text": "Slide canceling and mantle animations feel smooth and responsive in close-quarters combat.", "expected": "GAMEPLAY" },
+        { "id": "fps_08", "text": "When are we getting the promised 6v6 Search and Destroy maps teased in the launch roadmap?", "expected": "CONTENT" }
+      ],
+      "livestream_posts": [
+        { "id": "stream_01", "text": "Stream quality is lagging and audio is out of sync with the developer interview.", "expected": "PERFORMANCE" },
+        { "id": "stream_02", "text": "The new lighting engine and weather effects shown in the gameplay trailer look gorgeous!", "expected": "AUDIO_VISUAL" },
+        { "id": "stream_03", "text": "Please fix cross-play voice chat echo between Xbox party chat and Discord.", "expected": "NETCODE" },
+        { "id": "stream_04", "text": "Will the upcoming expansion DLC be included on Xbox Game Pass on day one?", "expected": "MONETIZATION" },
+        { "id": "stream_05", "text": "The time-to-kill looks way too fast compared to the previous game in the franchise.", "expected": "GAMEPLAY" },
+        { "id": "stream_06", "text": "Show us the custom race track creator and community browser features please!", "expected": "CONTENT" },
+        { "id": "stream_07", "text": "Is this running at native 4K 60fps or using dynamic resolution scaling with FSR?", "expected": "PERFORMANCE" },
+        { "id": "stream_08", "text": "Guns sound like toy airsoft rifles, please bring back the heavy bass sound effects.", "expected": "AUDIO_VISUAL" }
+      ]
+    }
+  }
+}

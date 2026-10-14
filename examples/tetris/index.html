@@ -1,87 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TETRIS S1stem // Autonomous Macro-Placement AI</title>
+  <title>Tetris AI // S1stem Macro-Placement Benchmark</title>
+  <meta name="description" content="Autonomous Tetris macro-placement AI powered by S1stem sub-millisecond reflex decision engine." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../core/tactical-theme.css?v=3" />
-  <link rel="stylesheet" href="./style.css?v=3" />
-  <style>
-    /* Absolute Layout Containment for Tetris */
-    .dashboard-grid {
-      display: grid !important;
-      grid-template-columns: 440px minmax(0, 1fr) !important;
-      gap: 16px !important;
-      width: 100% !important;
-      max-width: 100% !important;
-      min-width: 0 !important;
+  <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <script src="../theme.js"></script>
+  <script>
+    if (window.location.protocol === 'file:') {
+      document.addEventListener('DOMContentLoaded', () => {
+        const b = document.createElement('div');
+        b.style.cssText = 'background:#2d1d03;color:#f0f6fc;padding:10px 16px;font-size:12.5px;text-align:center;border-bottom:1px solid #d29922;font-family:sans-serif;z-index:99999;position:relative;';
+        b.innerHTML = '⚠️ <strong>Local file:// protocol detected:</strong> JavaScript ES Modules require a local HTTP server (CORS). Run <code>npm start</code> or <code>npx serve .</code> and open <a href="http://localhost:8080/examples/tetris/index.html" style="color:#58a6ff;font-weight:700;">http://localhost:8080/examples/tetris/index.html</a>.';
+        document.body.prepend(b);
+      });
     }
-    .viewport-card, .sidebar-card {
-      min-width: 0 !important;
-      max-width: 100% !important;
-      overflow: hidden !important;
-    }
-    .state-prompt-box {
-      width: 100% !important;
-      max-width: 100% !important;
-      box-sizing: border-box !important;
-      overflow: hidden !important;
-      min-width: 0 !important;
-    }
-    #prompt-display, .prompt-text {
-      width: 100% !important;
-      max-width: 100% !important;
-      min-width: 0 !important;
-      white-space: normal !important;
-      word-break: break-all !important;
-      overflow-wrap: anywhere !important;
-      display: -webkit-box !important;
-      -webkit-line-clamp: 2 !important;
-      -webkit-box-orient: vertical !important;
-      overflow: hidden !important;
-      text-overflow: ellipsis !important;
-    }
-    @media (max-width: 1100px) {
-      .dashboard-grid {
-        grid-template-columns: 1fr !important;
-      }
-    }
-  </style>
+  </script>
 </head>
 <body>
-  <div class="app-container">
-    <!-- Top Bar Navigation & Unified Header -->
-    <header class="top-nav">
-      <div class="brand">
-        <span class="brand-badge tet">TET</span>
-        <div class="brand-text">
-          <h1>TETRIS TACTICAL EDGE CORE</h1>
-          <span class="subtext">System 1 Macro-Placement // Multi-Objective Scoring // S1stem</span>
-        </div>
+  <!-- Unified Microsoft Command Line Navigation Header -->
+  <header class="top-nav">
+    <div class="nav-inner">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <a href="../tetris/index.html" class="ms-brand">
+          <span class="cli-prompt">&gt;_</span>
+          <span>Command Line</span>
+        </a>
+        <span class="brand-tagline-ms">By builders, for builders.</span>
       </div>
 
       <nav class="example-nav">
-        <a href="../index.html" class="nav-link">⚡ Hub</a>
-        <a href="../snake/index.html" class="nav-link">🐍 Snake AI</a>
-        <a href="./index.html" class="nav-link active tet">🧱 Tetris AI</a>
-        <a href="../doom/index.html" class="nav-link">🔥 Doom AI</a>
+        <a href="../tetris/index.html" class="nav-link active">Tetris AI</a>
+        <a href="../snake/index.html" class="nav-link">Snake AI</a>
+        <a href="../rover/index.html" class="nav-link">Rover AI</a>
+        <a href="../dispatcher/index.html" class="nav-link">Agent Dispatcher</a>
       </nav>
 
       <div class="header-badges">
         <div class="badge-item">
-          <span class="badge-label">ENGINE</span>
-          <span id="status-badge" class="badge badge-cyan">ACTIVE (60 FPS)</span>
+          <span class="badge-label">REFLEX</span>
+          <span id="ai-status-badge" class="badge badge-green">SYSTEM 1</span>
         </div>
-        <div class="badge-item">
-          <span class="badge-label">AI REFLEX</span>
-          <span id="ai-status-badge" class="badge badge-green">ONLINE (SYSTEM 1)</span>
-        </div>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+          <span id="theme-icon">◐</span>
+          <span>THEME</span>
+        </button>
+        <a href="https://github.com/SantoroNicola-dev/S1stem" class="nav-github-btn" target="_blank" rel="noreferrer">
+          <span>GitHub</span>
+          <span class="font-mono">↗</span>
+        </a>
       </div>
-    </header>
+    </div>
+  </header>
 
+  <div class="app-container">
     <!-- Main Operational Grid -->
     <main class="dashboard-grid">
       <!-- Left Column: Board Viewport & Controls -->
@@ -122,6 +99,7 @@
           <button id="btn-toggle-play" class="btn btn-primary">▶ Play</button>
           <button id="btn-step-frame" class="btn btn-secondary">Step Frame</button>
           <button id="btn-reset-game" class="btn btn-secondary">Reset</button>
+          <button id="btn-mode-toggle" class="btn btn-secondary">👁️ Visual Frame</button>
           <div class="slider-group">
             <label for="speed-slider">Speed: <span id="speed-val" class="font-mono">25 steps/s</span></label>
             <input type="range" id="speed-slider" min="5" max="60" value="25" />
@@ -177,7 +155,7 @@
         </div>
 
         <!-- Diagnostic Decision Stream // Log with % -->
-        <div class="panel-section terminal-section">
+        <div class="panel-section">
           <div class="section-title">
             <span>DIAGNOSTIC DECISION STREAM</span>
             <span class="section-sub">CONFIDENCE %</span>
@@ -186,7 +164,7 @@
         </div>
 
         <!-- Deep Nerd Telemetry Panel -->
-        <div class="panel-section nerd-section">
+        <div class="panel-section">
           <div class="section-title">
             <span>NERD STATS // DEEP TELEMETRY</span>
             <span class="section-sub">InfoNCE (384 &rarr; 128)</span>
@@ -198,6 +176,22 @@
       </aside>
     </main>
   </div>
+
+  <!-- Unified Scholarly Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <strong>S1stem</strong> &nbsp;·&nbsp; Pure Vanilla JavaScript System 1 Reflex Decision Engine &nbsp;·&nbsp; Apache-2.0
+      </div>
+      <div>
+        <a href="https://github.com/SantoroNicola-dev/S1stem" target="_blank" rel="noreferrer" style="margin-right: 14px;">GitHub Repository ↗</a>
+        <a href="../index.html" style="margin-right: 12px;">Overview</a>
+        <a href="../snake/index.html" style="margin-right: 12px;">Snake AI</a>
+        <a href="../rover/index.html" style="margin-right: 12px;">Rover CDR</a>
+        <a href="../doom/index.html">Doom AI</a>
+      </div>
+    </div>
+  </footer>
 
   <script type="module" src="./main.js"></script>
 </body>

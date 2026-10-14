@@ -1,0 +1,2542 @@
+{
+  "benchmark": "Amazon MASSIVE en-US",
+  "pillar": "Multi-Domain Real Intent Routing",
+  "source": "https://huggingface.co/datasets/SetFit/amazon_massive_intent_en-US",
+  "split": "test",
+  "candidate_actions": [
+    "alarm_query",
+    "alarm_remove",
+    "alarm_set",
+    "audio_volume_down",
+    "audio_volume_mute",
+    "audio_volume_other",
+    "audio_volume_up",
+    "datetime_convert",
+    "datetime_query",
+    "general_greet",
+    "general_joke",
+    "general_quirky",
+    "iot_cleaning",
+    "iot_coffee",
+    "iot_hue_lightchange",
+    "iot_hue_lightdim",
+    "iot_hue_lightoff",
+    "iot_hue_lighton",
+    "iot_hue_lightup",
+    "iot_wemo_off",
+    "iot_wemo_on",
+    "music_dislikeness",
+    "music_likeness",
+    "music_query",
+    "music_settings",
+    "news_query",
+    "play_music",
+    "recommendation_events",
+    "takeaway_order",
+    "takeaway_query",
+    "weather_query"
+  ],
+  "total_samples": 500,
+  "samples": [
+    {
+      "id": "0",
+      "text": "wake me up at five am this week",
+      "ground_truth": "alarm_set"
+    },
+    {
+      "id": "3",
+      "text": "quiet",
+      "ground_truth": "audio_volume_mute"
+    },
+    {
+      "id": "8",
+      "text": "pink is all we need",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "14",
+      "text": "and the darkness has fallen",
+      "ground_truth": "iot_hue_lighton"
+    },
+    {
+      "id": "19",
+      "text": "olly turn the lights off in the bedroom",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "27",
+      "text": "it's dirty here make some noise",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "31",
+      "text": "hoover the hallway",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "41",
+      "text": "i want the status on my screen brightness",
+      "ground_truth": "general_quirky"
+    },
+    {
+      "id": "46",
+      "text": "what's up olly",
+      "ground_truth": "general_greet"
+    },
+    {
+      "id": "47",
+      "text": "what's the time in australia",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "50",
+      "text": "olly tell me the time in g. m. t. plus five",
+      "ground_truth": "datetime_convert"
+    },
+    {
+      "id": "59",
+      "text": "cancel my seven am alarm",
+      "ground_truth": "alarm_remove"
+    },
+    {
+      "id": "61",
+      "text": "what alarms i have set",
+      "ground_truth": "alarm_query"
+    },
+    {
+      "id": "63",
+      "text": "tell me about my alarms",
+      "ground_truth": "alarm_query"
+    },
+    {
+      "id": "71",
+      "text": "i like senatra songs",
+      "ground_truth": "music_likeness"
+    },
+    {
+      "id": "80",
+      "text": "set lights brightness higher",
+      "ground_truth": "iot_hue_lightup"
+    },
+    {
+      "id": "85",
+      "text": "tell me today's date",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "86",
+      "text": "what date is it today",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "89",
+      "text": "could you order sushi for tonight dinner",
+      "ground_truth": "takeaway_order"
+    },
+    {
+      "id": "100",
+      "text": "what's the week's forecast",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "102",
+      "text": "what's this week's weather",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "103",
+      "text": "tell me the weather this week",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "122",
+      "text": "send a giggle my way",
+      "ground_truth": "general_joke"
+    },
+    {
+      "id": "124",
+      "text": "olly tell me a joke",
+      "ground_truth": "general_joke"
+    },
+    {
+      "id": "128",
+      "text": "what's the date",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "132",
+      "text": "order a takeaway",
+      "ground_truth": "takeaway_order"
+    },
+    {
+      "id": "150",
+      "text": "i like this song",
+      "ground_truth": "music_likeness"
+    },
+    {
+      "id": "151",
+      "text": "play it again please",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "158",
+      "text": "lower the lights",
+      "ground_truth": "iot_hue_lightdim"
+    },
+    {
+      "id": "168",
+      "text": "can they provide takeaway",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "169",
+      "text": "can they do delivery",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "170",
+      "text": "do they deliver home",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "171",
+      "text": "olly do they deliver home",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "174",
+      "text": "set wake up thursday seven am",
+      "ground_truth": "alarm_set"
+    },
+    {
+      "id": "177",
+      "text": "tell me some business news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "178",
+      "text": "tell me international news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "182",
+      "text": "play my rock playlist",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "185",
+      "text": "turn on my playlist and play third song in the queue",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "189",
+      "text": "mute volume",
+      "ground_truth": "audio_volume_mute"
+    },
+    {
+      "id": "197",
+      "text": "what time is it",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "201",
+      "text": "delete the alarm i just set",
+      "ground_truth": "alarm_remove"
+    },
+    {
+      "id": "216",
+      "text": "how is the weather like today",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "219",
+      "text": "should i bring an umbrella tomorrow",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "220",
+      "text": "play music from my rock list",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "250",
+      "text": "i feel like jazz right now how about you",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "254",
+      "text": "olly play a good track from my favorite jazz player",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "258",
+      "text": "i can't hear you",
+      "ground_truth": "audio_volume_up"
+    },
+    {
+      "id": "261",
+      "text": "i can barely hear you",
+      "ground_truth": "audio_volume_up"
+    },
+    {
+      "id": "263",
+      "text": "let's have the lights blue",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "279",
+      "text": "what is today's forecast for berlin",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "281",
+      "text": "what is the exchange rate of us dollar to pound sterling",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "286",
+      "text": "light up the lights in the kitchen",
+      "ground_truth": "iot_hue_lighton"
+    },
+    {
+      "id": "290",
+      "text": "start a vacuum cleaner",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "292",
+      "text": "turn on the vacuum cleaner",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "296",
+      "text": "play a nirvana playlist",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "297",
+      "text": "shuffle songs by coldplay",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "299",
+      "text": "what is the weather",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "310",
+      "text": "what day is new year's eve this year",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "315",
+      "text": "please be quiet for another hour",
+      "ground_truth": "audio_volume_mute"
+    },
+    {
+      "id": "317",
+      "text": "do not speak today",
+      "ground_truth": "audio_volume_mute"
+    },
+    {
+      "id": "319",
+      "text": "tell me the weather in barcelona in two days from now",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "321",
+      "text": "disable my okug",
+      "ground_truth": "iot_wemo_off"
+    },
+    {
+      "id": "322",
+      "text": "enable my plug",
+      "ground_truth": "iot_wemo_on"
+    },
+    {
+      "id": "329",
+      "text": "seven years",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "333",
+      "text": "what is the weather condition in new york",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "334",
+      "text": "i wish to know the weather in san fransico",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "344",
+      "text": "will it be rainy tomorrow",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "348",
+      "text": "will it rain tomorrow",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "355",
+      "text": "what day of the week is first april",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "360",
+      "text": "what is the current time",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "362",
+      "text": "play the second song from anirudh's song",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "366",
+      "text": "please tell me the latest news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "369",
+      "text": "switch off the lights",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "379",
+      "text": "i want the music to be saved can you do it for me",
+      "ground_truth": "music_likeness"
+    },
+    {
+      "id": "385",
+      "text": "what's sensational in time of india",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "389",
+      "text": "turn the smart plug on",
+      "ground_truth": "iot_wemo_on"
+    },
+    {
+      "id": "391",
+      "text": "play a random song from my playlist",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "393",
+      "text": "play a retro song in my playlist",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "397",
+      "text": "play any song by joe prsaise",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "399",
+      "text": "remove the first alarm",
+      "ground_truth": "alarm_remove"
+    },
+    {
+      "id": "400",
+      "text": "start playing",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "407",
+      "text": "can you play rock music for the next hour",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "411",
+      "text": "can you tell me a joke",
+      "ground_truth": "general_joke"
+    },
+    {
+      "id": "412",
+      "text": "tell me a funny joke",
+      "ground_truth": "general_joke"
+    },
+    {
+      "id": "424",
+      "text": "what are the breaking news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "426",
+      "text": "power up the plug socket one",
+      "ground_truth": "iot_wemo_on"
+    },
+    {
+      "id": "427",
+      "text": "turn off the lights in the bathroom",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "428",
+      "text": "turn off the bathroom lights",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "430",
+      "text": "what is the weather like right now",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "437",
+      "text": "open bad religion folder",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "441",
+      "text": "what are the latest news headlines",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "442",
+      "text": "what's happening in the news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "443",
+      "text": "raise volume",
+      "ground_truth": "audio_volume_up"
+    },
+    {
+      "id": "448",
+      "text": "run coffee maker",
+      "ground_truth": "iot_coffee"
+    },
+    {
+      "id": "451",
+      "text": "get me the latest stock price for costco",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "456",
+      "text": "change the bedroom lights to green",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "468",
+      "text": "change the lights to dim",
+      "ground_truth": "iot_hue_lightdim"
+    },
+    {
+      "id": "473",
+      "text": "play the weekend",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "475",
+      "text": "what mistakes do you usually make",
+      "ground_truth": "general_quirky"
+    },
+    {
+      "id": "484",
+      "text": "who is the singer of song",
+      "ground_truth": "music_query"
+    },
+    {
+      "id": "486",
+      "text": "what time is it in new york city",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "491",
+      "text": "is it cold outside",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "494",
+      "text": "what's a good joke",
+      "ground_truth": "general_joke"
+    },
+    {
+      "id": "506",
+      "text": "open songs from major lazer",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "508",
+      "text": "what alarms are set",
+      "ground_truth": "alarm_query"
+    },
+    {
+      "id": "512",
+      "text": "by get marks",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "525",
+      "text": "prepare the order as soon as possible",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "527",
+      "text": "do you know any jokes",
+      "ground_truth": "general_joke"
+    },
+    {
+      "id": "533",
+      "text": "set an alarm for nine am",
+      "ground_truth": "alarm_set"
+    },
+    {
+      "id": "540",
+      "text": "play the song sung by katy perry",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "555",
+      "text": "play mf doom anything",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "560",
+      "text": "turn off eight am alarm",
+      "ground_truth": "alarm_remove"
+    },
+    {
+      "id": "564",
+      "text": "change light color",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "576",
+      "text": "play all by playlist",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "585",
+      "text": "show latest news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "588",
+      "text": "what is new news for today",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "590",
+      "text": "what is the current weather",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "608",
+      "text": "unmute after",
+      "ground_truth": "audio_volume_up"
+    },
+    {
+      "id": "612",
+      "text": "please ring the wake up alarm at eight am next saturday",
+      "ground_truth": "alarm_set"
+    },
+    {
+      "id": "614",
+      "text": "start playlist",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "625",
+      "text": "please play the radio gaga song",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "631",
+      "text": "set notification for news about the dakota pipeline",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "635",
+      "text": "please start vacuum cleaner",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "651",
+      "text": "turn off room lights",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "660",
+      "text": "current time in japan",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "665",
+      "text": "can you lower the lights",
+      "ground_truth": "iot_hue_lightdim"
+    },
+    {
+      "id": "668",
+      "text": "i want two burgers and one coke order it fast",
+      "ground_truth": "takeaway_order"
+    },
+    {
+      "id": "680",
+      "text": "keep me informed about bitcoin price",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "686",
+      "text": "what is the time now in new york",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "702",
+      "text": "hi can you please turn lower the lights",
+      "ground_truth": "iot_hue_lightdim"
+    },
+    {
+      "id": "712",
+      "text": "i want to hear the last news from c. n. n.",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "726",
+      "text": "summarize week's weather details",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "730",
+      "text": "turn the lights off",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "738",
+      "text": "how cold is it outside today",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "751",
+      "text": "don't talk until i ask you to",
+      "ground_truth": "audio_volume_mute"
+    },
+    {
+      "id": "761",
+      "text": "i want to know about this song",
+      "ground_truth": "music_query"
+    },
+    {
+      "id": "764",
+      "text": "what is the weather forecast for this week",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "765",
+      "text": "could you please give me up to date news headlines from my newest provider",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "767",
+      "text": "could you please find me the latest news from a source that i do not usually go to",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "768",
+      "text": "tell me about the latest political news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "779",
+      "text": "i want to hear snow by red hot chili peppers",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "781",
+      "text": "play bilando",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "782",
+      "text": "play let me love you by ariana grande",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "783",
+      "text": "play love songs",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "790",
+      "text": "mild or heavy weather",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "796",
+      "text": "confirm my alarm settings",
+      "ground_truth": "alarm_query"
+    },
+    {
+      "id": "804",
+      "text": "hey siri mute the speakers",
+      "ground_truth": "audio_volume_mute"
+    },
+    {
+      "id": "826",
+      "text": "what is the current temperature outside",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "827",
+      "text": "play bob dylan playlist",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "832",
+      "text": "hey what will be the predicted weather for tomorrow",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "837",
+      "text": "what are the b. b. c. poll predictions for the upcoming us elections",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "843",
+      "text": "start the robot roomba",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "861",
+      "text": "my set alarms",
+      "ground_truth": "alarm_query"
+    },
+    {
+      "id": "862",
+      "text": "alarm settings",
+      "ground_truth": "alarm_query"
+    },
+    {
+      "id": "864",
+      "text": "robot vacuum the living room now",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "870",
+      "text": "opinion save",
+      "ground_truth": "music_likeness"
+    },
+    {
+      "id": "884",
+      "text": "set alarm for eight am",
+      "ground_truth": "alarm_set"
+    },
+    {
+      "id": "891",
+      "text": "play some christian music",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "897",
+      "text": "make the house lights amber at six p. m.",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "914",
+      "text": "please turn lights off",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "920",
+      "text": "please remove my alarm",
+      "ground_truth": "alarm_remove"
+    },
+    {
+      "id": "931",
+      "text": "i like this song please save",
+      "ground_truth": "music_likeness"
+    },
+    {
+      "id": "936",
+      "text": "open up and play music from my jogging playlist",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "939",
+      "text": "set my alarm for seven am",
+      "ground_truth": "alarm_set"
+    },
+    {
+      "id": "940",
+      "text": "turn my morning alarm on",
+      "ground_truth": "alarm_set"
+    },
+    {
+      "id": "944",
+      "text": "what is the time difference between here and japan",
+      "ground_truth": "datetime_convert"
+    },
+    {
+      "id": "951",
+      "text": "what's the weather like right now in new york",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "962",
+      "text": "increase the brightness of the lights",
+      "ground_truth": "iot_hue_lightup"
+    },
+    {
+      "id": "964",
+      "text": "i want dimmer lights",
+      "ground_truth": "iot_hue_lightdim"
+    },
+    {
+      "id": "967",
+      "text": "can i get take-out from pf changs",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "969",
+      "text": "news articles on a particular subject",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "974",
+      "text": "what time is it in new york now",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "997",
+      "text": "turn the living room's light off",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "999",
+      "text": "could you turn the light off",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "1007",
+      "text": "play creed from my rock playlist",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1014",
+      "text": "what time is it in london right now",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "1030",
+      "text": "dim the lights in the living room",
+      "ground_truth": "iot_hue_lightdim"
+    },
+    {
+      "id": "1042",
+      "text": "open the folder app please",
+      "ground_truth": "takeaway_order"
+    },
+    {
+      "id": "1043",
+      "text": "call the nearest thai restaurant with delivery",
+      "ground_truth": "takeaway_order"
+    },
+    {
+      "id": "1047",
+      "text": "i need a good cry can you play me sad rock songs",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1048",
+      "text": "lower the speaker volume",
+      "ground_truth": "audio_volume_down"
+    },
+    {
+      "id": "1059",
+      "text": "turn on the robot vacuum cleaner",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "1061",
+      "text": "give me up to date on sports news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1063",
+      "text": "get hourly notification on sports news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1065",
+      "text": "where is volume setting",
+      "ground_truth": "audio_volume_other"
+    },
+    {
+      "id": "1071",
+      "text": "brighten the lights in the hallway",
+      "ground_truth": "iot_hue_lightup"
+    },
+    {
+      "id": "1072",
+      "text": "please turn up the screen brightness all the way",
+      "ground_truth": "iot_hue_lightup"
+    },
+    {
+      "id": "1076",
+      "text": "do not play rock metal",
+      "ground_truth": "music_dislikeness"
+    },
+    {
+      "id": "1084",
+      "text": "user friendly",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1090",
+      "text": "can you increase the brightness in the room",
+      "ground_truth": "iot_hue_lightup"
+    },
+    {
+      "id": "1093",
+      "text": "go to the washington post website",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1098",
+      "text": "what day of the week does the fifteenth of march fall on",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "1108",
+      "text": "my desire is to listen to some country music",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1115",
+      "text": "coordinate all pop song genres",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1120",
+      "text": "is there any special in politic",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1121",
+      "text": "play lady by kenny roger",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1123",
+      "text": "next play justin bieber's sorry",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1124",
+      "text": "get sia's cheap thrills ready to play next",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1127",
+      "text": "play all songs on shuffle",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1144",
+      "text": "i need some rap",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1148",
+      "text": "what's the time in sydney now",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "1151",
+      "text": "start vacuum cleaner",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "1156",
+      "text": "latest new on international women's day",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1158",
+      "text": "crack a joke",
+      "ground_truth": "general_joke"
+    },
+    {
+      "id": "1160",
+      "text": "how cold will it get each night this week",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1176",
+      "text": "who sings the song about a long black train",
+      "ground_truth": "music_query"
+    },
+    {
+      "id": "1180",
+      "text": "find today's wapo articles about trump",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1191",
+      "text": "if it's sunrise in stockholm what time is it in okinawa",
+      "ground_truth": "datetime_convert"
+    },
+    {
+      "id": "1202",
+      "text": "present time in new york",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "1205",
+      "text": "disable alarm for three p. m.",
+      "ground_truth": "alarm_remove"
+    },
+    {
+      "id": "1217",
+      "text": "olly change the lighting to blue",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "1238",
+      "text": "pandora",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1247",
+      "text": "i need to know if mr. pizza delivers",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "1249",
+      "text": "how is the weather likely to be this week",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1252",
+      "text": "tell me the current time",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "1256",
+      "text": "what's the funniest joke you know",
+      "ground_truth": "general_joke"
+    },
+    {
+      "id": "1264",
+      "text": "is my alarm set for tomorrow morning",
+      "ground_truth": "alarm_query"
+    },
+    {
+      "id": "1266",
+      "text": "if it's five am in berlin what time is it here",
+      "ground_truth": "datetime_convert"
+    },
+    {
+      "id": "1276",
+      "text": "i want a coffee",
+      "ground_truth": "iot_coffee"
+    },
+    {
+      "id": "1294",
+      "text": "fast me the news of academy awards",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1300",
+      "text": "fast",
+      "ground_truth": "audio_volume_up"
+    },
+    {
+      "id": "1301",
+      "text": "tell me about the new foreign policy of trump",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1308",
+      "text": "get todays climate forecast here",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1318",
+      "text": "start music app and play a song for me",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1336",
+      "text": "i like the songs of yeshudas please play it",
+      "ground_truth": "music_likeness"
+    },
+    {
+      "id": "1351",
+      "text": "will it be nice outside this week",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1352",
+      "text": "please slow down volume of speaker",
+      "ground_truth": "audio_volume_down"
+    },
+    {
+      "id": "1360",
+      "text": "please raise the light i am not comfortable at this",
+      "ground_truth": "iot_hue_lightup"
+    },
+    {
+      "id": "1371",
+      "text": "what do we have on new york time's front page",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1372",
+      "text": "what's a good joke",
+      "ground_truth": "general_joke"
+    },
+    {
+      "id": "1374",
+      "text": "can you turn up your volume",
+      "ground_truth": "audio_volume_up"
+    },
+    {
+      "id": "1377",
+      "text": "please turn off the light of my son's room",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "1379",
+      "text": "does pizza hut have delivery",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "1400",
+      "text": "i mostly pay attention",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1401",
+      "text": "i occasionally pay attention",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1404",
+      "text": "can i please have the weather for tomorrow here in costa mesa",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1413",
+      "text": "can you make me some coffee olly",
+      "ground_truth": "iot_coffee"
+    },
+    {
+      "id": "1423",
+      "text": "tell me about trump",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1425",
+      "text": "let me know when you hear about france",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1427",
+      "text": "change the lights to blue olly",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "1428",
+      "text": "i'd like some red lighting",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "1440",
+      "text": "play the latest rock songs having rating of four or above",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1449",
+      "text": "when is easter in the year two thousand and eighteen",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "1452",
+      "text": "remove the alarm for tomorrow",
+      "ground_truth": "alarm_remove"
+    },
+    {
+      "id": "1454",
+      "text": "set the alarm off",
+      "ground_truth": "alarm_remove"
+    },
+    {
+      "id": "1458",
+      "text": "how hot is it in quebec",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1467",
+      "text": "play slayer",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1474",
+      "text": "what are today's sports news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1483",
+      "text": "what alarms did i set",
+      "ground_truth": "alarm_query"
+    },
+    {
+      "id": "1489",
+      "text": "play the latest songs by dalida",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1509",
+      "text": "do not make any noise until morning alarm",
+      "ground_truth": "audio_volume_mute"
+    },
+    {
+      "id": "1510",
+      "text": "quiet mode on until i am home from work",
+      "ground_truth": "audio_volume_mute"
+    },
+    {
+      "id": "1511",
+      "text": "show me the available colors of lights",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "1513",
+      "text": "what's the temperature outside",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1516",
+      "text": "order a pizza with sausage from domino's",
+      "ground_truth": "takeaway_order"
+    },
+    {
+      "id": "1527",
+      "text": "remind me that i like that song",
+      "ground_truth": "music_likeness"
+    },
+    {
+      "id": "1533",
+      "text": "what news has happened on c. n. n. today",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1537",
+      "text": "show me the current time in germany",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "1542",
+      "text": "the sun is shinning bright will we have this weather for the rest of the day",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1546",
+      "text": "play my summer jams playlist",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1547",
+      "text": "what's the weather for my location this week",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1549",
+      "text": "will it rain this week",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1551",
+      "text": "turn on wemo",
+      "ground_truth": "iot_wemo_on"
+    },
+    {
+      "id": "1554",
+      "text": "turn off the lamps",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "1575",
+      "text": "start the vacuum cleaner",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "1579",
+      "text": "find me a joke related to baseball",
+      "ground_truth": "general_joke"
+    },
+    {
+      "id": "1581",
+      "text": "what is the current day month and year",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "1589",
+      "text": "is it going to be sunny next tuesday",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1593",
+      "text": "set notification from world news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1594",
+      "text": "can you tell me the latest news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1607",
+      "text": "tell me current time in los angels",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "1617",
+      "text": "once a new topic on politics comes up alert me",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1622",
+      "text": "explanation of the song",
+      "ground_truth": "music_query"
+    },
+    {
+      "id": "1630",
+      "text": "raise the volume of the current music",
+      "ground_truth": "audio_volume_up"
+    },
+    {
+      "id": "1635",
+      "text": "what times do my alarms go off",
+      "ground_truth": "alarm_query"
+    },
+    {
+      "id": "1636",
+      "text": "show me the latest news from the guardian",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1639",
+      "text": "please turn the volume down",
+      "ground_truth": "audio_volume_down"
+    },
+    {
+      "id": "1640",
+      "text": "turn it up olly",
+      "ground_truth": "audio_volume_up"
+    },
+    {
+      "id": "1646",
+      "text": "are there any alarms going off today",
+      "ground_truth": "alarm_query"
+    },
+    {
+      "id": "1653",
+      "text": "when is the next time it will rain",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1655",
+      "text": "will it snow tomorrow at noon",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1658",
+      "text": "i want to see all set alarms",
+      "ground_truth": "alarm_query"
+    },
+    {
+      "id": "1666",
+      "text": "so clean news in past six hours is what",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1671",
+      "text": "play only all music released between the year one thousand nine hundred and ninety and two thousand",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1675",
+      "text": "remove tuesday alarm of nine am",
+      "ground_truth": "alarm_remove"
+    },
+    {
+      "id": "1677",
+      "text": "what music is currently playing on",
+      "ground_truth": "music_query"
+    },
+    {
+      "id": "1683",
+      "text": "tomorrow's temperature is to be hot yes or no",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1684",
+      "text": "yes or no tomorrow's temperature is to be hot",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1692",
+      "text": "find some smooth jazz for me",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1703",
+      "text": "my vacuum cleaner should start between ten to eleven am everyday",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "1710",
+      "text": "change the music mode to rock",
+      "ground_truth": "music_settings"
+    },
+    {
+      "id": "1715",
+      "text": "lower volume by fifty percent",
+      "ground_truth": "audio_volume_down"
+    },
+    {
+      "id": "1719",
+      "text": "set alarm of only monday morning six am",
+      "ground_truth": "alarm_set"
+    },
+    {
+      "id": "1722",
+      "text": "what is the minimum temperature of london",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1741",
+      "text": "hey olly please tell me the name of this song that is currently playing",
+      "ground_truth": "music_query"
+    },
+    {
+      "id": "1744",
+      "text": "what do you think",
+      "ground_truth": "music_likeness"
+    },
+    {
+      "id": "1745",
+      "text": "you like the song",
+      "ground_truth": "music_likeness"
+    },
+    {
+      "id": "1750",
+      "text": "turn off all lights",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "1756",
+      "text": "brighten the lights",
+      "ground_truth": "iot_hue_lightup"
+    },
+    {
+      "id": "1759",
+      "text": "give me news on president trump",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1760",
+      "text": "latest news on terrorism",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1774",
+      "text": "turn off the alarm",
+      "ground_truth": "alarm_remove"
+    },
+    {
+      "id": "1777",
+      "text": "next song",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1778",
+      "text": "please dim the lights",
+      "ground_truth": "iot_hue_lightdim"
+    },
+    {
+      "id": "1784",
+      "text": "turn off the dining room",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "1786",
+      "text": "switch off the master's bedroom",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "1794",
+      "text": "will trump visit russia anytime soon",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1796",
+      "text": "date today",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "1803",
+      "text": "which teams are playing today in the premier league",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1804",
+      "text": "more lights please",
+      "ground_truth": "iot_hue_lightup"
+    },
+    {
+      "id": "1807",
+      "text": "song title",
+      "ground_truth": "music_query"
+    },
+    {
+      "id": "1808",
+      "text": "title",
+      "ground_truth": "music_query"
+    },
+    {
+      "id": "1811",
+      "text": "start playlist and play music",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1812",
+      "text": "please make me coffee without sweetener",
+      "ground_truth": "iot_coffee"
+    },
+    {
+      "id": "1830",
+      "text": "i want to eat some spicy thing",
+      "ground_truth": "takeaway_order"
+    },
+    {
+      "id": "1831",
+      "text": "order one pizza from pizza hut",
+      "ground_truth": "takeaway_order"
+    },
+    {
+      "id": "1832",
+      "text": "play coldplay album",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1833",
+      "text": "can you loop the playlist themes",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1862",
+      "text": "when does my alarm go off",
+      "ground_truth": "alarm_query"
+    },
+    {
+      "id": "1866",
+      "text": "weather report now",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1870",
+      "text": "what month is today",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "1872",
+      "text": "great song for the commute",
+      "ground_truth": "music_likeness"
+    },
+    {
+      "id": "1874",
+      "text": "add song to running list",
+      "ground_truth": "music_likeness"
+    },
+    {
+      "id": "1904",
+      "text": "get me match highlights",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "1913",
+      "text": "wake me up at five am",
+      "ground_truth": "alarm_set"
+    },
+    {
+      "id": "1924",
+      "text": "turn on vacuum cleaner",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "1933",
+      "text": "will there be a fall in temperature by tonight",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "1940",
+      "text": "play the song title",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1941",
+      "text": "clean my house",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "1960",
+      "text": "change the light to pink color",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "1962",
+      "text": "hi google play me playlist wacky in my gaana application",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1982",
+      "text": "set alarm at six thirty am",
+      "ground_truth": "alarm_set"
+    },
+    {
+      "id": "1993",
+      "text": "can you turn up the lights",
+      "ground_truth": "iot_hue_lightup"
+    },
+    {
+      "id": "1994",
+      "text": "can you open my itunes",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "1995",
+      "text": "play the beatles",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2007",
+      "text": "please play thirteen",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2016",
+      "text": "lower lights in kitchen",
+      "ground_truth": "iot_hue_lightdim"
+    },
+    {
+      "id": "2026",
+      "text": "coffee make now",
+      "ground_truth": "iot_coffee"
+    },
+    {
+      "id": "2030",
+      "text": "current song playing what is it",
+      "ground_truth": "music_query"
+    },
+    {
+      "id": "2035",
+      "text": "olly where is my food",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "2056",
+      "text": "i never want to hear that song again",
+      "ground_truth": "music_dislikeness"
+    },
+    {
+      "id": "2057",
+      "text": "put that song in my favorite list",
+      "ground_truth": "music_likeness"
+    },
+    {
+      "id": "2062",
+      "text": "i want some jazz music to play",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2075",
+      "text": "i want more light",
+      "ground_truth": "iot_hue_lightup"
+    },
+    {
+      "id": "2082",
+      "text": "raise the light",
+      "ground_truth": "iot_hue_lightup"
+    },
+    {
+      "id": "2085",
+      "text": "alexa i'dl like to hear any classical except for bach or schubert",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2093",
+      "text": "bring me the title of current music",
+      "ground_truth": "music_query"
+    },
+    {
+      "id": "2094",
+      "text": "what is the music playing right now",
+      "ground_truth": "music_query"
+    },
+    {
+      "id": "2098",
+      "text": "what's going on in the world these days",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2108",
+      "text": "next play summer lovin",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2113",
+      "text": "tell me all the current events in my hometown",
+      "ground_truth": "recommendation_events"
+    },
+    {
+      "id": "2128",
+      "text": "color of light should be dimmed bright",
+      "ground_truth": "iot_hue_lightdim"
+    },
+    {
+      "id": "2134",
+      "text": "wake me up",
+      "ground_truth": "alarm_set"
+    },
+    {
+      "id": "2146",
+      "text": "what's the date of the winter solstice two years from now",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "2156",
+      "text": "i need to know the time right now what is it",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "2160",
+      "text": "i'm going to sleep now",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "2163",
+      "text": "hows the food order going",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "2164",
+      "text": "when can we eat",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "2165",
+      "text": "is dinner ready yet",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "2166",
+      "text": "set an alarm for tomorrow at six in the morning",
+      "ground_truth": "alarm_set"
+    },
+    {
+      "id": "2167",
+      "text": "get me up in half an hour",
+      "ground_truth": "alarm_set"
+    },
+    {
+      "id": "2168",
+      "text": "turn off my alarm",
+      "ground_truth": "alarm_remove"
+    },
+    {
+      "id": "2174",
+      "text": "who is the singer of hotel california",
+      "ground_truth": "music_query"
+    },
+    {
+      "id": "2178",
+      "text": "what is the current weather condition in my place",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "2198",
+      "text": "what day of the week was december four one thousand nine hundred and eighty two",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "2201",
+      "text": "c. n. n. headlines",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2203",
+      "text": "b. b. c. world headlines",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2205",
+      "text": "silence for two hours",
+      "ground_truth": "audio_volume_mute"
+    },
+    {
+      "id": "2206",
+      "text": "from now on mute",
+      "ground_truth": "audio_volume_mute"
+    },
+    {
+      "id": "2207",
+      "text": "silently adjust",
+      "ground_truth": "audio_volume_mute"
+    },
+    {
+      "id": "2208",
+      "text": "wooo",
+      "ground_truth": "general_quirky"
+    },
+    {
+      "id": "2220",
+      "text": "weather in paris",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "2225",
+      "text": "play ella fitzgerals get happy",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2230",
+      "text": "turn off kitchen light",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "2234",
+      "text": "i can't see turn up the lights",
+      "ground_truth": "iot_hue_lightup"
+    },
+    {
+      "id": "2237",
+      "text": "read me the latest international news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2255",
+      "text": "can i order take out from licari's",
+      "ground_truth": "takeaway_order"
+    },
+    {
+      "id": "2258",
+      "text": "do i need a sweater today",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "2263",
+      "text": "show me the dim color",
+      "ground_truth": "iot_hue_lightdim"
+    },
+    {
+      "id": "2264",
+      "text": "light color for study room",
+      "ground_truth": "iot_hue_lightup"
+    },
+    {
+      "id": "2265",
+      "text": "tell me what the weather is doing in grand rapids mi right now",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "2271",
+      "text": "please play songs i've purchased and favorited",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2283",
+      "text": "i need to change my house lights color to blue",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "2288",
+      "text": "start coffee at six am",
+      "ground_truth": "iot_coffee"
+    },
+    {
+      "id": "2296",
+      "text": "keep me up to date with today's n. b. a. scores",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2298",
+      "text": "put the lights off now",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "2309",
+      "text": "it is seven am in pacific standard time",
+      "ground_truth": "datetime_convert"
+    },
+    {
+      "id": "2311",
+      "text": "alexa turn the lights down to seven",
+      "ground_truth": "iot_hue_lightdim"
+    },
+    {
+      "id": "2315",
+      "text": "what's the news for today",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2316",
+      "text": "alexa give me the headline news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2320",
+      "text": "what is the weather this friday",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "2322",
+      "text": "what's the weather like tomorrow",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "2330",
+      "text": "display the local time of london at this moment",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "2334",
+      "text": "add an alarm for tomorrow morning at six am",
+      "ground_truth": "alarm_set"
+    },
+    {
+      "id": "2336",
+      "text": "noodles one pack make it as takeaway",
+      "ground_truth": "takeaway_order"
+    },
+    {
+      "id": "2338",
+      "text": "make an order for noodles one pack make it as takeaway order",
+      "ground_truth": "takeaway_order"
+    },
+    {
+      "id": "2350",
+      "text": "put dark colors instead of light ones in the house",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "2351",
+      "text": "olly put dark colors instead of light ones in the house",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "2354",
+      "text": "which type of music it is",
+      "ground_truth": "music_query"
+    },
+    {
+      "id": "2355",
+      "text": "which film the music comes from what is the name of the music",
+      "ground_truth": "music_query"
+    },
+    {
+      "id": "2365",
+      "text": "what song is on the radio",
+      "ground_truth": "music_query"
+    },
+    {
+      "id": "2373",
+      "text": "song info",
+      "ground_truth": "music_query"
+    },
+    {
+      "id": "2384",
+      "text": "what's happening around the world",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2386",
+      "text": "give me the latest news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2387",
+      "text": "who wrote this song",
+      "ground_truth": "music_query"
+    },
+    {
+      "id": "2396",
+      "text": "start celine dion songs",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2400",
+      "text": "isn't it a lovely song please save this for me",
+      "ground_truth": "music_likeness"
+    },
+    {
+      "id": "2403",
+      "text": "give me more light",
+      "ground_truth": "iot_hue_lightup"
+    },
+    {
+      "id": "2408",
+      "text": "search for more songs from the band",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2412",
+      "text": "could you tell me the time in london",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "2414",
+      "text": "i want to order a pizza from michael's pizza",
+      "ground_truth": "takeaway_order"
+    },
+    {
+      "id": "2423",
+      "text": "please give me todays forecast for new york city",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "2432",
+      "text": "how is my order",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "2434",
+      "text": "start robot vacuum cleaner",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "2438",
+      "text": "send tech news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2441",
+      "text": "turn off the shed light",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "2447",
+      "text": "i feel like having soup for lunch order from wangs kitchen restaurant a chicken manchow soup",
+      "ground_truth": "takeaway_order"
+    },
+    {
+      "id": "2451",
+      "text": "seven hundred",
+      "ground_truth": "datetime_convert"
+    },
+    {
+      "id": "2472",
+      "text": "is the time currently correct for where i am located",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "2480",
+      "text": "call for take-out",
+      "ground_truth": "takeaway_order"
+    },
+    {
+      "id": "2496",
+      "text": "daily news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2497",
+      "text": "today is what date",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "2498",
+      "text": "siri today is what date",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "2512",
+      "text": "how do i set my coffee machine to make coffee",
+      "ground_truth": "iot_coffee"
+    },
+    {
+      "id": "2517",
+      "text": "how do i start the robot vacuum cleaner",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "2527",
+      "text": "play classic rock",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2531",
+      "text": "alexa play a mi song of rap and rock one after the other",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2540",
+      "text": "make the room light blue",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "2542",
+      "text": "make the bedroom lights red and the hall lights normal color please",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "2545",
+      "text": "how is the weather",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "2548",
+      "text": "anything interesting from bob's news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2551",
+      "text": "change the lights in my home to green",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "2560",
+      "text": "play random music",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2564",
+      "text": "please set the alarm for next friday at six thirty am",
+      "ground_truth": "alarm_set"
+    },
+    {
+      "id": "2566",
+      "text": "turn off my wemo socket",
+      "ground_truth": "iot_wemo_off"
+    },
+    {
+      "id": "2573",
+      "text": "play my spotify dance play list",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2578",
+      "text": "turn off the porch light",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "2588",
+      "text": "what's the latest news from c. n. n. please",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2591",
+      "text": "turn up the brightness",
+      "ground_truth": "iot_hue_lightup"
+    },
+    {
+      "id": "2594",
+      "text": "tell me about the latest environmental news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2605",
+      "text": "play my favorite music now",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2610",
+      "text": "i've canceled the order placed at mcd did it go through",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "2611",
+      "text": "current weather forecast",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "2615",
+      "text": "will i need to wear a jacket next wednesday",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "2638",
+      "text": "show me news about trump",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2639",
+      "text": "show me news about the environment",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2647",
+      "text": "could you please create a pandora channel for adele",
+      "ground_truth": "music_settings"
+    },
+    {
+      "id": "2651",
+      "text": "latest news from the area",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2673",
+      "text": "did i remember to set a reminder alarm for my next doctor's appointment",
+      "ground_truth": "alarm_query"
+    },
+    {
+      "id": "2678",
+      "text": "is it raining tonight",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "2679",
+      "text": "will the temperature stay about the same or is it going to get colder",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "2684",
+      "text": "is the last order is ready",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "2690",
+      "text": "turn off the socket",
+      "ground_truth": "iot_wemo_off"
+    },
+    {
+      "id": "2703",
+      "text": "please play folk music",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2704",
+      "text": "let's hear some indie rock okay",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2708",
+      "text": "olly i feel like dancing play me some rock north roll",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2709",
+      "text": "olly i need to hear some sad songs today",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2711",
+      "text": "shut the lights off",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "2717",
+      "text": "i want to hear purple haze",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2721",
+      "text": "do you have a funny joke for me",
+      "ground_truth": "general_joke"
+    },
+    {
+      "id": "2724",
+      "text": "give me news from c. n. n.",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2733",
+      "text": "start a pot of coffee please",
+      "ground_truth": "iot_coffee"
+    },
+    {
+      "id": "2753",
+      "text": "i need a cup of coffee",
+      "ground_truth": "iot_coffee"
+    },
+    {
+      "id": "2770",
+      "text": "olly play music from the jazz genre",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2773",
+      "text": "how long until my order is ready",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "2774",
+      "text": "shut off lights",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "2775",
+      "text": "discontinue use of lights",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "2777",
+      "text": "should i bring an umbrella today",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "2780",
+      "text": "are there any upcoming concerts by",
+      "ground_truth": "music_likeness"
+    },
+    {
+      "id": "2781",
+      "text": "please play some jazz music",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2795",
+      "text": "silence speakers",
+      "ground_truth": "audio_volume_mute"
+    },
+    {
+      "id": "2796",
+      "text": "silence volume on speakers",
+      "ground_truth": "audio_volume_mute"
+    },
+    {
+      "id": "2798",
+      "text": "alexa play song over the rainbow",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2801",
+      "text": "what time is it in london",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "2812",
+      "text": "can you make me a cup of coffee",
+      "ground_truth": "iot_coffee"
+    },
+    {
+      "id": "2816",
+      "text": "set the living room lights to fifty percent",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "2824",
+      "text": "what day is december thirteenth",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "2840",
+      "text": "the second of next mont lands on what day",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "2850",
+      "text": "is there takeaway at papa john's",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "2859",
+      "text": "olly what time is it in this city",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "2868",
+      "text": "please get the coffee machine to make me some coffee",
+      "ground_truth": "iot_coffee"
+    },
+    {
+      "id": "2870",
+      "text": "olly tell me my alarms",
+      "ground_truth": "alarm_query"
+    },
+    {
+      "id": "2887",
+      "text": "please show me any articles related to weather in the morning news",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2890",
+      "text": "current weather",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "2898",
+      "text": "are there any updates in regard to the election",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2903",
+      "text": "please start the vacuum cleaner",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "2906",
+      "text": "brightness ninety percent",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "2908",
+      "text": "tell me if taco bell delivers",
+      "ground_truth": "takeaway_query"
+    },
+    {
+      "id": "2914",
+      "text": "tell me what the date is today",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "2917",
+      "text": "weekly weather report",
+      "ground_truth": "weather_query"
+    },
+    {
+      "id": "2921",
+      "text": "what are the news stories on the c. n. n. website",
+      "ground_truth": "news_query"
+    },
+    {
+      "id": "2927",
+      "text": "what time is it in austin",
+      "ground_truth": "datetime_query"
+    },
+    {
+      "id": "2931",
+      "text": "play atmosphere next",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2957",
+      "text": "is there an alarm for ten am",
+      "ground_truth": "alarm_query"
+    },
+    {
+      "id": "2959",
+      "text": "initialize the robot vacuum",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "2960",
+      "text": "start the vacuum",
+      "ground_truth": "iot_cleaning"
+    },
+    {
+      "id": "2962",
+      "text": "please play a song by bruno mars",
+      "ground_truth": "play_music"
+    },
+    {
+      "id": "2965",
+      "text": "turn office lights off",
+      "ground_truth": "iot_hue_lightoff"
+    },
+    {
+      "id": "2975",
+      "text": "please change the light colors to red",
+      "ground_truth": "iot_hue_lightchange"
+    },
+    {
+      "id": "2983",
+      "text": "remove set alarm",
+      "ground_truth": "alarm_remove"
+    }
+  ]
+}

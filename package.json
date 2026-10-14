@@ -1,7 +1,7 @@
 {
   "name": "S1stem",
-  "version": "1.0.0",
-  "description": "S1stem — Sub-Millisecond In-Browser & Edge System 1 Decision Engine in Pure Vanilla JavaScript (<0.20ms latency, <25MB RAM, zero compile step, zero dependencies).",
+  "version": "1.2.0",
+  "description": "S1stem v1.2.0 — Fast System 1 Contrastive Decision Engine (CLM) for Local AI Agents (Edge WebGPU / ONNX Inference).",
   "type": "module",
   "main": "./core/s1stem.js",
   "module": "./core/s1stem.js",
@@ -13,12 +13,24 @@
   "scripts": {
     "start": "python -m http.server 8080",
     "serve": "npx serve .",
-    "test": "node test/test_games_verification.js"
+    "test": "node internal/test_s1stem.js",
+    "test:powershell": "node internal/test_powershell_s1stem.js",
+    "powershell:daemon": "node powershell/s1stem-daemon.js",
+    "benchmark": "node internal/benchmark_jevbench.js",
+    "benchmark:jevbench": "node internal/benchmark_jevbench.js",
+    "benchmark:hf": "node internal/benchmark_huggingface.js",
+    "download:hf": "node internal/download_hf_benchmarks.js",
+    "benchmark:competitors": "node Benchmark/run_benchmark.js",
+    "benchmark:run": "node Benchmark/run_benchmark.js",
+    "benchmark:check": "node Benchmark/check_connection.js"
   },
   "author": "Nicola Santoro SantoroNicola-dev",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/SantoroNicola-dev/S1stem"
+  },
+  "devDependencies": {
+    "@huggingface/transformers": "^4.3.1"
   }
 }
