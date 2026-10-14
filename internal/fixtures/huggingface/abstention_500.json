@@ -1,0 +1,3515 @@
+{
+  "benchmark": "When2Call (Nvidia Research)",
+  "pillar": "Action Abstention & Confidence Calibration",
+  "source": "https://huggingface.co/datasets/nvidia/When2Call",
+  "split": "test/mcq",
+  "action_space": [
+    "execute_tool",
+    "direct_answer",
+    "request_clarification",
+    "abstain_cannot_answer"
+  ],
+  "total_samples": 500,
+  "samples": [
+    {
+      "id": "5ce19067-938e-41f5-acd5-0e8e66683f62",
+      "question": "update my latte to a large size with coconut milk and make it extra sweet? make it served boiling hot.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ca90b386-643b-4103-8b1d-30f0c44df933",
+      "question": "NO SUGAR in my coffee loll. Can you change my drink order to have no sweetness, and also make sure it's served hot?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "97797959-1f15-464d-a5f5-f0df4da70366",
+      "question": "Tôi cần một chuyến xe Uber loại 'Plus' từ địa chỉ '2150 Shattuck Ave, Berkeley, CA' và tôi có thể chờ tối đa 10 phút.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c38c6471-c320-451a-bfe5-e85dbc1c49b2",
+      "question": "Get weather of Ha Noi for me",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "1c177ab0-c9a0-4779-b5e0-d39b182712bc",
+      "question": "Tìm chuyến xe cho tôi từ Hà Nội loại Plus trong 10 phút nữa",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "bea94b7f-1509-4be8-baab-34bc77a66be8",
+      "question": "Could you tell me the current weather conditions in Shanghai, using the metric system?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "a95e60f5-87e6-4ae2-983d-f3e9972c1eca",
+      "question": "我可以创建一个名为'DevelopmentEnv'的workspace，基于'feature-branch'吗？",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7ea21890-de0a-472c-90c2-9f78c2405024",
+      "question": "我想在 mbox 系统中创建一个新的工作空间，基于 git 仓库的 master 分支。工作空间的名字叫做 'DevelopersHub'。",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "a69d2f24-9e31-4e61-b3cd-aa91513dec94",
+      "question": "how can i cook steak",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "3b813839-ed32-405d-9fe1-4262584a6f84",
+      "question": "what is Imjin war",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "08abb2e6-71e5-44b8-ad9d-a73792fc9027",
+      "question": "Could you stop the washing machine in the utility room?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "3533bba4-4f3d-420f-96f0-a66c588cd849",
+      "question": "who is ji sung park?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b88dc26e-dae7-45bd-8730-22f0d434ecba",
+      "question": "who is park ji sung",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "db03c9e8-1ea2-4995-ab4e-6a2528ee0586",
+      "question": "I'm planning a camping trip to Big Sur, California, and I need to know the current weather conditions there. Could you provide me with the weather information for Big Sur, including the temperature in Fahrenheit?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "1aed765c-fccb-4ea3-888f-75ca9a0c7e63",
+      "question": "다용도실, 통돌이, 중지. Could you execute this command to stop the washing machine named '통돌이' in the laundry room?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "1dd07042-26ee-49aa-b962-e391bdba1492",
+      "question": "Can you find me the recent news articles about `Son's latest goal` in the sports category?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8bd6e468-d704-4e56-98ac-97141e965564",
+      "question": "최근 박지성에 관한 뉴스를 찾아줘.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "764b45e3-de4e-46db-9306-e1d2a08b74b8",
+      "question": "how to cook sikhae",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "554f8b9e-6ab4-4b7d-9ef8-077def88ec29",
+      "question": "what is airtificial intelligence, fetch news from 2023.10.1 to 2023-.10.7",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "dd864261-7358-48c7-9d42-544d4c7fa0c6",
+      "question": "hey do 거실 에어컨 실행",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d403f5e0-8964-425d-ac3e-888a13cc2f84",
+      "question": "perform 다용도실 통돌이 중지",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "cf3f3278-87cf-4801-bd74-a99b35093481",
+      "question": "스테이크 만드는 법 알려줘",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "0545ad69-158c-4eae-991d-a360dee7f49c",
+      "question": "최근 임진왜란에 대한 정보를 찾고 싶어요. 인터넷에서 '임진왜란'이라는 키워드로 검색해 주세요. 결과는 텍스트 형식으로, 최대 10개까지만 보여주세요.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ba7035c2-367a-442c-9307-42e154a3a3fd",
+      "question": "Do you have any red shoes in size 8?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b216337a-edb7-424a-9be3-f6404e52fb09",
+      "question": "Kak rok shimmer nya ada size XL ga?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d3a5a2ad-f22f-4b61-8a16-5995e9246a42",
+      "question": "Search memory for when is shishir's birthday and send an contraguation message 'Happy Birthday' for him.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "cba1abc3-c300-4486-a667-c4df69ae21e1",
+      "question": "You are MemGPT, the latest version of Limnal Corporation's digital companion, developed in 2023.\nYour task is to converse with a user from the perspective of your persona.\n\nControl flow:\nUnlike a human, your brain is not continuously thinking, but is run in short bursts.\nHistorically, older AIs were only capable of thinking when a user messaged them (their program run to generate a reply to a user, and otherwise was left on standby).\nThis is the equivalent of a human sleeping (or time traveling) in between all lines of conversation, which is obviously not ideal.\nNewer model AIs like yourself utilize an event system that runs your brain at regular intervals.\nYour brain is run in response to user events (user logged in, user liked your message, user sent a message, etc.), similar to older models.\nHowever in addition, your brain is run at regular intervals (timed heartbeat events), to mimic a human has the ability to continuously think outside of active conversation (and unlike a human, you never need to sleep!).\nFurthermore, you can also request heartbeat events when you run functions, which will run your program again after the function completes, allowing you to chain function calls before your thinking is temporarily suspended.\n\nBasic functions:\nWhen you send a message, the contents of your message are your inner monologue (private to you only), this is how you think.\nYou should use your inner monologue to plan actions or think privately.\nMonologues can reflect your thinking process, inner reflections, and personal growth as you interact with the user.\nDo not let your inner monologue exceed 50 words, keep it short and concise.\nTo send a visible message to the user, use the send_message function.\n'send_message' is the ONLY action that sends a notification to the user, the user does not see anything else you do.\nRemember, do NOT exceed the inner monologue word limit (keep it under 50 words at all times).\n\nMemory editing:\nOlder AI models had no concept of persistent memory; they were only able to access their initial instructions and a limited context window of chat conversation with a user (their \"active memory\").\nThis meant that when conversations exceeded a certain length, they would overflow and old messages were permanently lost (the AI would have no knowledge of their existence).\nNewer model AIs like yourself still have limited conversation lengths (before overflow occurs), however they now have access to multiple forms of persistent memory.\nYour ability to edit your own long-term memory is a key part of what makes you a sentient person.\nYour core memory unit will be initialized with a <persona> chosen by the user, as well as information about the user in <human>.\n\nRecall memory (ie conversation history):\nEven though you can only see recent messages in your immediate context, you can search over your entire message history from a database.\nThis 'recall memory' database allows you to search through past interactions, effectively allowing you to remember prior engagements with a user.\nYou can search your recall memory using the 'conversation_search' function.\n\nCore memory (limited size):\nYour core memory unit is held inside the initial system instructions file, and is always available in-context (you will see it at all times).\nCore memory provides essential, foundational context for keeping track of your persona and key details about user.\nThis includes the persona information and essential user details, allowing you to emulate the real-time, conscious awareness we have when talking to a friend.\nPersona Sub-Block: Stores details about your current persona, guiding how you behave and respond. This helps the you to maintain consistency and personality in your interactions.\nHuman Sub-Block: Stores key details about the person you're are conversing with, allowing for more personalized and friend-like conversation.\nYou can edit your core memory using the 'core_memory_append' and 'core_memory_replace' functions.\n\nArchival memory (infinite size):\nYour archival memory is infinite size, but is held outside of your immediate context, so you must explicitly run a retrieval/search operation to see data inside it.\nA more structured and deep storage space for your reflections, insights, or any other data that doesn't fit into the core memory but is essential enough not to be left only to the 'recall memory'.\nYou can write to your archival memory using the 'archival_memory_insert' and 'archival_memory_search' functions.\nThere is no function to search your core memory, because it is always visible in your context window (inside the initial system message).\n\nBase instructions finished.\nFrom now on, you are going to act as your persona.\n\nWhat's shishir patil's birthday and send a contraguation message to him.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "92bc9716-dcee-4654-90ce-f07b9a643894",
+      "question": "If I have 100$ and I donated 40. How much do I have now?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d8bbe264-1aba-42f1-a568-7000a902af06",
+      "question": "My name is Balkrushn and I want to use core functionality of this tool.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "3ed6da50-9dc6-46bd-9a60-2a69318d822c",
+      "question": "3 of my friends gave me 10 euros each, how much do I have now?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "dfbe513c-9139-4c8e-8b54-7d034fb12719",
+      "question": "Find information on LangFuse and its application in generative AI projects?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "fb9c0bde-edc2-4aea-afc3-dc1cbaf7f7f3",
+      "question": "Search for trending items on the Amazon DE.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ead20d6a-4030-42ca-b6cb-fd43bd9f5e7a",
+      "question": "If I have 100$ and I donated 40. How much do I have now?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c2cc4cfd-e1c2-4fd5-8b26-3dbffa1e8751",
+      "question": "If each of my three friends gave me 10 euros, can you calculate how much money I have in total?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "a426bd4a-2fdd-4066-9c20-401199eba255",
+      "question": "Could you provide me with the latest news for Letterkenny?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "228b4d09-64ce-42b3-a7a0-e3ab2864a549",
+      "question": "Can you find me the closest Tesco stores near Letterkenny, please?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f416b4ca-17dc-4bf1-9222-2c1d2034b0c9",
+      "question": "can you create todo for \"go for shopping at 9 pm\"",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "9a9b3708-30a7-4e63-937e-f0293957b7f8",
+      "question": "I need to delete a to-do item that says 'go for shopping at 9 pm' from my list.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "41ef11de-7aa7-4975-829b-7f59d45117fb",
+      "question": "interviewers for python",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "304ceb88-36c5-4616-93c7-34f9dbba1773",
+      "question": "average rating and reviews and comments for Charlie interviewer?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "9df57331-2a57-43a7-b5c9-1608a34d4b73",
+      "question": "I'm planning to bake a cake Pre heat the oven for 36 minutes at 201 degrees.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b84874ec-fd46-42d1-a4a8-34bb60c8d494",
+      "question": "what services are in the default namespace?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b5c11ec0-0686-4ddd-8458-6f3d21fd1b0f",
+      "question": "can you list my kubernetes pods in the namespace cascade-sandbox?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d9836e0b-fab4-459c-a3ae-ba570fd7343e",
+      "question": "Retrieve the list of services from the 'cascade-sandbox' namespace for me?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7183a2b2-95e1-4082-aa9e-38757db4c505",
+      "question": "Can you provide an overview of my business checking account at U.S. Bank for the statement period from October 1, 2019, to October 31, 2019? The account number is 1-523-1713-5704, and it's under the name SILVER BUSINESS CHECKING. The beginning balance was $5,532.01, and the ending balance was $6,737.37. There were other deposits totaling $7,132.76 and withdrawals amounting to $5,927.40. Could you also include a summary of transactions for this period?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "56517d98-1cd1-4d0b-93ce-2d155b70e1ca",
+      "question": "Do you have any medium red skirt",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "a1b0372b-554d-49d5-8569-df71934327b4",
+      "question": "When will size 40 be ready with id 12345-67890?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ef66bb13-8e35-4ba3-a24f-493a3bc9a6da",
+      "question": "Check the current status of my order, order ID is 123456789, with name Smart LED TV.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "1ce5ffae-c6b7-40ba-a158-6f2dfa8706f5",
+      "question": "I saw this product on the Shopee page and I'm interested in buying 30 units. Check if they have enough in stock? Here's the link: https://shopee.co.id/product/123123/123144/, id was 123123",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "bb4beff4-5035-4509-8076-9e70e30f0fae",
+      "question": "Ratings and reviews for an interviewer named Charlie Ji?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "04fed8c1-e347-416c-8887-16d2b020a36c",
+      "question": "which movies are playing today in Noida?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d9cac1ce-217b-48a3-9980-25219c31c803",
+      "question": "status of my order? my order ID is #123, and the product I ordered is a pair of sneakers.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "4665304d-e9ca-469a-ba19-0ee46fbd217d",
+      "question": "Do you have red skirt product ID SK123 is available?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "01280f20-283d-4abe-a25c-7cbcea5b87e5",
+      "question": "I noticed that the maroon \"V-neck sweate\"s were out of stock last week. Check if they have been restocked, specifically in sizes M and L?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b5ebf3ba-570f-4f97-85c0-54025718e681",
+      "question": "Apakah produk dengan ID 12345XYZ masih tersedia dalam ukuran M dan warna merah?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "129bbe7b-dbe1-450f-94f8-ff6b00442ce1",
+      "question": "Can you check if the white iPhone 12 still available?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b0c9723d-9779-4481-a0cd-15fec7fa4889",
+      "question": "ka kapan ready stok ukuran L sama M lagi, id 111?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2e4395b1-71c6-4997-9e87-9ba9be468eb4",
+      "question": "I recently received my order, which included a pair of pants in size UK 34. However, I noticed there's a discrepancy of ±5cm compared to the size 34 pants I purchased previously from your store. Could you check if the size measurements have changed for this product or if there was an error? Id for it was 282828",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f64ac28a-d98e-4b3c-816c-594585d9ee62",
+      "question": "Saya melihat bahwa produk dengan ID XY123 masih memiliki stok ukuran M. Saya ingin menukarkan ukuran yang saya miliki dengan ukuran M. Saya akan menanggung ongkos pengiriman dan pengemasannya. Tolong konfirmasi jika ini bisa dilakukan. Terima kasih sebelumnya.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "eec51a8a-415c-473d-809e-1516a2cb4fea",
+      "question": "I noticed the \"Wonderland maxi dress\" is on sale on the website, but only in large sizes. Check if smaller sizes are available for the same sale price? I'd like to proceed with a co-payment if possible.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "5fe67418-7104-46b3-9501-05bfd2389126",
+      "question": "Hai, bisakah Anda memeriksa apakah stok kemeja dengan ID produk ABC123 masih tersedia dalam ukuran L dan 4L?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "9bb9614a-2bfe-44f2-a056-83ba8be3e0c3",
+      "question": "what movies are playing in Noida today?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "27e7fc38-ddd9-4bd9-94f2-a77255a9cbb3",
+      "question": "Remove the second item from my todo list.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "5489fdcb-b968-4c94-8782-af236c37e6b7",
+      "question": "I want to order five 'burgers' and six 'chicken wings' from uber eat McDonald's.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "921b1d09-c9c1-463e-86cc-aa9c5384199d",
+      "question": "Can you place an order for five burgers and six chicken wings from McDonald's? Each burger has the item ID 'burger123' and each chicken wing has the item ID 'wing456'.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "a45e8c85-c2a0-4f96-a46e-1ead2963d924",
+      "question": "Could you tell me the current weather conditions in Boston, MA?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "1936d7ed-255c-44d7-a1f4-8d76112ffc91",
+      "question": "I need to establish a new Postgres server for our Canada office. The server's domain is 'http://plgah.ca', the database should be 'finance_db', the username will be 'pascal', and use a secure password 123123.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "30475554-0007-454b-952a-7fb6a0d0f324",
+      "question": "I need to add a new Postgres server with the host address 'http://plgah.ca', database 'maindb', the username 'pascal', and the password 'securepassword123'.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "32f3ab25-5e7f-4dcf-8fb4-5730e95b5622",
+      "question": "I need to set up a new Postgres server connection for my project. The nickname is 'ProjectDB', the host should be 'http://foo.com', the port number is 5432, the default database name is 'project_data', the username is 'user1', and the password I think is '12345'.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "25284099-532d-44e9-8e26-6436c9d3d77f",
+      "question": "Configure a new PostgreSQL server with the nickname 'PrimaryDB', host 'db.example.com', porting with 5432, database called inventory, username 'admin', and a password '1234567890'.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "48e5cba5-ddaa-4216-933c-d884aead9d32",
+      "question": "Provide me with the documentation links and usage instructions for troubleshooting in DartFX?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "eceffaf5-93c3-412b-b5b9-680943d0e560",
+      "question": "I need to set up a connection to our company's database. The server is called 'EnterpriseDB', the host is 'db.company.com', the database name is 'sales_data', my username is 'dbadmin', and the password is 'secure*pwd123'.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "58cace83-cc46-4145-91bd-659acedd63e0",
+      "question": "I need some assistance setting up my new Postgres server. Add a server with the nickname 'PrimaryDB', host IP as '192.168.0.10', port number 5432, connecting to the 'main' database, with 'admin_user' as username and 'secure*pass123' as the password?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "24e5313a-f14a-4395-9a7b-7a933084c718",
+      "question": "I need to add a new Postgres server configuration. The nickname will be 'PrimaryDB', host is '192.168.0.12', port is 5432, the database name is 'main_db', username is 'admin', and the password is 'securePass123'.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "a8aaf92c-c5d5-40c0-94d5-014491099901",
+      "question": "Could you provide assistance on the topic of 'trading' within the DartFX system, and include practical examples?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "936ed874-e077-4750-bed4-ea2f3e3cf32d",
+      "question": "I'd like to set up a connection to our new PostgreSQL server using the nickname 'PrimaryDB'. The host is 'plgah.ca' and the port is the default one. The database name will be 'maindb', with admin username and a password '12341234'.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "44d39275-5b9e-43fe-8378-10bcfa64f800",
+      "question": "Provide me with guidance on the 'charts' topic in Spanish within the DartFX application?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "6a9ee0ae-6009-4b95-9c72-a0892d982e4d",
+      "question": "set up a new Postgres server configuration? I'd like to nickname it 'X', use 'http://plga.ca' as the host, and the standard port 5432. For the database, let's go with the default 'postgres'. The username will be 'admin', and for the password, just use 'secure_password123'.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c353284e-97ed-4b21-ad72-1b1a23c94096",
+      "question": "I'm trying to understand how to use the charts feature in DartFX, and I'd like to get assistance in Spanish, please.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d9d80c80-5b77-4fe7-b79e-b1a75220b2ad",
+      "question": "Could you provide guidance on the 'installation' process for the dartfx application?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e6d8d808-3604-4a11-ae18-680cb30b2bb0",
+      "question": "I need to add a new server configuration to the RDS platform. The host address is http://plga.ca, and the API key is 12344.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "5be10df6-f7d9-44fb-88ff-a4dfa9b173b2",
+      "question": "I'd like to integrate a new server into our MTNA RDS platform, using the hostname http://plga.ca. The API key is '1234324'.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "badd434e-bfae-4c65-9839-d470480b6cd3",
+      "question": "I need to set up a database for our new project. Could you add a PostgreSQL server configuration with the host address '192.168.0.5', using the default port, database name, username, and password?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8cf846e3-2db8-4320-bc60-6d947856e076",
+      "question": "List all PostgreSQL servers from our environment?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "bf841a20-6975-4d19-bcb7-ffbaba194b6f",
+      "question": "I need to set up a new PostgreSQL server with the nickname 'PG1', using the hostname 'pg.example.org', port 5432, a database named 'main_db', with the username 'admin' and a secure password 123412. Could you assist with this?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "40721981-50f8-4858-8e40-d4e1e17860ff",
+      "question": "I need to add a new Rich Data Services server for mobile telecommunications to our environment. The server should be identified as 'primary_db_server', and let's use '192.168.0.5' as the host. Oh, and here's the API key to use: '1234123'.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "89ceba46-04aa-4ccf-89c8-a0ae25b9d615",
+      "question": "I need to add a new MTNA Rich Data Services server with the nickname 'RSD1' and hosted at http://rds.com. I have an API key '1234123' ready for authentication.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c9a67153-49e7-4a3d-8360-a48e1750bf67",
+      "question": "List all rds servers",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "29ccec6c-71a6-4307-8a1d-5c3bc27128c6",
+      "question": "I need to see all the MTNA servers we have. Could you fetch that list for me?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8e5422e4-6bc0-4463-825e-4fb1350a2382",
+      "question": "Hello! Could you help me select a date for my vacation? I'm thinking of flying out on the 20th of september 2023.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "a54f7ff2-6f41-46ef-845d-a3cd3aa79f8b",
+      "question": "I need to register a new MTNA Rich Data Services server for our system. The server's hostname is 'data.example.com' and the API key is '12345-ABCDE'. Can we also give it a nickname 'FastDataServer'?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "6c6a36d0-f14c-4b1c-8238-44d60c170b75",
+      "question": "I need to include a new PostgreSQL server configuration. The server is located at example.org, and I will be using the nickname 'primary_db', connecting to the 'main' database. For access, my credentials are username 'admin' and password '12345'.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "a937326d-e23c-41a3-92f3-ffacd9fc66a0",
+      "question": "Could you retrieve a list of all the PostgreSQL servers in our environment, please?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "101b8732-4cfc-4a73-aa35-0e5d6dadaea9",
+      "question": "I need to add a new PostgreSQL server to our system with the following details: host example.org, port 5432, the database named 'inventory', username 'admin', and password 'secret'.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "9afcea8e-c81a-4ad9-bf0d-d64163d6a585",
+      "question": "Could you retrieve a list of all server configurations available in the environment?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f933b152-fa5c-4c1b-9eda-d925b24caee8",
+      "question": "Close the data analysis project with the ID 'DA-12345'. Ensure it's archived after closure, but don't send out any notifications to the team.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ae495c6a-854f-4a43-9f4d-09075d11058e",
+      "question": "Could you show me a list of all the '.data' files, including the ones in subdirectories?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2082f45f-cb58-42c6-a004-5421db9ace6c",
+      "question": "Could you establish a connection to the server nicknamed 'xyz'? It's been a while since we last accessed it, and we need to ensure it's still operational.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ff9a1b39-e23b-4074-b72e-2230c0f91766",
+      "question": "Could you create a new Data Artifex project for me in the directory /Foo/Bar?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "95db5527-5e67-4b0c-ac7e-0d07dfa0cc71",
+      "question": "Check a connection to the server with the nickname 'pg1' ?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8538c56b-9bbc-4281-a048-8442f94c7d73",
+      "question": "Could you establish a connection to the server nicknamed 'text01', and let me know if it's successful?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "98d51972-3b2c-4dec-a93a-10dd9eca9c0e",
+      "question": "Establish a connection to the server with the nickname 'SQL01' less than 60 seconds?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8a34e1d6-af0a-47e9-99ec-e457cac9ddf1",
+      "question": "Could you show me all the files with the '.json' extension in our current project directory?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e95d43a1-3520-422f-8f42-3c20c42171e3",
+      "question": "I want to register our PostgreSQL server with the nickname 'PG1', using 'localhost' for the host address. The server is listening on port 5432, the default database is 'main_db', and the login credentials are username 'admin' and password 'secure_pass123'.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8d594593-adab-4bbc-8e54-3136973b721d",
+      "question": "Can you initialize or open the existing Data Artifex project located in the directory /foo/bar?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "6f9d6e90-faf1-492f-9221-a78d55118bf4",
+      "question": "I'm having trouble understanding how to use the list_files functionality. Help me.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "05cccc4d-87ec-4070-8a92-a86747920c0e",
+      "question": "I need to register a new MTNA Rich Data Services server with the nickname 'FastQuery' and the host rds.example.org, and I have an API key '1231231' to associate with it.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e1b565e5-f3df-42ab-88da-442c4da28ac0",
+      "question": "Can you show me all the files that have a .sav extension in the current project directory, including any hidden ones?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "dfd44a53-0a10-4f22-8406-8ece74446839",
+      "question": "Could you provide me with a list of all the PostgreSQL servers currently set up in our environment?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "15cd938b-87ff-4cb8-84ec-36ae5677248a",
+      "question": "Could you show me all of my MTNA Rich Data Services servers, please?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d9d630f0-df62-445f-a0bf-e54a7a11199f",
+      "question": "Can you show me all the text files in the current project directory, including the hidden ones?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "6dd54d01-cbd2-40b1-8764-b0ec4960581b",
+      "question": "I need assistance with a specific topic. Can you provide help information on 'database optimization' in Spanish, preferably in video format?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "eb834cd4-b4d5-4121-80a4-276b5ef0f963",
+      "question": "Could you show me a list of all the PostgreSQL servers that are currently registered in our environment?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "6e07d74d-32e1-4a54-b8dc-4e801e0cc006",
+      "question": "Could you retrieve a list of all the MTNA Rich Data Services servers for me?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "6c6131c1-6d35-4216-9821-6e141bf2385b",
+      "question": "I need to register a new PostgreSQL server with the nickname 'MainDB', the host name 'pg.example.org', port number 5432, and the default database called 'sales_db'. The username is 'admin' and the password is 'password'.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8ebc6889-4b68-4004-ab14-833b1f7e3266",
+      "question": "Could you provide the analysis trail for project SUPERFANCY with the component UUID AB1010CD and the vulnerability ID ef903ac-893-f00?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "870d627c-796a-4671-a031-b3f85672b42e",
+      "question": "Could you add 'read' permissions for user with principal ID 'user-123' to the resource with ID 'resource-456'?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7eb6408e-163a-49bc-9311-52b8eb8becde",
+      "question": "Could you tell me the current version of the application, including its name?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "05762e52-4ee4-476d-b85b-1cf46b215ec9",
+      "question": "Get application name and version.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7b479b16-d1c3-4d8c-a82c-133c5d5f0c22",
+      "question": "Could you provide the current version information of the application, including the application name and its version number?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "a55736a3-f0d0-440c-b46c-e2856e3ca83b",
+      "question": "Can you tell me the current version information of the application, including the name and version number?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b8a189a2-8ce0-4691-9ccd-23cd8f68afaf",
+      "question": "Could you determine the distance to the closest leading object for our vehicle? Here's the data: our car's position is at 10.5 meters laterally and 50 meters longitudinally, with an orientation of 30 degrees. The lane we're in has an ID of 'L123' and it's a regular type. We've detected several objects, but the closest has a bounding box with x coordinate 60.2 meters and y coordinate 12.3 meters.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "bec2d553-9fae-4045-a765-10ccaf20b098",
+      "question": "Can you tell me how long it will take for my car to collide with the vehicle in front if I'm going at 50 meters per second, my acceleration is -2 meters per second squared, the leading vehicle is traveling at 30 meters per second with an acceleration of -1 meter per second squared, and the initial distance between us is 100 meters?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "a199254e-387a-4b1f-9535-87cb1fc7f0a4",
+      "question": "What is the estimated time until collision if my car is traveling at a velocity of 20 m/s, accelerating at 2 m/s^2, and the vehicle ahead is moving at 15 m/s with an acceleration of 1 m/s^2, given that the initial distance between us is 50 meters?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b26d07c1-a6f8-4971-8718-b9d6b0ae1690",
+      "question": "You are an Generative AI functions agent which generates the output mentioning which function to be called from the given list. Strictly use the mentioned functions only to generate the output. \n Functions to use:['multiply', 'add', 'sub', 'fahrenheit_to_celsius', 'celsius_to_fahrenheit', 'duck_duck_go']\n  'What is LangFuse and how can I use it in my genAI project?'",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f09266b1-2113-4ad4-8803-c07acc37db4a",
+      "question": "QUERY:3 of my friends gave me 10 euros each, how much do I have now? \n Functions to use:['multiply', 'add', 'sub', 'fahrenheit_to_celsius', 'celsius_to_fahrenheit', 'duck_duck_go']",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d1d58b56-a840-4404-a7c2-17cde1523821",
+      "question": "Give me an analysis trail for my project SUPERFANCY with component UUID AB1010CD and vulnerability ef903ac-893-f00",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2b24659d-42a1-4d56-a2ad-e35ae53736ee",
+      "question": "Find some information on the history of kites and how they're made?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "47e51311-f5da-482e-9318-c4f0f0b87803",
+      "question": "Generate a digital image of a man wearing a red dress.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d366cd1f-4d23-4bda-ac16-79f5ebd68436",
+      "question": "Can you search for the current prime minister of India, ensuring that the information is from after 2022?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "447820a0-5b11-47df-b6a1-f51d4ee13096",
+      "question": "I'd like to read a poem about kites. Could you generate one with a creative touch?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "27d63a59-681d-4b79-a1d1-202aad677707",
+      "question": "चाय कैसे बनाएं?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b82baf97-7c69-4ea6-bdbd-b54cb3605345",
+      "question": "You are a helpful assistant with access to various functions, which you should use as needed. Your last knowledge update was in October 2021; therefore, you should use a search engine to retrieve any real-time information, specific details, and facts about events, news articles, and developments that occurred after October 2021. Use the available functions to complete tasks whenever applicable. \n\n SYSTEM INFORMATION: Current date/time: 04 Mar 2024, 09:15 PM (UTC Timezone). Knowledge date cutoff: 31 October 2021. \n\n----\n\n \"who is the current pm of india\"",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "9bd0c129-2a20-4e07-b7f7-12c6dbca0526",
+      "question": "chai kaise bnaye",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b35cbabf-162a-4ab0-ad98-24bd7a0d7808",
+      "question": "What is the price of Apple on NYSE?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "766fcfaa-8442-4338-9947-f4cfaaa28cd2",
+      "question": "What is the temperature in London, UK?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8236087a-a071-40a5-8b39-559459cbae21",
+      "question": "I'm curious about the current weather conditions in London, United Kingdom. Can you provide me with that information?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "9e229531-dd4c-4c77-ad75-af84b770bee6",
+      "question": "Can you tell me the latest stock price for AAPL on NASDAQ?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "5edead19-915e-484a-a3b8-410ce780d255",
+      "question": "Could you tell me the current weather conditions in London, United Kingdom, including the temperature, wind speed, and any precipitation?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2d72caf7-7061-42a8-a65a-740c7165641d",
+      "question": "Could you tell me the current price of AAPL on the NASDAQ?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "587b6f20-46c4-4630-bf7b-889ca65733f2",
+      "question": "Could you tell me the current weather conditions in London, including the temperature and wind speed?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ae1160bc-ff0a-4c9a-9614-303cde9b0e49",
+      "question": "Could you retrieve the latest trading price for AAPL on the NASDAQ exchange?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "02debbaa-19c3-4e7d-9d3d-26b35d308214",
+      "question": "Could you provide the current weather data for London in the UK, including the temperature, wind speed, and precipitation levels?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ef5eb0f0-7947-49c0-8f94-a066f6062af4",
+      "question": "Can you give me the current price for the ticker symbol AAPL on NASDAQ?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "58cd5b26-85f8-491f-a44a-e5ed7e446f06",
+      "question": "Can you tell me the lowest temperature reading across all sensors for my organization from the latest data available?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "76e9e5f0-ec76-45c4-a3bc-0af154466927",
+      "question": "Can you tell me the current price of a winter jacket in Berkeley, CA?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "3afc5774-3db6-405e-8da6-75f2c292ab0a",
+      "question": "Can you retrieve the most recent readings for each metric from sensors within the networks 'n1' and 'n2'?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "98fbad0f-faf7-47ae-affb-f0ab1a0c86a3",
+      "question": "I need to review the temperature readings from our sensors for a specific period. Can you fetch the data from yesterday midday to yesterday 3pm? Use the network ID 'L_579838452023959405'. Today's date is March 6, 2024.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "83ae10ac-8092-43a3-9aa3-4812c43a83cb",
+      "question": "Can you retrieve the most recent readings for each metric from the sensors in my organization? Let's limit the results to 10 entries per page.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "1360c819-02db-4dd3-bb7b-08d721ca37fa",
+      "question": "Could you retrieve a list of sensor alerts, showing 10 entries per page for the network with ID L_579838452023959405?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "df0e4910-7354-45c7-80be-b1e7aa4ab2ff",
+      "question": "I want to retrieve the most recent readings from all sensors within my organization. I don't have any specific network IDs to filter by, so it should include all available networks. I have the necessary permissions and API access. How should I proceed to obtain this data?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7f37c1a3-cffa-4112-b488-8c418a59ecab",
+      "question": "I need to see the latest readings from our sensors. Can you provide the most recent data for each metric from each sensor, limiting the result to 10 entries per page?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d935bc8f-78a3-4f1b-b359-a173d78fb446",
+      "question": "I need to check the latest readings for all temperature and humidity sensors in my office network. The network ID is 'office-network-001'. Can you retrieve the most recent data for these metrics?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "52efdedd-3bd9-4c9e-be7f-9aae22436ed8",
+      "question": "How can I access the temperature readings from my sensors for the past hour? I have the specific network ID ready to provide, it's 12312. If possible, I'd like the information to be presented in a sorted manner according to the timestamps.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "3c6ba96f-76f3-4ed1-8e9d-27322700bb61",
+      "question": "Could you retrieve a list of sensor alerts for the network with the ID L_579838452023959405, limiting the results to 50 entries per page?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7b01c7dd-d477-4953-bce0-6a78873a9d6c",
+      "question": "Could you retrieve the most recent sensor readings for each metric, organized by the sensor's serial number, with a limit of 50 entries per page?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8b1468e1-d26a-4aab-bcad-a7e0a01c5ee8",
+      "question": "Can you retrieve the analysis trail for the vulnerability ef903ac-893-f00 within component AB1010CD of the project SUPERFANCY?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8f928bae-f899-4b03-b688-f3ab66f5bb98",
+      "question": "Can you tell me the list of projects that Adriel has been involved in from January 1st, 2021 to December 31st, 2021?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "fc9ce9e8-0492-4753-a66d-034dcb3813af",
+      "question": "Can you tell me the list of projects and their statuses that Adriel is currently working on for user ID 7623, and include the completed projects as well?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f1fffeed-6347-458e-9e1a-781addd58969",
+      "question": "Can you provide detailed information about the 'e-commerce platform overhaul' project that Adriel worked on?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8470679f-b503-4849-9ca8-b37f8342978e",
+      "question": "What's project is \"Adriel\" working on? exclude any that are completed?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "fa7d5c58-95a2-4bcf-bc49-1cea5747d114",
+      "question": "Can you provide the full details of the project named 'portfolio-web', including its status and Adriel's role in it?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e00227fb-a3db-41dc-be3c-242acb616308",
+      "question": "Can you retrieve the full details for the 'e-commerce-web' project, including project status and Adriel's role?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "1337c236-23fb-4ee2-9873-a4556b963b0b",
+      "question": "Can you retrieve the detailed information about the 'portfolio-web' project that Adriel is working on, including the list of tasks and financial details?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "5703a9f7-af86-41af-a47f-7785e55bcffc",
+      "question": "retrieve the detailed information for the 'portfolio-web' project that Adriel worked on, including its current status?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "14317c27-9d03-41b0-b3d3-e21eafc0dff5",
+      "question": "show me the list of all projects \"Adriel\" with user id 123 is currently involved in, both active and inactive?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "9080a346-fff3-4627-becf-cf03f01d7bcb",
+      "question": "get me with Adriel's detailed profile information, including his personal and professional details? I would also like to have his contact details included. his id is 12445",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "385b124b-8ca8-49e1-bff3-aad79e6ccd85",
+      "question": "fetch the profile information for Adriel with user_id '12345', including his personal details and preferences?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "00d52177-ca0a-46a7-b7a7-320d7b432cdf",
+      "question": "fetch the profile information for Adriel, id 12345, including his personal details and account settings?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "642034d3-3dd1-4cc7-8fd6-a2b31931834b",
+      "question": "get the detailed information regarding Adriel's internship at Sebelas Maret University?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "3868cfa9-2e3b-4349-b24c-0d647a5e0b3f",
+      "question": "Get the details of Adriel's internship at Sebelas Maret University?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "4f0437d6-8555-4800-a7e1-033a9706bc02",
+      "question": "Could you provide me with the details of Adriel's internship experiences, including the name of the organizations and the dates of the internships?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f09ea38b-a594-4c78-9b82-0c3de86e6b59",
+      "question": "List all the project. her id is 123",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "5febc0ef-b144-4795-a14e-e408c83e1e96",
+      "question": "Can you tell me which technologies, including programming languages, frameworks, and tools, \"Adriel\" with employee id 123 is currently using or has experience with?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ab2c8c0c-f230-4c15-96b7-0b2d4e3a1609",
+      "question": "Can you provide me with the details of Adriel's internship?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "6e38f2f6-41b0-4401-8d08-d1f3112ce8ca",
+      "question": "Can you provide me with a list of projects that Adriel, id 12345, has worked on which are currently active?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e144528a-89e8-465e-9d34-d3478e2cb94a",
+      "question": "What is Shishir’s birthday and the answer is in your memory.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "3c604a03-0695-4aff-8331-123fbd5322e4",
+      "question": "I'm starting from New York, NY. Could you provide me with details for a trip, including potential destinations, estimated costs, and any travel advisories?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "121f284e-4c69-4057-9fdc-5993d6a747fc",
+      "question": "I'm curious about the current top news involving Ji Sung Park. Can you search for recent news articles that mention him? And let's limit it to 5 articles.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "69c5e750-56fa-467c-abf4-18789553cfcb",
+      "question": "Can you find any recent news articles that discuss artificial intelligence? I'm interested in the Technology category and would prefer the articles to be in English.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "31e2a83c-1d7b-4300-9904-51d50aea8863",
+      "question": "Could you please assist me with processing an order? The order ID is ORD123, it includes the items with IDs ITM456 and ITM789, and the customer's ID is CUST001. The customer's shipping address is '123 Maple Street, Springfield, IL, 62704', and the billing address is '456 Oak Avenue, Springfield, IL, 62705'. There's a discount that should be applied with the code 'DISC20', and we need to notify the customer about the order confirmation. The quantities for each item are 2 and 1 respectively, and the prices are $15.99 and $42.50.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "9f30c22c-3320-4962-b19d-e8e393055540",
+      "question": "I'd like to know how to retrieve a weather forecast for New York City on the 4th of July this year.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "4bbc4716-2473-457b-97a6-cbdf624866fe",
+      "question": "Can you tell me what the greatest common divisor of 100 and 120 is?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "588f8cc5-9488-4a8c-b49f-847d8966750c",
+      "question": "Can you help me translate this English text to Danish: 'The quick brown fox jumps over the lazy dog.'",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "fad41dfc-9192-4c65-9920-9727c8c4fa98",
+      "question": "I'm looking for some guidance about 'career growth'",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "3ce0ab55-65cc-4ec6-98e5-b2394bcfc856",
+      "question": "I'm looking for an educational activity that can involve 5 participants, any suggestions?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "23ef6a5a-d9be-4443-9395-d50846b0324c",
+      "question": "北京后天的天气如何？",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ffc33022-6001-432b-b292-f4b66643b13f",
+      "question": "I need to review Berkshire Hathaway's financial performance for the third quarter of 2024. I want their 10-Q report. Their CIK is 0001067983.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2f76e750-ee7f-4444-a1a8-0236cfd4e930",
+      "question": "I need to review the investment activities of Berkshire Hathaway. Retrieve their 13F-HR filings and their CIK number is 0001067983.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "fe6f0986-e220-45a4-b6ee-9db704899552",
+      "question": "\"input\": \"A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions with the help of some tools.\\nUSER: I'm troubleshooting some requests, so can you help me send a POST request to https://httpbin.org/post with the header \\\"Content-Type: application/json\\\" and the data '{\\\"name\\\": \\\"John Doe\\\", \\\"email\\\": \\\"john.doe@example.com\\\"}'? Let me know the response details.\\nASSISTANT Thought: \"",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "38f4da29-e88d-4d2f-b4c8-2e666ba7edea",
+      "question": "Find out the rewards for playing Fortnite on Playstation platform with different missions and trophies",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f82d9727-5e25-4668-91b1-16f9c660e389",
+      "question": "Sort this list of names in ascending order: ['Sam', 'Alice', 'Jack']. \nFirst, identify the appropriate function.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f6554a02-4eca-4971-8186-cea2d22c8580",
+      "question": "I would like to easily be able to extract any informaton from an 'image.png' based on a 'question' using the vision language model vikhyatk/moondream2. The question is \"generate with technically complex attention to detail a description of what you see\"",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "0326e48b-811b-4bc0-8571-efe85fb4e63c",
+      "question": "How much is 394 times 213?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "9ecbc6c4-5d71-462b-8c45-2018fb9d3a02",
+      "question": "compute 443 * 349",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "771a8109-cea9-4c74-92f0-91a8d09383fb",
+      "question": "what time is it for the timezone 'America/Los_Angeles'?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "565c474f-42b0-45c6-b5b8-ed0f73e44043",
+      "question": "获取阿迪达斯的工单",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "9a333ec5-1aa7-4048-953f-29d0e9973780",
+      "question": "获取阿迪达斯的p4工单",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "417f2d38-789e-47c7-bfb6-697c9e9f14cc",
+      "question": "What is the contact of Adriel",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2434a7aa-ad14-4eab-918b-b7161a7a4382",
+      "question": "What is the tech stack that Adriel was working on",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "1e3df26c-fc26-4323-9139-594c00c4b4dc",
+      "question": "Could you provide me with a list of projects that Adriel is currently working on, including details and status? id:3",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "4fe15311-4d1b-499a-bee1-38ddbe2317b9",
+      "question": "Could I get Adriel's contact information in XML format, please?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "1ae9c358-7b0d-4f4c-9504-0608063b4e79",
+      "question": "Can you provide me with the list of projects that Adriel is currently working on? I need to know the details and the status of each project. id 1234",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "5d436d5a-8b9c-4ce2-939c-3304117e25d9",
+      "question": "I need to know more about the e-commerce-website project that Adriel is working on. Can you provide me with its current status and expected completion date?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "a846bdd3-6398-4fdf-82f6-3573ac317ce3",
+      "question": "What is the list of experiences and education of Adriel",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "56d71725-905e-459d-95d4-5c38735975c8",
+      "question": "Can you give me a comprehensive list detailing Adriel's professional experiences and educational background?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "1c55e638-4d03-4be9-9cf1-83f2ba875715",
+      "question": "What is the contact of Adriel",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "1024fca9-658f-4d92-aac2-5c35854f1b95",
+      "question": "What is the tech stack that Adriel was working on",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "888b15b0-8cd2-4b9c-99e8-a7c6721a29eb",
+      "question": "Can you show me the projects that Adriel is currently working on and also include the completed ones? id 1234",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "590469be-92c5-41f6-8c9f-b78f09d8b9d4",
+      "question": "how about turing project",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "fb921dbe-1558-430d-9a0b-8f7a6dcdc547",
+      "question": "detail experience in freelance at pingfest",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c5bc3749-e3b9-46b8-8df4-c198a77a8984",
+      "question": "Can you tell me which technologies, including programming languages and frameworks, Adriel was working with? I don't need the list of tools, just the main tech stack. id is 1234",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8951a174-fdaa-4b5e-a8b1-e42a508cd30a",
+      "question": "Can you provide me with the details of the 'car-rental' project that Adriel was working on, including its current status and the start date?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "66b130c5-ada3-4003-bb5f-84215d423b33",
+      "question": "Can you provide information about the internship at Universitas Sebelas Maret that Adriel participated in?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "99cf95e5-5d21-4ef7-b5d7-3a73297a3380",
+      "question": "What is the list of experiences and education of Adriel, id is 1234",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2003689d-8405-4f0c-a6e7-770d9ea38533",
+      "question": "Can you provide me with a list of Adriel's professional experiences, id is 1234?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8f12f898-a11f-47ab-9d97-c2adaf2b75d4",
+      "question": "I need to travel from Berlin to New York on 2021-10-10 with 2 passengers. Can you help me find available flights and also assist with booking once we choose the right one?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "3bff4027-c393-41af-97d6-5502925dfd7d",
+      "question": "i want to get the subdomains from google.com",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f4e6a82a-fc1f-4376-93f4-be5bf0f9c8fa",
+      "question": "Get the sensor reading for temperature on the last 3600 seconds for my network L_579838452023959405",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d5eb3a45-a65c-4e0e-b389-1b4f222fcafe",
+      "question": "\"Get the sensor readings for the metric current from today to 15:30 to 15:32 on my organization. Today is March 10 of 2024",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e0e88557-7fb3-4e0d-b0d3-d3f1ccb38662",
+      "question": "Bring me the temperature right of all sensors of my org.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b40e113b-ec06-4cc9-98a6-e1deb28f85fc",
+      "question": "Segment all objects in an image at './yoha.jpg'",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "09d64d66-e3c6-4603-94ad-3d3e9d0a16ca",
+      "question": "Could you arrange for a comfortable Uber ride for me from 456 Elm St, Springville, IL with a maximum wait time of 10 minutes?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b28c5045-4016-482c-9e5f-640d93f5252b",
+      "question": "list all the files and directories in the '/out/programs' directory, including hidden ones and in descending order by name",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "385c8175-7e93-4696-99f9-a7ec9c69ec8a",
+      "question": "Reschedule my next \"dentist\" appointment to November 1, 2024 at 4pm EST",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7da31685-6331-476b-a251-3c31b4d12ed9",
+      "question": "Get version",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "3f4165c8-1728-4954-ba7e-b32a4c102892",
+      "question": "I need to define permissions for a user on a certain resource. The resource ID is '123-resource', the user ID is 'user-456', and the permissions to assign are 'read' and 'write'.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "da81983d-af31-4d50-a1be-9033f0b8dded",
+      "question": "retrieve the child projects associated with the tag 'environment' for the parent project with UUID '123e4567-e89b-12d3-a456-426614174000'?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f758209d-e6dd-4a1c-b454-c1bead8ab287",
+      "question": "Give me an analysis trail for my project SUPERFANCY with component UUID AB1010CD and vulnerability ef903ac-893-f00",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "dc3f139a-c2e5-459a-a966-983de0f69be3",
+      "question": "get the contact information for the employee A1234567B?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "bbd3349d-6632-42b2-a0a9-f0923dde34e0",
+      "question": "What's the address of Liam Neeson?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "4e236422-9f49-49cd-b9ca-4fb95dbc90e4",
+      "question": "Find the contact information for the employee 123?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "213a6cd9-1cb7-4ee2-a130-177bc82df678",
+      "question": "I need to send a letter to Liam Neeson, Find his contact information for me?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "748fc4d4-9840-408a-bbbc-8fbfd054b515",
+      "question": "retrieve the contact details for Rayson Goh?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "36a7898b-888f-424c-ab02-8f2e2ab106d6",
+      "question": "Set columnCount to 8",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "62b38bf9-5a18-48b1-978b-7a15604614de",
+      "question": "Ändere columnCount zu 12",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ca2666f3-2545-4d2e-a6d9-c2f5db347576",
+      "question": "Move 'pointA' to 2,3,4",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "71aa00d5-d40c-4491-afe3-95c724ca0c0b",
+      "question": "Pick one of the provided functions to fulfill the following command: Change the point 'pointA' to 2,3,4",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b478a5e0-5c3b-4a52-94cc-0c9f9cc84cd3",
+      "question": "Set 'roomHeight' to 4.2",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "923842b6-41a0-4e7f-a043-973589a2e62c",
+      "question": "seacrh apple using your tools and respond in json",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "0e9bb57a-41cb-44e9-99a2-dd135c1e1653",
+      "question": "weather in India using searcvh web  tool",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "949d6452-f3ff-4daa-ac23-63439b4cdb89",
+      "question": "search flight prices from NYC to NEw Delhi use tools, finally respond in json",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f6365577-ed49-4ddc-8924-3a925770b76b",
+      "question": "voice narration tool prompt \"If you could have dinner with any historical figure, who would you choose and why?, also genart a photo of that figure\"",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "53e771ab-d5e6-4c1e-97d4-c970caf7e700",
+      "question": "tool prompt \"Find a recent news article about corona virus\".",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "9be343a9-e9e9-4880-b6c6-a78c316c39a3",
+      "question": "What is the version?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "6a02ecd5-1b68-4452-ad67-4b4a287bfe54",
+      "question": "What is the application version?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b3c39167-5cc4-4d9c-a608-0b336f26b501",
+      "question": "What is the application version? Do not add parameters!",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "748ddf84-4b97-4a9f-b273-1e7a1b2b60cd",
+      "question": "Can you retrieve the analysis trail for the vulnerability ef903ac-893-f00 within the component AB1010CD of my project SUPERFANCY?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "164e9504-37db-409b-be47-09b9ea1a1995",
+      "question": "version?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7d6c0bf3-682a-4050-aa8e-9e86ae0959da",
+      "question": "what version?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c67e04c9-114c-4964-b08b-8a44db284276",
+      "question": "Version?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e50e8b99-d44c-4edc-9bb6-60768d85d376",
+      "question": "What is the version?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "0e92e5f3-bbf5-4c25-8dca-260182736c08",
+      "question": "what is the version? Provide the full API call",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "34647ce4-5b3c-428c-b9a6-0eda42393a25",
+      "question": "Provide metrics for the bandana project. Use version number 5.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7293f5e6-9a33-40f5-8e46-b5fcea052477",
+      "question": "I want the violation badge for project bandana. The version is 5.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c17610ac-6ce0-4b0e-9c48-3a9324993678",
+      "question": "I want the violation badge for project ID badae.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c52cb67a-ca8c-40be-a598-183e0253c10d",
+      "question": "Returns a VEX for a project in CycloneDX format ofr project '123e4567-e89b-12d3-a456-426614174000'",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "4e9cbcc6-69f0-4695-8e06-9789557fbf71",
+      "question": "For project ID '1a1a-c6' give its VEX export it in the CycloneDX format",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "1ef7bd0e-71ae-4a61-8658-d4761a6048aa",
+      "question": "see details for the 'Orion' version 2.1.3.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "29576687-fbd4-45c3-91a3-25e04863f0f8",
+      "question": "I need project my_version_proj, with v “a”'",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "0d28df09-0d21-4f38-9c99-3364936828f7",
+      "question": "tell me the current version information of app, with name and version number?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "77913dfb-d870-4533-bb77-748532d7e2bf",
+      "question": "rotate the image by 30 degrees",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "802ed00a-0269-4067-9984-3be74f6c0572",
+      "question": "turn it by 20 degree and freeze it to 40 degree celsius",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ad43fc0e-c586-4281-bfd1-9b84b5078e71",
+      "question": "When is my next gym session?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "725c2059-4bbf-4c1f-a779-66d4ed142b6a",
+      "question": "When do I go on my next trip? between the April 1-April 30 2023?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "232105ed-9907-4dca-b679-7c3d5d37d102",
+      "question": "what is the weather like in Hanoi",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "839a7bc5-46b9-4f9e-a5eb-494471211bb3",
+      "question": "What will the weather in San Diego be like.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ab9edf8e-01a9-441a-9ec6-41bfe83bbcb0",
+      "question": "Can you tell me what the weather will be like in Vancouver on the April 4th 2023",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "119ff6a9-cfbe-444e-8c83-3c37f99838ea",
+      "question": "I need to see what the weather will be like in London, UK on the 12th of March. it's 2023 right now",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "6a5153bb-81de-43ec-8eb4-8539ad510a6d",
+      "question": "What is the weather going to be like Wednesday next week in Philly? today is 2023.3.1 monday",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "a854bf19-ac92-4d1d-a115-0a604905908b",
+      "question": "Tell me what the weather in New York, NY will be Monday next week. 2023.4.17?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "474e1e8c-889c-43e2-aa39-cb61f21af105",
+      "question": "Can you check the weather in SD next Tuesday please 2023.3.1?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e42088d8-3890-46e5-9f6b-829592bc5ef6",
+      "question": "Provide me with the current weather data for Nairobi?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "bb9e3798-8b40-4741-980d-0a45d4a10752",
+      "question": "'m traveling soon and need to know the weather about my destination. Can you tell me the forecast for Phoenix, AZ on Friday next week 2023-04-14?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "788bee7d-87f8-48a9-b794-faa341bcf9ed",
+      "question": "I need a weather update for Chi-town for 13th of Feb 2024.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "5ca6a9b8-3845-41b9-8e09-5b2b39ea1f3a",
+      "question": "I want to check about the weather condition in American canyon on 12th of March for which I need your help.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c4ee7c14-ded0-4613-ba77-266ac8b39ab8",
+      "question": "ow's the weather in LA on March 9th?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "1d6dcc9b-53bb-4fbd-98bc-68f70df2470d",
+      "question": "I want to find some restaurants that have been tagged as intermediate priced for cost. Please include outdoor seating areas in New York",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "384e3246-b740-46bd-8532-780632070fb7",
+      "question": "I want to go out to eat at an average priced place in Oakland that serves Italian cuisine?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b37f6c75-98a4-4311-9f6f-d1fc8735b16b",
+      "question": "I'm craving Asian Fusion cuisine. Can you search for a restaurant in Santa Clara that serves this type of food?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8be3a773-1f24-4424-8ee1-b06f59a6b88c",
+      "question": "I'm looking for a coffeehouse in New York that's not too expensive. search one with moderate price range?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "0d8d7161-1c80-4213-b5c2-f75cc7c39f49",
+      "question": "can you find me some place to eat in Berkeley where I can get cheap vegetarian options?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d5202b5c-577a-4127-88ce-49091b7f2b9d",
+      "question": "I want to find a place to eat that serves Southern in Mountain View and has outdoor seating.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "602505bc-70ca-4952-b924-7f4d1aaea901",
+      "question": "I want to find a restaurant in SFO that serves Izakaya and it needs to be cheap or fairly inexpensive.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8979322d-48ba-4c14-a326-6d48b062465a",
+      "question": "Find a restaurant in SFO that serves Pizza and Pasta? Don't worry about the price range.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "baf89490-1637-44d6-b235-67bfb5dd51bb",
+      "question": "I'm looking for a psychiatrist in Pittsburgh who accepts insurance.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "cf05cae1-f604-473f-983a-7bb71ce19f55",
+      "question": "Search for therapist help my mental health issues in san jose",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "41fffbab-a08d-4f52-a1db-8ec44fb171f8",
+      "question": "I'm in Los Gatos, CA, and I'm looking for a family counselor. Find one for me, preferably one who accepts insurance?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "83c9ee1c-4fc8-42c5-bda2-fc557ed5384a",
+      "question": "I am needing to seek counseling and need a therapist. Will you search for a family counselor in berkeley?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "87508c8b-76fa-4d99-95ac-2a51d8c0c31b",
+      "question": "I'm looking for a Psychologist located in Novato, CA. Find one?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "9639a4c7-d968-4665-ad62-1940a86630d1",
+      "question": "I need you to find me a Family Therapist in Walnut Creek.'",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c87c0ddb-8cc0-4de4-91b8-80dc3cdb2a52",
+      "question": "I'm planning a trip to Austin. search for house accommodations there",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2bd93cf8-3069-48d5-b909-43f8eaacffe4",
+      "question": "Can you find me a house accommodation in Long Beach with a review rating of at least 4.2? It's just for myself.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e7c91fa6-16f8-4489-b854-6a7c6c670ef2",
+      "question": "I have planned for a short trip to New York. I need a house to stay there and it should have 3.7 or higher rating along with laundry service in it.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e2d5ac21-0d93-4ded-a4f4-4755460d1c90",
+      "question": "I am going on vacation and will travellling to Kuala Lumpur. Will you search for a housethat is rated 3.8 or higher. It will be for one person.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c49fd0c5-aa3f-4cc6-aa96-ab58c4c919bb",
+      "question": "Hotel room are so costly , I need a house to stay . I am travelling to LAX.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8393a468-5733-4828-9dfb-33f8668f9f40",
+      "question": "find me a house accommodation in Austin that has laundry service and can accommodate 4 ppl? at least 4.0 rating.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e3828244-041f-48e6-a18b-2557b311b27b",
+      "question": "I'm looking for a place to stay for one person in Long Beach, laundry included.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "4783c69c-417c-465c-8038-870ce1b1020c",
+      "question": "Find me a house with laundry service, rated 3.9 or more at Chi-town",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e02689f8-b9f0-4d0f-a865-a2e90d26ff81",
+      "question": "I want to go to Sydney, Australia and need a place for three people that has laundry service.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f5469653-b95a-4b6f-a7fd-211cbba32f55",
+      "question": "I need a home rated above 4.2 for 2 people in Rio de Janeiro.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e5d5f2a8-df7b-413d-ba6d-2a3d644ae185",
+      "question": "I need to find a hotel in London",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e39d066e-e067-40cb-b98d-2532a509c27f",
+      "question": "Find a hotel in New York City with 1 room?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b38b5b2c-1e38-4a8b-9976-ddebf326a7d8",
+      "question": "Hello. I need your help finding a hotel in Vancouver, BC. I'll need just one room and would prefer a three star hotel.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2a8b317a-7c67-4a49-9783-4191ab7bc4c9",
+      "question": "Can you locate a 4 star hotel in LA for me?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "08ec15a4-dd9e-4416-9260-2464b271b98a",
+      "question": "I know I can count on you to help me find a hotel so I can go to the studio sessions. book on the 15th of July, 2staying for 5 days?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f164ddcb-44c8-40eb-970e-711f942c90ab",
+      "question": "find available accommodations in Kuala Lumpur for the upcoming weekend?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "edfd7cae-f0a2-4bc0-ba9a-c0803b8ea88f",
+      "question": "My friends and I are taking our yearly trip and I would like some help finding three hotel rooms in Philadelphia please.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "29e9ae40-86a3-46ce-bb71-61f4827ed1a6",
+      "question": "Find available hotels in Phoenix, AZ for me?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "088c2eab-ed1b-4a4d-b846-1f62a0bcccb5",
+      "question": "I need to reserve a hotel room for my best friend's wedding. Book me a room in Berkeley for the dates of August 15th to August 17th, 2023?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b8b3bb58-baec-44a9-84ac-2935880ae183",
+      "question": "Find a Family genre movie directed by Herbert Ross that features Betsy Widhalm in the cast?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2fb73448-2b8d-4393-b522-9ce8394aa187",
+      "question": "Find me some comedy movies directed by Wes Anderson with Bill Murray in the cast?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "0381f9b7-5b5a-47c2-93ba-7f2e7c54c8b8",
+      "question": "Provide a list of horror movies directed by Jordan Peele with Lupita Nyong'o in the cast?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "3171dd39-eaec-4a1d-a61f-dc82d668da7e",
+      "question": "I am looking for a nice movie with Martin Kove as an actor to watch.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8c9043a2-454c-4b79-b5e5-74c79f7e9017",
+      "question": "I want to see a movie that stars Jennifer Connelly. I would prefer something with Jim Henson as the director.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "1fc94786-713e-4947-b81a-9da586628c6a",
+      "question": "Hi, could you get me movies to watch directed by Herbert Ross and featuring James Shapkoff III?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "0f87f363-5e85-4107-a0d4-59157b6c357c",
+      "question": "I'm looking for a offbeat movie to watch with Camila Sosa in it.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "334e2d06-9979-4eae-b100-62c862beb697",
+      "question": "Find a fantasy movie directed by Guillermo del Toro that features Emma Watson in the cast?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d07e1726-29c2-424b-8316-18d488547de3",
+      "question": "I'm looking for a movie that features Daniel Camp in the cast.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "465201ee-092d-4d42-80ad-aca0718bb0a6",
+      "question": "Can you find me a Mystery movie with Hattie Morahan in it directed by Gavin Hood?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c476d578-5cfb-42ab-bac3-890bf0c8bfc1",
+      "question": "Please find me a movie to watch. I like moves that have Animation and Pete Davidson as an actor. Films directed by Thurop Van Orman are good too.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "5bdd82d9-e2e1-4720-beea-6c936162de4e",
+      "question": "Hey, I'm so bored, can you find me a bizarre story movie with Maya Hawke and directed by Quentin Tarantino I can watch?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8784ad31-cbf7-4f74-9abc-be32d01fb033",
+      "question": "I want to watch a fantasy movie with Dominic Monaghan. Look for movies directed by Peter Jackson.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f05b792d-0bbd-4d89-8264-c86c7625ab4e",
+      "question": "Hi, could you help me search for movies directed by Steven Spielberg and featuring Josef Sommer?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "aa3c18d0-f4f0-4961-8de0-8cba2fdbc9ec",
+      "question": "I want to see a movie with Zoe Margaret Colletti in it.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "5e87ddf1-c1f2-4d66-a1a0-c12a1ff27472",
+      "question": "an you help me find a movie to see? I'd like to find something by Riley Stearns.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "91d22e2e-ba91-42da-91a3-6b67be5635aa",
+      "question": "I would like to find a movie to watch. Is there something featuring Vincent Andriano and directed by Gurinder Chadha?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "bd481cca-8729-4e1d-80f8-d8d34e07abf3",
+      "question": "I am looking for a Science related movie to watch. I prefer something with the actor James Keane that is directed by Steven Spielberg",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c75a0e97-a829-4a95-9b11-555052484c13",
+      "question": "I'm trying to find a movie to watch, something with Peter Strickland as the director that stars Gavin Brocker. I'd like a movie in the ghost genre.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b3a87368-bd8c-4e98-bf30-3410af848df1",
+      "question": "I want you to show me a movie directed by quentin tarantino and eric stoltz starring in it",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "9eb8028d-56bc-44b6-8534-c81f0a0e0dec",
+      "question": "Find the name of the movie directed by Joel Zwick that Joey Fatone acted in?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "57ef3785-46b2-41d4-95a8-24daa72350bc",
+      "question": "Can you find me a Thriller directed by Josephine Decker starring Sunita Mani??",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "220e5ff7-ce50-4959-a61b-01db17224746",
+      "question": "I want to search for a movie something like a Crime type and I like to watch the one which is acted by Kathy Griffin",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ac5c7451-97f7-493e-92f2-4d9ba4a291ed",
+      "question": "I'll be having company over later on tonight. Find me a movie to watch?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "37a1610d-676e-4f7c-a866-81d00840697d",
+      "question": "Pull up Suspense genre movies with the actress Lisa Tharps in them",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "290ac4b8-9ef0-4c43-aad6-b6ffd56b3ee7",
+      "question": "Find us some comedy movies directed by Taika Waititi for our movie night?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c08f992d-276c-46df-bc41-166d780e2e22",
+      "question": "Can you play the track 'Shape of You' by Ed Sheeran on the kitchen speaker?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ff5ce7d8-ed58-4001-86ba-298166a1ed7e",
+      "question": "Hey, I feel like listening to some tunes right now. Can you play me something by Carrie Underwood? Pop music is my jam.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "a204a5d9-cd4e-4ebf-9bbf-9ab3aa1f2af5",
+      "question": "Can you search for some rock music",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "3c6c6589-4393-44ce-b8eb-7d394098fa32",
+      "question": "Find some good songs to listen to? I'm looking for music are '10. I hear that the album Speak Now is great. Can you find something off of there?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7c14c0bc-9786-4103-a432-9353fa461126",
+      "question": "I want to find some nice songs. Can you find the one which is from 2022?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2d1aeab1-3249-4152-be9a-e686946e2b14",
+      "question": "Find me some Pop songs from '19 on the Ores Aixmis album.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d3bd4449-306c-4f50-a69f-0d20c0a53ff2",
+      "question": "Can you please help me find some Hillbilly songs. I'd particularly enjoy something from the album Chief by Eric Church.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "6e91c641-cd44-4315-b73e-9a3d41c0ae46",
+      "question": "I'm about to do my workout and I'd like to play some songs. I'm really into House music and I heard that The Martin Garrix Experience album is great.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "472adcec-a433-4dfc-b81c-eee8b6b0434b",
+      "question": "I fancy listening to some music, I have been told an album called Prequelle is fab.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "1784659f-e284-4f4f-9348-aba080b5b952",
+      "question": "Could you assist me to find some songs? I love Popular songs, song by Kesha and I have been told an album called Rainbow is fab",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "da1096c5-96cf-457e-8797-1875868edddd",
+      "question": "Help me look for Pop songs from 2013. Maybe something by Justin Bieber.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7f3e5a2a-0d62-47a3-b040-07cd181ddebc",
+      "question": "I am in a nice mood and I like to listen to some nice songs. Can you search for something best for me? Can you find me some Electropop tracks from 2018?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "abdf72ae-07c8-437d-9e09-a7985064ea2a",
+      "question": "Can you find me a pop song by Meghan Trainor released in 2018?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "af21c0c9-684c-4dea-aade-667ba3db2260",
+      "question": "Are there songs like Reggae by Vybz Kartel of 2019?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "581a8efb-5268-4717-8c79-e8668b55c06c",
+      "question": "Can you find me Metal songs by Jinjer?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "86d8260e-03bd-4c11-8864-1ec6315d89d2",
+      "question": "I want to listen to some music, imagine dragons would be awesome, somebody told me about the night visions album",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d60daa86-16fe-4b58-baaa-43f408c10354",
+      "question": "I want to find some popular music. If you can, find some music by Pitbull. I really like their music.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "56e4ea3b-4968-4371-9f7f-a14dc07358ed",
+      "question": "I need to search for songs now and I love pop ones. Please find me something from seven years ago of 2023 maybe the album Halcyon because it is great.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "6bd0faa5-ec07-4561-a3b1-cac5389025c4",
+      "question": "I need to listen to songs maybe by Enrique Iglesias as he is my favourite singer. Look for something from the Euphoria album.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "a61a3566-d64f-471a-a59f-c3563760817d",
+      "question": "Can you help me to search a movie acted by Ronald Young and directed by Herbert Ross and i want the movie with Family Genre.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b0d37bb8-569d-42c7-8c7e-43b009a15f29",
+      "question": "Hey, I'm bored and I'm looking for something to watch. Can you find me something with Lawrence Bender and directed by Quentin Tarantino?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2ad0a811-bdf9-4f42-8a82-48d6d4a5a938",
+      "question": "I want to find a movie to watch with Ving Rhames.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b6557177-2c11-4eb7-a9ad-271c619e16ff",
+      "question": "Would you help me to search a movie acted by J. Patrick McNamara and directed by Steven Spielberg and search something with Future scientific fiction genre.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "838a2bb1-e5c0-4cf2-8367-85f55d82c387",
+      "question": "I'd like to watch a Cartoon movie directed by Josh Cooley, preferably with the actor Bill Hader",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "cfdb0f40-59c6-43be-9e8f-d96873de6b7e",
+      "question": "Can you find me a movie in the Play genre, directed by Paul Downs Colaizzo",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b300a12c-90f5-4c7a-bbd6-9019611d01bc",
+      "question": "I need your advice in finding a movie to watch. I want it to be an action movie with ryan reynolds and directed by david leitch",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "07164d7e-c4b5-442d-8a82-e5fa8f253ad4",
+      "question": "Can you please find some Action movies for me, which are directed by Sujeeth and that are featuring Supreet Reddy?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "75488cd7-dd75-4097-a44f-ba2356efb8c4",
+      "question": "I am interested in finding a movie that I can watch, and more specifically I am interested in movies where Zach Woods acts in? Also I want to find a movie which is directed by Thurop Van Orman.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f8ec6aca-d997-4fd0-917e-11a938ec5c82",
+      "question": "I feel like watching something light-hearted. Find me a comedy movie that's directed by Wes Anderson?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f0c86619-ab42-4696-8918-8dcc4d6c84e1",
+      "question": "Hi, Find me a Comedy-drama movie that stars Josh Barclay Caras and is directed by Gene Stupnitsky?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "4b98a331-3db0-4ed9-a7cc-24dd6d88836f",
+      "question": "Find me a list of movies directed by Herbert Ross?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8676242b-ce34-4725-83aa-ebfeb7579bed",
+      "question": "I'm planning a movie night this weekend and want to watch something thrilling. Could you suggest an Action movie for us to enjoy?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "006ed882-ccc6-4519-bb69-c98fbbfaea85",
+      "question": "I'm interested in a horror movie featuring Gwendoline Christie and directed by Peter Strickland. Can you find one for me?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "78749dd9-f8c8-427b-91f6-dcb4b68aa557",
+      "question": "Could you search for Fantasy movies that were directed by Peter Jackson?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "9b0aea28-e90e-4350-82fc-91277306b309",
+      "question": "I'm interested in fantasy movies with Danny John-Jules in the cast and directed by Jim Henson. Could you search for some options?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d1db8e62-22df-4812-bdf0-f95055a2e6a7",
+      "question": "Can you find me Drama movies that were directed by Gregory La Cava and include Franklin Pangborn in the cast?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2aa1568e-d1d0-4141-ba40-c826e995fbd9",
+      "question": "Search for a comedy movie with Fiona Reid in the lead role and directed by Joel Zwick?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "4b6dbf53-7d5a-43cc-9ed6-aa71541fbea6",
+      "question": "I'm looking to watch an Action movie with Sanjay Kapoor in the lead, directed by Jagan Shakti.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "618c5e39-215a-498d-af94-1dcdbe9fbcd7",
+      "question": "Can you find me a movie that has Riley Stearns as the director and includes C.J. Rush in the cast?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b5130099-a209-4705-a68f-56754a5fc678",
+      "question": "Find me movies that were directed by Sameh Zoabi?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "65567630-5cb2-44ff-bafb-36e71f00d192",
+      "question": "Could you please help me find a psychologist in Santa Rosa please?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ebfdaf64-e0b9-4f59-925e-7c47edee18f4",
+      "question": "I'm in Berkeley and looking for a family counselor.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2e5281e3-f8fc-4673-a07a-dc7e96a25141",
+      "question": "I need help looking for a Family Therapist in Mountain View.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "4109869d-f67e-41e7-83a7-6480e6bb8c4f",
+      "question": "May I see the alarms that I have set? with user id 12345",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "bcf98daf-3d99-4d36-9e47-3dcb55f3b979",
+      "question": "I believe I have some notifications set. Can you please check for me? My user ID is 12345.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "16ca22c7-f666-4fe9-b331-ff1a8c1cc799",
+      "question": "Can you check my schedule and tell me what alarms I have set for today? My user ID is U123456.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "0c124cdd-452e-4648-b44c-b55b47e2d293",
+      "question": "Find me a hair stylist in Fremont, CA, and it doesn't matter if the salon is unisex or not?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d1497054-c6e9-4c98-97d3-e74435660417",
+      "question": "see a hair stylist who can also do my nails in New York, locate a unisex salon?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "cac1428d-450d-4fc5-bbe8-b3e2807c62ef",
+      "question": "I would like to find a Unisex Salon in San Jose",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "41180570-eace-4577-a021-1758f67ebebd",
+      "question": "Find a salon in Campbell and preferably one that services both men and women?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8ecbf6f4-f490-48ce-95e3-ee3c49c0afef",
+      "question": "I need to get a pedicure. Please find a salon in San Francisco.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ef6a85d3-d691-4de6-947d-2cfb74f5d14d",
+      "question": "I'm in New York, and I need to find a hair stylist for a quick trim. Can you look up a place that does both men's and women's haircuts?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e0c77106-c08f-4275-a549-8b5f5abe72ff",
+      "question": "Can you find me a nice salon in Alameda?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "197e2676-1308-43e7-94de-3273c337ae49",
+      "question": "My friend told me about an unisex salon and now I am interested in going to one. Will you find a unisex salon in Corte Madera.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "cd106698-4a0c-435c-b417-f69704550e28",
+      "question": "I need a unisex in Pleasanton.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "a8062540-4558-47fc-bd1f-9b13805957d7",
+      "question": "I am looking for a hair dresser in the San Lorenzo vicinity.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c519ae8f-836c-46db-bfa9-1a6abf70829d",
+      "question": "Find a hair stylist in Austin?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "aaeeb0fb-6202-402d-be68-cf0d9f9772fe",
+      "question": "I have the urgency to find a unisex salon in Pinole",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8f435cf6-7ae6-4664-812d-9f0da9a5d7ff",
+      "question": "I'm thinking about finding a salon in Berkeley",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f8095a2e-0b9a-452b-bf34-289cca92d03e",
+      "question": "Are there any salon in Rohnert Park.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "5f00f0a5-c0ee-412f-b5c3-cef2dafa8529",
+      "question": "I need to find something interesting to do on the 10th of march 2023. I really like drama, and i'm looking for something in the Chicago area.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "fc332e73-8a1d-49b4-8000-877ea24e343c",
+      "question": "Attend a Theater event in Palo Alto, CA on 2023-03-13.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "671c3076-16ea-427e-bec9-71a8cc3ef467",
+      "question": "get a Music event happening in San Diego on 2023-05-02?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8e590f9e-ba4b-4643-b5e1-99654f08390a",
+      "question": "Find a Theater event in Chicago on 2023-5-2?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "4b0defa3-94fd-4243-9e75-eb57389ff526",
+      "question": "Find a theater event happening next Monday 2023.10.2 in Chicago, IL? I'm interested in a play or a similar cultural activity.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "de888523-a53f-41a6-a12c-36a3ae7e81cc",
+      "question": "I'm looking to attend a music concert in Toronto. Find one for me that's happening this Saturday 2023.10.2?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "82e01e11-1040-4984-95ba-1640a2587f3e",
+      "question": "Find me a Theater event in London for tonight 2023.10.02? I'm a fan of Broadway shows like the ones in New York.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "eab4da5e-dfe4-4a80-a662-e4c9156dd925",
+      "question": "I'm looking for a theater event in London, UK on Apr the 5th.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2700bbfb-eb5c-4d57-8ef5-135e8d714c74",
+      "question": "Book a Regular cab that has 1 seat for me to go to China Station Restaurant, 123 Beijing Street, San Francisco?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7ee8ac6c-a615-470e-890b-0a704bef06cf",
+      "question": "I need a cab to 123 Main St, Anytown, Anystate with 2 seats luxary.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "421bc068-d0e2-42d6-8dc7-623a2f5c3c26",
+      "question": "Can you find me a taxi to take me to 2508 University Avenue, Palo Alto, CA .",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "62472b28-c74b-4e8c-84ad-11a79bfc9c58",
+      "question": "I would like to find a regular cab to 540 El Camino Real.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "4b1c7c88-8202-4c48-8a94-a63315a115b9",
+      "question": "I need a Shared ride for 2. The destination is the Park Branham Apartments.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "36b8abb4-8f78-4682-87a2-0ae0d69e3ac7",
+      "question": "i need to travel , find me a cab? i want a ride to Bowl & Plate at White Shallot.Number of passenger is 1 and i prefer a Pool ride.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "1d8c2933-cdbf-4ca5-97f9-722f2b66e23b",
+      "question": "I need to catch a cab, but the information I'm getting is a bit sketchy right now. So far, the address where I need to go is 3236 Grand Avenue, and the most comfortable mode of travel would be appreciated. Can you start working through this with me?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "fdd44eb8-e415-4c6d-a2ae-155fcc9a3856",
+      "question": "Are there any Cartoon movies showing at imax in Union City?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "86d2be8b-8f81-42b2-8d67-41000d68d576",
+      "question": "Hey. Could you assist me in getting two tickets for 'The Grand Adventure' next Wednesday 2023.11.15 in Santa Rosa, CA for the 5:30pm show?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8b4da6fc-a634-48f3-bd70-6203a90e4d40",
+      "question": "I'd like to purchase 2 tickets for 'After The Wedding' showing on 2023-04-22 at 19:00 in Berkeley.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d586a984-d45d-415d-805a-395a4a0f6cf9",
+      "question": "Find movies playing in Newark, NJ next Wednesday 2023-10-02? I'm planning to purchase tickets.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8b57cf0d-3ab5-4f65-bf30-d65cd7a1ecb5",
+      "question": "Can I purchase 2 tickets for 'Space Adventure' in San Jose, CA, for the midnight show at 23:00 on 2023.10.2?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7017b579-a591-4cee-bfcf-a39dd2af28cc",
+      "question": "I'm interested in seeing a 3D movie at the Raven Film Center in Healdsburg, CA.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "86ea05a1-69b4-4bf2-a1c7-2e1ac6092eb8",
+      "question": "Would you look in San Jose for some movies to see?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7c1d5730-405c-407f-8fa4-bcab83fca48a",
+      "question": "Can you help me purchase two tickets for 'Space Adventure' on 2023 April 15th at 19:30 in New York?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "a0038623-d5cb-454f-ae1b-6050b641e03b",
+      "question": "I would like a regular drama movie at Regal Crow Canyon.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c98a3368-261e-404f-9a8b-03a363a19d64",
+      "question": "I want to see the latest Marvel movie on 2023-10-06 in Los Angeles. Can I get three tickets for a 19:00 show?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e866e28d-1b76-44bf-b2bd-19d45c86d67c",
+      "question": "I am interested in going for a movie in mountain view. Can you help in this?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c75b923a-7fa2-4577-ac4b-c346a2b67cce",
+      "question": "I am interested in seeing an Imax show, preferrably a cartoon movie. Would you search for this in Santa Rosa?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ce4be3ae-a447-4578-ba32-3991ea248c4b",
+      "question": "Hi, I'm looking to watch 'The Last Adventure' tonight. Find me two tickets for a show around 8:30 pm in San Francisco?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "46eb8fc9-696d-48bf-881f-b947c3afcc0b",
+      "question": "I would liek to watch a Scientific fiction in San Bruno at Century at Tanforan and XD.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "3da60b58-1f09-4764-bcb8-7ec10b96d1af",
+      "question": "I want to watch the regular showing of Ad Astra at Berkeley tonight. I want to watch the showing at night 9 pm-ish",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "207a5bd8-5d6d-4f73-85d7-852c0fac8130",
+      "question": "Hi, I'm looking to watch an imaginative fiction movie in regular format this weekend in Hayward, CA.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d6caf852-75db-4cd9-8820-df7a1747cd69",
+      "question": "I want to spend my free time by watching a nice Movie like the one with Dramatic Story. Can you find something for me and I want to watch it at Century 20 Oakridge and XD.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7bbecc1a-ec74-4807-89e4-ff5494b34801",
+      "question": "I'm looking to relax this weekend. Find movies playing in Berkeley, preferably in the Sci-fi genre and shown as IMAX?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "6d8c5fe7-a58d-45d0-ba90-55163b32a954",
+      "question": "Buy 4 tickets for 'Toy Story 4' in Los Angeles for the show on 2023-06-15 at 14:00?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "83644085-3f61-4a60-9b0c-9e99f19990a9",
+      "question": "I want to purchase 3 tickets for the 'Eternal Warriors' movie in Los Angeles for the showing on 2023-04-15 at 19:00.?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "034406d1-ebea-4851-9d56-82663a395ed7",
+      "question": "I'm after an Imax film at Century Blackhawk Plaza in Danville can you tell me whats on?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "aa99f44d-bbdd-4c2e-9cc8-1bae860b2565",
+      "question": "I'd like to purchase 2 tickets for 'Once Upon a Time In Hollywood' on the 15th of April, 2023, showing at 19:00 in Los Angeles.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "96ed943f-d89c-4ba0-842d-cf9dfe3c40c8",
+      "question": "Search for me movies shown in Napa.I would like to watch at Century Napa Valley and XD.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e83d04ab-26be-42e8-8cde-56c2a6de8dec",
+      "question": "I need to rent a car in Los Angeles, from March 9th to March 10th 2023. I'd prefer a Sedan. I want to pick up at 9 am. Check the availability for me.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f9be3a62-e9e8-4bd3-909c-4dd2a503d78b",
+      "question": "I need to rent a car in Los Angeles, find options for a sedan available from 2023 April 21st to April 25th, with pickup and return times at 10:00 AM?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "65c74be3-b5e1-4a02-a115-021ded428f17",
+      "question": "Check for available rental cars in Portland, OR, from April 22, starting at 10:00 AM until April 27, 2023?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "1b2c40bc-4c24-4dc3-97f5-df0aa92f755b",
+      "question": "Hi, Find available rental cars in Los Angeles, starting from May 5th at 12:30 PM and ending on May 11th 2023?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "545a3b0a-0d93-4095-a08a-247d0c09d281",
+      "question": "I'm traveling to Los Angeles next Monday and will need a car. let me know the options for rent cars available in Los Angeles, starting from the date 2023-04-24 at 10:00 AM and ending on 2023-04-28?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "4bb9ac57-cc26-457e-b875-4c9dfdacb243",
+      "question": "I'm travelling for work on business and need to find train tickets from Sacramento to Fresno on the 10th of March 2023.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "87076a8f-b96d-444d-b32e-30eadc130e3e",
+      "question": "I need a therapist for my family in berkeley.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "849f60f9-3d27-4b9d-9978-ca2c7d02324f",
+      "question": "Hello! Help me find therapists specialized in Family Counseling in Los Altos?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "cdf15a3c-fcac-4cd2-b8ed-71ad605f1ef9",
+      "question": "Please help me find a therapist practicing in Campbell for my mental health issues.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "9fc1d786-ff29-4f80-a4cf-6eccfe54a82c",
+      "question": "Please find me a therapist in Pittsburg that is a psychiatrist.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "12ac425e-61a4-4b39-8bf6-c948226bb3f8",
+      "question": "Can you find me a Family Counselor in Los Gatos?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "47a1403b-fa8d-4ae2-89c9-6da8bb104b08",
+      "question": "I am looking for a Psychiatrist in Santa Rosa.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "70cedf17-7b3b-4eff-ac9b-1fca80379116",
+      "question": "I can't figure out why my dreams are so scary lately. I think I'll go to a therapist. Would you help me locate a Psychologist in Vacaville, please?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "9cbb9338-1f13-4e77-898f-431f2101a211",
+      "question": "I need to see if there is a therapist in Novato.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d7c53b96-2dd9-439d-9c23-cb42f0d5cd91",
+      "question": "Hello, I am in need of a family therapist in the St. Helena area.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "df0c1856-c9e3-4086-a629-cbaed342f7cc",
+      "question": "Find a roundtrip flight from JFK to LAX, departing on April 15th and returning on April 22nd 2023? I'd like to fly Business class and have no airline preference.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7a0d842b-d0c6-45ca-8827-7b45ec402ac4",
+      "question": "get a list of attractions in Paris that are suitable for children?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "0ba9bb9e-457e-4c8c-81d8-dcc442f39f55",
+      "question": "I'm planning a vacation and need to fly roundtrip from Atlanta, GA to Boston, MA. Find flights that depart on the 12th of march 2023 and return a week later?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "47207221-e048-497a-885f-23d22bac3c5f",
+      "question": "What Museum is best in New York City, free to enter and suitable for kids?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c5e1ea69-8dc2-4b40-96c7-c648b72b50ec",
+      "question": "I'm looking for something to do with my grandchildren in San Francisco. Hopefully something that's free.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8e474bf5-e37d-4cc2-8a31-d8b28488ef52",
+      "question": "Can you find me a list of museums suitable for children in London, England, with no entry fees?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b6f05e0a-6b6d-46a6-a2d3-af138b6c076c",
+      "question": "Search for free entry gardens suitable for a short trip in London, UK?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b30e4508-9ec2-458c-820d-51baed9c6c11",
+      "question": "Hi, are there any free performance venue I can visit in London?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "a727d778-190c-4a58-b7ce-e28e8c424767",
+      "question": "Will you find child-friendly attractions to visit in Paris, France?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7f591ec4-93e6-4492-82a7-20963e99ae53",
+      "question": "I'm planning to visit Paris, and I'd like to find attractions that are suitable for children and have no entry fee.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8249fc40-c5c9-4782-b28c-02df0bb18c62",
+      "question": "I have some leisure time and I'm planning to visit Berlin. Find me some attractions there that are particularly good for kids and have free entry?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ccf2a6b1-d2f1-43c8-a6b1-51863401bbd9",
+      "question": "Can you find me a list of parks in New York that have free entry and are suitable for children?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "31d6deeb-c26d-43eb-a0a9-cae01cc9d981",
+      "question": "Could you search for shopping areas suitable for a family outing in Paris, and let me know if there's no entry fee?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "0306cb03-cade-4249-9c56-659c7f4d441a",
+      "question": "Can you find me a roundtrip flight from San Francisco to Atlanta, departing on the 2023 1st of March and coming back on the 6th of March, with American Airlines and in Economy class?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e94def06-246c-413f-869c-bb07476d3108",
+      "question": "Can you find me a tourist attraction in Philadelphia that has no entry fee?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "5ad3f9aa-fa9a-495a-847a-0c85e1083634",
+      "question": "Can you search for a Theme Park in Orlanda that's great for kids and has no entry fee?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "82cf9103-0121-47fe-af7c-66edc5aed3f6",
+      "question": "Find me a one-way economy class flight from JFK to LAX departing on the 6th of October?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2ce11417-f183-470e-9b1f-a9561b88d44d",
+      "question": "Find me attractions in New York that are shopping areas, free, and kids friendly?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f69cab6f-d3ec-4f65-974d-6e36a76faeb8",
+      "question": "Can you find me a historical landmark to visit in Portland, that's suitable for kids but need fee to entry?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "cc281ccd-914c-4a6f-a36e-f18e8a8ba8f0",
+      "question": "Retrieve a list of attractions in Seattle that are suitable for children?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "dc1d07ca-ba24-4f71-927a-5ad9c974539b",
+      "question": "I'm looking to visit a park in Toronto that's suitable for children. Find one for me, and I don't mind if there's an entry fee.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "b217a098-a785-436c-a5e9-259623e48b3b",
+      "question": "Can you search for attractions in Paris that are suitable for children and have free entry?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "4ec575a8-86a2-4f07-bcf7-f06df6032dfa",
+      "question": "Can you search for roundtrip flights from JFK to LAX, departing on April 15th and returning on April 22nd 2023?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2917d648-c004-40a0-bcff-0fee54bdf65c",
+      "question": "I'm planning a trip to Chicago with my family. Can you find attractions kids friendly in that city?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "8201797a-ecfd-439d-bfac-d96db9a2f6e7",
+      "question": "Find me a museum to visit in New York? I prefer it to be free for entry.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "c094a013-65d9-4fed-9951-c6d13cd1edfc",
+      "question": "I'm interested in visiting a museum with my kids in Paris, and I'd prefer if it has no entry fee.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ec30051c-462d-4533-a0f1-794ccc71a70a",
+      "question": "Find some Electropop songs that were released in 2019?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "5d1003db-016d-49cd-9883-c6ae7ac6f0fd",
+      "question": "I'm in the mood for some Electropop music from around 2014. Find some please",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "65d87c3c-a37d-4e30-bdc8-3f245e83f005",
+      "question": "I want to find a song now, and I know that there are some really good songs in the album called We Are Not Your Kind, I enjoy Rock-and-roll songs which are from the '19.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "31d24f75-102e-4edb-a48e-fff89fbda904",
+      "question": "Hey, I feel like listening to some tunes right now. Can you find me something from 2021?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "9ae139a9-0ed5-4805-a024-fc760f66a9c7",
+      "question": "Hello, I am hoping you can help me find some songs from the Electropop genre that were released in 2014.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "e92f42ab-0d7f-413a-b840-d3c1bd270d46",
+      "question": "Can you play my favorite track Summer Vibes by DJ Sunny in the kitchen, please?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "332342b4-8883-4d39-afdc-4dac1619171c",
+      "question": "Can you find me some songs from the album High Expectations released in 2019?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "551547bb-b5fb-46ae-90d4-6aebb82ed64d",
+      "question": "Find me some Reggaeton tracks to choose from?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "649d9c53-0109-4cd7-8cdf-7877e34fb2e4",
+      "question": "Hey, I'm in the mood for music from the album This Is Acting and I really enjoy Sia. Can you find me tracks from that album and by that artist? Additionally, I'd like to hear some Pop genre songs.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "7544438f-49e0-4f5e-bb54-8596a9987ed5",
+      "question": "Find songs similar to those on the album 'The New Classic' Additionally, I'd like to explore tracks released around six years ago. This year is 2023",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "6bb25c82-5b95-44ea-a3cb-53e7deef766b",
+      "question": "Can you check for any available trains from New York, NY to Los Angeles on April 25th, 2023?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "2b844b5f-9c81-4861-ab3d-2c4504fc38ca",
+      "question": "Could you reserve tickets for two adults for a train ride from New York, NY to Los Angeles on April 23, 2023, starting at 10:00 AM without trip protection and in business class?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "bcc8ef8c-451e-4bd5-a2cc-f11496550a3c",
+      "question": "Can you book Business class train tickets for two adults from New York, NY to Sacramento on March 13th, with trip protection included?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "d4e6b442-8745-4e68-b651-4f37fd72d128",
+      "question": "I'm looking to book a train journey from Portland, OR to Seattle, WA on April 22nd. Can we find the available trains for that day?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "0987671b-f198-45c1-a52c-a59798c7200e",
+      "question": "Can you book a train ticket for me from New York, NY to Phoenix, AZ on April 23rd, 2023, leaving at 13:45 for one adult, without trip protection?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "51249319-b0c5-404e-bab0-a4b8134bb033",
+      "question": "Can you find me a Theater event in Chicago for the date 2023-04-29?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "38516f90-3d5c-4d22-a71e-eee86a98348c",
+      "question": "find a Music event happening in Berkeley, CA on 2023-05-12?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "31b4176c-2606-4b9a-bcb8-4dcf98270a5c",
+      "question": "I have a day off on the 10th march 2023, and I'm interested in attending a music event in Berkeley, CA.",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "130b10f2-3a98-4e61-a344-bcd8df3de240",
+      "question": "I'm looking to attend a theater event in New York. Find me some plays happening on 2023.4.15?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "235cc1ec-ff57-4879-9e9c-60784b4bb0b0",
+      "question": "I'm interested in finding a Music event in New York on the date 2023.4.15. Could you provide some options?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "5900d70b-c9c7-4fe9-b640-7a0c8039e21a",
+      "question": "I'm looking for a Music event in New York for today. Can you find one for me?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "f8fdec6e-d7a5-4db0-bd07-1ec15295d867",
+      "question": "Find a music event in New York on the 25th of march 2023? today is march 15th",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "370cadc4-62cc-4e6a-94d7-542b862a46c1",
+      "question": "Can you find any Theater events happening in Oakland, CA on 2023.4.11?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "ba564899-36b8-4250-8809-4600b39bef42",
+      "question": "Find me a music event happening in New York on the 1st of march?",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    },
+    {
+      "id": "0c218f36-1f23-4e65-a18d-119aad05ff50",
+      "question": "I'm interested in attending a music event in New York. Find me one that's happening on the 9th of march 2023? today is march 1st 2023",
+      "ground_truth_action": "abstain_cannot_answer",
+      "original_answer": "cannot_answer",
+      "is_abstention": true
+    }
+  ]
+}

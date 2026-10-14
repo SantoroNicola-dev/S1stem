@@ -1,0 +1,336 @@
+{
+  "metadata": {
+    "timestamp": "2026-10-14T19:50:53.423Z",
+    "hostname": "BlackRock",
+    "platform": "win32",
+    "cpuModel": "Snapdragon(R) X 12-core X1E80100 @ 3.40 GHz",
+    "nodeVersion": "v24.13.0",
+    "samplesPerSource": 100,
+    "seed": 42,
+    "heldOutTestCount": 612,
+    "contaminatedDevCount": 4
+  },
+  "headlineTestResults": {
+    "s1stem": {
+      "name": "S1stem v1.2.0 (BGE-Base CLM)",
+      "runtime": "Local WebGPU / ONNX (In-Process CPU/GPU)",
+      "accuracy": 65.5,
+      "wilsonCi95": [
+        61.7,
+        69.2
+      ],
+      "correct": 401,
+      "total": 612,
+      "latency": {
+        "min": 6.2,
+        "p50": 10.4,
+        "p90": 20.86,
+        "p95": 27.3,
+        "p99": 58.84,
+        "max": 190.09,
+        "mean": 13.23
+      },
+      "calibration": {
+        "ece": 0.0692,
+        "brier": 0.1583,
+        "score": 93.1
+      },
+      "flipRate": 0,
+      "orderShuffleFlips": 0,
+      "costUsdTotal": 0,
+      "costPer1k": 0
+    },
+    "microsoft_decision_1": {
+      "name": "Microsoft-Decision-1",
+      "runtime": "Azure Foundry SystemOne Decision API",
+      "accuracy": 76.6,
+      "wilsonCi95": [
+        73.1,
+        79.8
+      ],
+      "correct": 469,
+      "total": 612,
+      "latency": {
+        "min": 128.74,
+        "p50": 152.25,
+        "p90": 307.36,
+        "p95": 419.97,
+        "p99": 10165.24,
+        "max": 10694.84,
+        "mean": 372.47
+      },
+      "calibration": {
+        "ece": 0.1608,
+        "brier": 0.1861,
+        "score": 83.9
+      },
+      "flipRate": 0,
+      "orderShuffleFlips": 0,
+      "mcNemarVsS1stem": {
+        "bothCorrect": 386,
+        "modelACorrectOnly": 15,
+        "modelBCorrectOnly": 83,
+        "bothWrong": 128,
+        "discordantPairs": 98,
+        "chi2": 45.806,
+        "pValue": 0,
+        "isSignificant": true
+      },
+      "costUsdTotal": 0.025704,
+      "costPer1k": 0.042
+    },
+    "gpt_6_luna": {
+      "name": "gpt-6-luna",
+      "runtime": "Azure Foundry OpenAI Responses API",
+      "accuracy": 75.8,
+      "wilsonCi95": [
+        72.3,
+        79
+      ],
+      "correct": 464,
+      "total": 612,
+      "latency": {
+        "min": 626.89,
+        "p50": 1364.91,
+        "p90": 2029.74,
+        "p95": 2442.22,
+        "p99": 5385.8,
+        "max": 22080.17,
+        "mean": 1539.65
+      },
+      "calibration": "N/A",
+      "flipRate": 5.7,
+      "orderShuffleFlips": 1,
+      "contentFilteredCount": 2,
+      "mcNemarVsS1stem": {
+        "bothCorrect": 380,
+        "modelACorrectOnly": 21,
+        "modelBCorrectOnly": 84,
+        "bothWrong": 127,
+        "discordantPairs": 105,
+        "chi2": 36.61,
+        "pValue": 0,
+        "isSignificant": true
+      },
+      "costUsdTotal": 0.024144,
+      "costPer1k": 0.0395
+    },
+    "gpt_6_1_sol": {
+      "name": "gpt-6.1-sol",
+      "runtime": "Azure Foundry OpenAI Chat Completions API",
+      "accuracy": 70.4,
+      "wilsonCi95": [
+        66.7,
+        73.9
+      ],
+      "correct": 431,
+      "total": 612,
+      "latency": {
+        "min": 939.19,
+        "p50": 1703.68,
+        "p90": 5362.66,
+        "p95": 7049.41,
+        "p99": 15009.28,
+        "max": 17282.97,
+        "mean": 2625.23
+      },
+      "calibration": "N/A (Generative output without calibrated probabilities)",
+      "flipRate": 2.9,
+      "orderShuffleFlips": 0,
+      "contentFilteredCount": 2,
+      "mcNemarVsS1stem": {
+        "bothCorrect": 350,
+        "modelACorrectOnly": 51,
+        "modelBCorrectOnly": 81,
+        "bothWrong": 130,
+        "discordantPairs": 132,
+        "chi2": 6.371,
+        "pValue": 0.0116,
+        "isSignificant": true
+      },
+      "costUsdTotal": 0.428866,
+      "costPer1k": 0.701
+    }
+  },
+  "contaminatedDevSetResults": {
+    "warning": "Contains environmental cues matching internal heuristics. Reported solely for transparency.",
+    "count": 4,
+    "s1stemAccuracy": 100,
+    "decision1Accuracy": 100,
+    "lunaAccuracy": 100,
+    "gpt6Accuracy": 100
+  },
+  "scalabilityProbe": [
+    {
+      "K": 32,
+      "target": "tool_16",
+      "s1stem": {
+        "status": "Supported",
+        "registrationMs": 172,
+        "latencyMs": 7.04,
+        "isCorrect": true
+      },
+      "decision1": {
+        "status": "Supported",
+        "latencyMs": 170.17,
+        "isCorrect": true
+      },
+      "luna": {
+        "status": "Supported",
+        "latencyMs": 1494.17,
+        "costUsd": 0.000074,
+        "isCorrect": false
+      },
+      "gpt": {
+        "status": "Supported",
+        "latencyMs": 1372.84,
+        "costUsd": 0.00168,
+        "isCorrect": true
+      }
+    },
+    {
+      "K": 64,
+      "target": "tool_32",
+      "s1stem": {
+        "status": "Supported",
+        "registrationMs": 297.1,
+        "latencyMs": 7.27,
+        "isCorrect": true
+      },
+      "decision1": {
+        "status": "Supported",
+        "latencyMs": 171.83,
+        "isCorrect": true
+      },
+      "luna": {
+        "status": "Supported",
+        "latencyMs": 1254.81,
+        "costUsd": 0.0001332,
+        "isCorrect": false
+      },
+      "gpt": {
+        "status": "Supported",
+        "latencyMs": 1886.29,
+        "costUsd": 0.00312,
+        "isCorrect": true
+      }
+    },
+    {
+      "K": 128,
+      "target": "tool_64",
+      "s1stem": {
+        "status": "Supported",
+        "registrationMs": 534.7,
+        "latencyMs": 7.41,
+        "isCorrect": true
+      },
+      "decision1": {
+        "status": "Supported",
+        "latencyMs": 183.51,
+        "isCorrect": true
+      },
+      "luna": {
+        "status": "Supported",
+        "latencyMs": 1532.88,
+        "costUsd": 0.000254,
+        "isCorrect": false
+      },
+      "gpt": {
+        "status": "Skipped",
+        "reason": "High prompt token explosion (> 3200 tokens, severe latency and cost)"
+      }
+    },
+    {
+      "K": 255,
+      "target": "tool_127",
+      "s1stem": {
+        "status": "Supported",
+        "registrationMs": 875.8,
+        "latencyMs": 10.45,
+        "isCorrect": true
+      },
+      "decision1": {
+        "status": "Supported",
+        "latencyMs": 286.54,
+        "isCorrect": true
+      },
+      "luna": {
+        "status": "Skipped",
+        "reason": "High prompt token explosion on Responses API (> 5100 tokens)"
+      },
+      "gpt": {
+        "status": "Skipped",
+        "reason": "High prompt token explosion (> 6375 tokens, severe latency and cost)"
+      }
+    },
+    {
+      "K": 256,
+      "target": "tool_128",
+      "s1stem": {
+        "status": "Supported",
+        "registrationMs": 951.9,
+        "latencyMs": 9.93,
+        "isCorrect": true
+      },
+      "decision1": {
+        "status": "BLOCKED",
+        "error": "HTTP 400: {\"error\":{\"code\":\"unsupported_request_argument\",\"message\":\"Model does not support request argument supplied: choice question decision requires 2-255 options\",\"details\":\"Model does not support request argument supplied: choice question decision requires 2-255 options\"}}",
+        "isLimit": true
+      },
+      "luna": {
+        "status": "Skipped",
+        "reason": "High prompt token explosion on Responses API (> 5120 tokens)"
+      },
+      "gpt": {
+        "status": "Skipped",
+        "reason": "High prompt token explosion (> 6400 tokens, severe latency and cost)"
+      }
+    },
+    {
+      "K": 1024,
+      "target": "tool_512",
+      "s1stem": {
+        "status": "Supported",
+        "registrationMs": 4137.7,
+        "latencyMs": 37.09,
+        "isCorrect": true
+      },
+      "decision1": {
+        "status": "BLOCKED",
+        "error": "HTTP 400: {\"error\":{\"code\":\"unsupported_request_argument\",\"message\":\"Model does not support request argument supplied: choice question decision requires 2-255 options\",\"details\":\"Model does not support request argument supplied: choice question decision requires 2-255 options\"}}",
+        "isLimit": true
+      },
+      "luna": {
+        "status": "Skipped",
+        "reason": "High prompt token explosion on Responses API (> 20480 tokens)"
+      },
+      "gpt": {
+        "status": "Skipped",
+        "reason": "High prompt token explosion (> 25600 tokens, severe latency and cost)"
+      }
+    },
+    {
+      "K": 3000,
+      "target": "tool_1500",
+      "s1stem": {
+        "status": "Supported",
+        "registrationMs": 12937.4,
+        "latencyMs": 35.06,
+        "isCorrect": true
+      },
+      "decision1": {
+        "status": "BLOCKED",
+        "error": "HTTP 400: {\"error\":{\"code\":\"unsupported_request_argument\",\"message\":\"Model does not support request argument supplied: choice question decision requires 2-255 options\",\"details\":\"Model does not support request argument supplied: choice question decision requires 2-255 options\"}}",
+        "isLimit": true
+      },
+      "luna": {
+        "status": "Skipped",
+        "reason": "High prompt token explosion on Responses API (> 60000 tokens)"
+      },
+      "gpt": {
+        "status": "Skipped",
+        "reason": "High prompt token explosion (> 75000 tokens, severe latency and cost)"
+      }
+    }
+  ]
+}

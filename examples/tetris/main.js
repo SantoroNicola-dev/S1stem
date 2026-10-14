@@ -25,6 +25,8 @@ let activeTargetPlacement = null;
 let activeDecision = null;
 let activePrompt = '';
 
+let currentEvaluationMode = 'visual'; // 'visual' | 'text'
+
 // DOM Elements
 const canvas = document.getElementById('tetris-canvas');
 const nextCanvas = document.getElementById('next-piece-canvas');
@@ -41,8 +43,20 @@ const promptDisplay = document.getElementById('prompt-display');
 const btnToggle = document.getElementById('btn-toggle-play');
 const btnStep = document.getElementById('btn-step-frame');
 const btnReset = document.getElementById('btn-reset-game');
+const btnModeToggle = document.getElementById('btn-mode-toggle');
 const speedSlider = document.getElementById('speed-slider');
 const speedLabel = document.getElementById('speed-val');
+
+if (btnModeToggle) {
+  btnModeToggle.addEventListener('click', () => {
+    currentEvaluationMode = currentEvaluationMode === 'visual' ? 'text' : 'visual';
+    btnModeToggle.textContent = currentEvaluationMode === 'visual' ? '👁️ Visual Frame' : '📝 Text State';
+    const badge = document.getElementById('ai-status-badge');
+    if (badge) {
+      badge.textContent = currentEvaluationMode === 'visual' ? 'QWEN3.5 VISION' : 'QWEN3.5 TEXT';
+    }
+  });
+}
 
 // Next Piece Rendering
 function renderNextPiece() {
@@ -256,8 +270,12 @@ async function stepSimulation() {
       );
     });
 
-    // Sub-millisecond contrastive decision (<0.20 ms)
-    activeDecision = await s1.choice(activePrompt, { biases });
+    // Evaluate placement with S1stem v1.1.0 (Qwen3.5 VLM)
+    if (currentEvaluationMode === 'visual') {
+      activeDecision = await s1.choice(canvas, { text: activePrompt, biases });
+    } else {
+      activeDecision = await s1.choice(activePrompt, { biases });
+    }
     activeTargetPlacement = activeDecision.selectedAction;
 
     updateTelemetry(activeDecision, candidates.length, activePrompt);

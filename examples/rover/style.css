@@ -1,0 +1,96 @@
+/* ==========================================================================
+   Cyber-Rover S1stem-CDR Lab Workbench Styles (Integrates with ../theme.css)
+   ========================================================================== */
+
+/* Canvas Container */
+.canvas-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  border: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+canvas#rover-canvas {
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 19 / 22;
+  border-radius: var(--radius-sm);
+  display: block;
+  background: #000;
+}
+
+/* Tactical Safety Index Gauge */
+.safety-gauge-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.safety-score-val {
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--accent-emerald);
+}
+
+.safety-stars {
+  display: flex;
+  gap: 4px;
+}
+
+.safety-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  transition: all 0.2s ease;
+}
+
+.safety-dot.active {
+  background: var(--accent-emerald);
+  border-color: var(--accent-emerald);
+  box-shadow: 0 0 6px rgba(63, 185, 80, 0.4);
+}
+
+/* Sentry Sensor Strip */
+.sentry-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.sentry-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-left: 3px solid var(--text-dim);
+}
+
+.sentry-name {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.sentry-dist {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--text-muted);
+}
+
+.sentry-state-tag {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}

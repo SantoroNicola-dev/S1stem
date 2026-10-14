@@ -1,0 +1,25 @@
+{
+  "azure_foundry": {
+    "endpoint": "https://<your-foundry-resource>.services.ai.azure.com",
+    "api_key": "YOUR_AZURE_FOUNDRY_API_KEY",
+    "gpt_6_1_sol": {
+      "deployment_name": "gpt-6.1-sol",
+      "path": "/openai/v1/chat/completions"
+    },
+    "microsoft_decision_1": {
+      "deployment_name": "decision-1",
+      "path": "/providers/microsoft/v1/systemone"
+    },
+    "gpt_6_luna": {
+      "deployment_name": "gpt-6-luna",
+      "path": "/openai/v1/responses"
+    }
+  },
+  "s1stem": {
+    "temperature": 0.04
+  },
+  "benchmark_settings": {
+    "default_samples": 50,
+    "timeout_ms": 30000
+  }
+}

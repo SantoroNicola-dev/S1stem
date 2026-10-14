@@ -77,9 +77,9 @@ export class NerdTelemetry {
         <span class="nerd-stat-sub">s&top;a / &tau; (&tau;=${this.temperature.toFixed(2)})</span>
       </div>
       <div class="nerd-stat-card">
-        <span class="nerd-stat-label">HYPERSPHERE</span>
-        <span class="nerd-stat-val cyan">&real;${this.stateDim} &rarr; &real;${this.projDim}</span>
-        <span class="nerd-stat-sub">&Sopf;${this.projDim - 1} (L&sup2;=1.000)</span>
+        <span class="nerd-stat-label">VLM BACKBONE</span>
+        <span class="nerd-stat-val cyan">Qwen3.5-0.8B</span>
+        <span class="nerd-stat-sub">WebGPU INT4 (Edge Inference)</span>
       </div>
     `;
   }

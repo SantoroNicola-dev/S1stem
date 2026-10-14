@@ -42,3 +42,8 @@ __pycache__/
 *$py.class
 .pytest_cache/
 
+# Benchmark subproject & competitor cloud credentials
+Benchmark/config.json
+
+# Antigravity Workspace Customizations (Local Skills, Rules, and Prompts)
+.agents/

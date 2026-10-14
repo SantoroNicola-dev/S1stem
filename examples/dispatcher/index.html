@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent Dispatcher // S1stem-CDR Autonomous Tool & Security Arbiter</title>
+  <meta name="description" content="Interactive AI Agent Tool Dispatcher and Security Arbiter powered by S1stem-CDR real local neural two-tower CLM engine." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <script src="../theme.js"></script>
+  <script>
+    if (window.location.protocol === 'file:') {
+      document.addEventListener('DOMContentLoaded', () => {
+        const b = document.createElement('div');
+        b.style.cssText = 'background:#2d1d03;color:#f0f6fc;padding:10px 16px;font-size:12.5px;text-align:center;border-bottom:1px solid #d29922;font-family:sans-serif;z-index:99999;position:relative;';
+        b.innerHTML = '<strong>Local file:// protocol detected:</strong> ES Modules require a local HTTP server (CORS). Run <code>npm start</code> or <code>npx serve .</code> and open <a href="http://localhost:8080/examples/dispatcher/index.html" style="color:#58a6ff;font-weight:700;">http://localhost:8080/examples/dispatcher/index.html</a>.';
+        document.body.prepend(b);
+      });
+    }
+  </script>
+</head>
+<body>
+  <!-- Unified Microsoft Command Line Navigation Header -->
+  <header class="top-nav">
+    <div class="nav-inner">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <a href="../tetris/index.html" class="ms-brand">
+          <span class="cli-prompt">&gt;_</span>
+          <span>Command Line</span>
+        </a>
+        <span class="brand-tagline-ms">By builders, for builders.</span>
+      </div>
+
+      <nav class="example-nav">
+        <a href="../tetris/index.html" class="nav-link">Tetris AI</a>
+        <a href="../snake/index.html" class="nav-link">Snake AI</a>
+        <a href="../rover/index.html" class="nav-link">Rover AI</a>
+        <a href="../dispatcher/index.html" class="nav-link active">Agent Dispatcher</a>
+      </nav>
+
+      <div class="header-badges">
+        <div class="badge-item">
+          <span class="badge-label">ENGINE</span>
+          <span class="badge-val" id="model-status-pill">INITIALIZING...</span>
+        </div>
+        <div class="badge-item">
+          <span class="badge-label">LATENCY</span>
+          <span class="badge-val text-emerald" id="hdr-latency">- ms</span>
+        </div>
+        <div class="badge-item">
+          <span class="badge-label">COST / OP</span>
+          <span class="badge-val text-lime">$0.000</span>
+        </div>
+        <button id="theme-toggle" class="theme-btn" title="Toggle Light/Dark Mode" aria-label="Toggle Light/Dark Theme">
+          <span id="theme-icon">☼</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Split-Pane Workspace -->
+  <main class="workbench-container">
+    
+    <!-- Top Hero Briefing Bar -->
+    <section class="briefing-bar">
+      <div class="briefing-info">
+        <h1 class="briefing-title">Interactive Agent Tool Dispatcher & Security Guard</h1>
+        <p class="briefing-desc">
+          Interactive real-world testbed for <strong>S1stem v1.1.0</strong>: resolves optimal tool selection in real time (sub-10ms), executes safety guardrail verification (Noul), and computes risk level (Score 1-5). Evaluated 100% locally with zero mocks.
+        </p>
+      </div>
+      <div class="briefing-actions">
+        <button id="btn-open-catalog" class="btn btn-outline" title="View or edit registered tools">
+          <span>Manage Tool Space</span> (<span id="btn-tool-count">28</span>)
+        </button>
+        <button id="btn-clear-term" class="btn btn-secondary" title="Clear terminal stream">
+          Clear Terminal
+        </button>
+      </div>
+    </section>
+
+    <!-- Split Workspace -->
+    <div class="split-workspace">
+      
+      <!-- Left Pane: Interactive REPL Terminal -->
+      <section class="repl-pane">
+        <div class="term-window-header">
+          <div class="term-window-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <div class="term-window-title">s1stem-agent@localhost: ~ (Two-Tower CLM Repl)</div>
+          <div class="term-window-status">
+            <span class="status-indicator live" id="term-live-pulse"></span>
+            <span id="term-status-text">READY</span>
+          </div>
+        </div>
+
+        <div class="terminal-stream" id="terminal-stream" role="log" aria-live="polite">
+          <!-- Welcome Banner injected by JS -->
+        </div>
+
+        <!-- Pure REPL Command Line Prompt Bar -->
+        <form class="terminal-input-bar" id="terminal-form" autocomplete="off">
+          <label for="command-input" class="sr-only">Agent Command Input</label>
+          <span class="prompt-symbol">s1stem-agent&gt;</span>
+          <input 
+            type="text" 
+            id="command-input" 
+            class="command-input" 
+            placeholder="Type any natural language command or instruction (or :help)..." 
+            autofocus 
+            spellcheck="false"
+          />
+          <button type="submit" class="btn-execute" id="btn-execute" title="Execute Decision">
+            <span>RUN</span> ↵
+          </button>
+        </form>
+      </section>
+
+      <!-- Right Pane: Real-Time Neural Telemetry & Action Inspector -->
+      <aside class="telemetry-pane">
+        
+        <!-- Card 1: Winning Decision -->
+        <div class="card decision-card">
+          <div class="card-header">
+            <span class="card-title">DISPATCHED ACTION</span>
+            <span class="badge badge-emerald" id="decision-latency-badge">- ms</span>
+          </div>
+          <div class="card-body">
+            <div class="winner-title-box">
+              <span class="winner-icon" id="winner-icon">⚙</span>
+              <div class="winner-meta">
+                <h2 class="winner-id" id="winner-tool-id">AWAITING_INPUT</h2>
+                <span class="winner-desc" id="winner-tool-desc">Enter a command in the terminal to trigger neural routing.</span>
+              </div>
+            </div>
+            <div class="decision-stats-row">
+              <div class="stat-box">
+                <span class="stat-label">Confidence</span>
+                <span class="stat-val text-emerald" id="winner-conf">- %</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-label">Margin Δ</span>
+                <span class="stat-val" id="winner-margin">-</span>
+              </div>
+              <div class="stat-box">
+                <span class="stat-label">Cost</span>
+                <span class="stat-val text-lime">$0.000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Security Gate (Noul Polar Verification) -->
+        <div class="card security-card">
+          <div class="card-header">
+            <span class="card-title">SECURITY GATE (NOUL)</span>
+            <span class="badge" id="noul-badge">STANDBY</span>
+          </div>
+          <div class="card-body">
+            <div class="security-status-box">
+              <div class="gate-verdict-row">
+                <span class="verdict-label">Execution Authorization:</span>
+                <span class="verdict-val" id="noul-verdict">UNCHECKED</span>
+              </div>
+              <div class="noul-bar-track">
+                <div class="noul-bar-allow" id="noul-bar-allow" style="width: 50%;">ALLOW 50%</div>
+                <div class="noul-bar-flag" id="noul-bar-flag" style="width: 50%;">FLAG 50%</div>
+              </div>
+              <p class="noul-rationale" id="noul-rationale">
+                Noul calibrated polar hypothesis evaluating authorization and risk.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Execution Risk & Impact Rating (Score 1-5) -->
+        <div class="card risk-card">
+          <div class="card-header">
+            <span class="card-title">IMPACT LEVEL (SCORE 1–5)</span>
+            <span class="risk-score-pill" id="risk-score-val">- / 5</span>
+          </div>
+          <div class="card-body">
+            <div class="risk-dots-row" id="risk-dots-container">
+              <span class="risk-dot" data-level="1"></span>
+              <span class="risk-dot" data-level="2"></span>
+              <span class="risk-dot" data-level="3"></span>
+              <span class="risk-dot" data-level="4"></span>
+              <span class="risk-dot" data-level="5"></span>
+            </div>
+            <div class="risk-label-text" id="risk-label-text">
+              1 = Routine Read-Only | 5 = Irreversible Production Risk
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Action Softmax Distribution Ranking -->
+        <div class="card ranking-card">
+          <div class="card-header">
+            <span class="card-title">TOP CANDIDATE ALTERNATIVES</span>
+            <span class="card-sub" id="ranking-action-count">28 Actions</span>
+          </div>
+          <div class="card-body">
+            <div class="ranking-bars-list" id="ranking-bars-list">
+              <div class="placeholder-text">Softmax distribution will render upon execution.</div>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Modal: Tool Space Manager & Custom Tool Importer -->
+  <div class="modal-overlay" id="tool-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Registered Action Candidates (<span id="modal-tool-count">28</span>)</h3>
+        <button class="modal-close-btn" id="btn-close-modal" aria-label="Close Modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        
+        <!-- Tab Controls inside Modal -->
+        <div class="modal-tabs">
+          <button class="modal-tab-btn active" id="tab-btn-view">Browse Active Tools</button>
+          <button class="modal-tab-btn" id="tab-btn-add">+ Add Custom Tool</button>
+          <button class="modal-tab-btn" id="tab-btn-json">Import JSON Manifest</button>
+        </div>
+
+        <!-- Tab 1: Browse Active Tools -->
+        <div class="modal-tab-pane active" id="tab-pane-view">
+          <div class="tool-search-bar">
+            <input type="text" id="tool-search-input" class="tool-search-input" placeholder="Search tool by name, label or description..." />
+          </div>
+          <div class="tool-catalog-list" id="modal-tool-list">
+            <!-- Dynamic tools list -->
+          </div>
+        </div>
+
+        <!-- Tab 2: Add Single Custom Tool -->
+        <div class="modal-tab-pane" id="tab-pane-add">
+          <form class="custom-tool-form" id="custom-tool-form">
+            <div class="form-group">
+              <label for="new-tool-id">Tool ID (Identifier)</label>
+              <input type="text" id="new-tool-id" placeholder="e.g. docker_compose_down" required />
+            </div>
+            <div class="form-group">
+              <label for="new-tool-label">Tool Label (Display Name)</label>
+              <input type="text" id="new-tool-label" placeholder="e.g. Docker Compose Down" required />
+            </div>
+            <div class="form-group">
+              <label for="new-tool-desc">Semantic Description (Used for Latent Embedding Matching)</label>
+              <textarea id="new-tool-desc" rows="3" placeholder="Describe what the tool does, its inputs, and operational scope..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" id="btn-save-custom-tool">
+              Register & Re-vectorize Action Space
+            </button>
+          </form>
+        </div>
+
+        <!-- Tab 3: JSON Import -->
+        <div class="modal-tab-pane" id="tab-pane-json">
+          <p class="json-import-hint">
+            Paste a JSON array of tools adhering to the <code>[{ id, label, description }]</code> schema. S1stem will compute latent embeddings in memory instantly.
+          </p>
+          <textarea id="json-import-textarea" class="json-textarea" rows="7" placeholder='[
+  { "id": "my_custom_tool", "label": "My Custom Tool", "description": "Execute specialized logic..." }
+]'></textarea>
+          <div style="margin-top: 12px; display: flex; gap: 8px;">
+            <button class="btn btn-primary" id="btn-apply-json-import">Import & Embed JSON Tools</button>
+            <button class="btn btn-secondary" id="btn-reset-default-tools">Reset to 28 Default Tools</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <span>S1stem v1.1.0 — Real Client-Side Two-Tower CLM Architecture.</span>
+      <span>Evaluated locally on WebGPU/CPU. Zero Token Costs. No Mocks.</span>
+    </div>
+  </footer>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

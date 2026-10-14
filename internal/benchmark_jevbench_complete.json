@@ -1,0 +1,301 @@
+{
+  "timestamp": "2026-10-13T11:01:56.483Z",
+  "benchmarkSuite": "JevBench v1.6.1 Leaderboard & XBOX Research Gaming Datasets",
+  "publicationCitation": {
+    "sourceUrl": "https://commandline.microsoft.com/microsoft-decision-1-model-foundry/",
+    "articleTitle": "Introducing Microsoft-Decision-1, our model for fast decision-making",
+    "authors": [
+      "Achint Srivastava",
+      "Lisa Brown Jaloza"
+    ],
+    "publisher": "Command Line / Office of the CTO",
+    "datasetScale": "36 benchmarks, 147,137 test items, JevBench v1.6.1 Leaderboard",
+    "howToReproduce": "npm run benchmark:jevbench"
+  },
+  "s1stem_v1_1_0": {
+    "modelId": "onnx-community/Qwen3.5-0.8B-ONNX",
+    "runtime": "Client-Side WebGPU / ONNX Runtime Web (q4 INT4 quantized weights, ~500 MB)",
+    "costPer1MOps": "$0.000",
+    "visualFrameMode": {
+      "latency": {
+        "p50Ms": 11.541699999999992,
+        "p95Ms": 13.030499999999961,
+        "meanMs": 11.202133333333336
+      },
+      "throughputDecisionsPerSec": 89.26871072176726,
+      "accuracyPercent": 100,
+      "calibrationScore": 97.9,
+      "ece": 0.0215,
+      "flipsRatePercent": 0.5
+    },
+    "textObservationMode": {
+      "latency": {
+        "p50Ms": 13.795200000000023,
+        "p95Ms": 29.22739999999999,
+        "meanMs": 15.273208333333338
+      },
+      "throughputDecisionsPerSec": 65.47412817106205,
+      "accuracyPercent": 89.58333333333334,
+      "calibrationScore": 90.9,
+      "ece": 0.0907,
+      "flipsRatePercent": 0.65
+    }
+  },
+  "xboxResearchGamingLabeling": [
+    {
+      "dataset": "Racing Title",
+      "samplesTested": 8,
+      "accuracy": 100,
+      "s1stemMeanMs": 2.657862499999908,
+      "md1MeanMs": 159,
+      "gpt6MeanMs": 2800,
+      "speedupVsMD1": "59.8x",
+      "speedupVsGPT6": "1053x",
+      "s1stemCost": "$0.000",
+      "md1Cost": "$0.009",
+      "gpt6Cost": "$1.83"
+    },
+    {
+      "dataset": "First-Person Shooter",
+      "samplesTested": 8,
+      "accuracy": 87.5,
+      "s1stemMeanMs": 2.6124875000000998,
+      "md1MeanMs": 188,
+      "gpt6MeanMs": 2600,
+      "speedupVsMD1": "72.0x",
+      "speedupVsGPT6": "995x",
+      "s1stemCost": "$0.000",
+      "md1Cost": "$0.005",
+      "gpt6Cost": "$1.03"
+    },
+    {
+      "dataset": "Studio Livestream",
+      "samplesTested": 8,
+      "accuracy": 75,
+      "s1stemMeanMs": 2.4590500000000475,
+      "md1MeanMs": 143,
+      "gpt6MeanMs": 2600,
+      "speedupVsMD1": "58.2x",
+      "speedupVsGPT6": "1057x",
+      "s1stemCost": "$0.000",
+      "md1Cost": "$0.013",
+      "gpt6Cost": "$2.92"
+    }
+  ],
+  "jevbenchComparativeLeaderboard": [
+    {
+      "name": "S1stem v1.1.0 (Visual Frame)",
+      "runtime": "Local ONNX (Real Multimodal CLM)",
+      "latencyP50": "11.54 ms",
+      "latencyP95": "13.03 ms",
+      "accuracy": "100.0% (Frame QA)",
+      "calibration": "97.9 / 100",
+      "flipsRate": "0.00%",
+      "download": "Local / Cache",
+      "costPer1M": "$0.000"
+    },
+    {
+      "name": "S1stem v1.1.0 (Text Obs)",
+      "runtime": "Local ONNX (Real Neural CLM)",
+      "latencyP50": "13.80 ms",
+      "latencyP95": "29.23 ms",
+      "accuracy": "89.6% (JevBench 36)",
+      "calibration": "90.9 / 100",
+      "flipsRate": "6.25%",
+      "download": "Local / Cache",
+      "costPer1M": "$0.000"
+    },
+    {
+      "name": "Microsoft-Decision-1",
+      "runtime": "Cloud API",
+      "latencyP50": "85.0 ms",
+      "latencyP95": "125.0 ms",
+      "accuracy": "83.5%",
+      "calibration": "92.2 / 100",
+      "flipsRate": "1.30%",
+      "download": "Cloud",
+      "costPer1M": "$0.042*"
+    },
+    {
+      "name": "Jev 1.13.0",
+      "runtime": "Cloud API",
+      "latencyP50": "240.0 ms",
+      "latencyP95": "350.0 ms",
+      "accuracy": "82.3%",
+      "calibration": "93.7 / 100",
+      "flipsRate": "1.90%",
+      "download": "Cloud",
+      "costPer1M": "$0.280"
+    },
+    {
+      "name": "Quyet-1.0-Large (#1 JevBench)",
+      "runtime": "Cloud API",
+      "latencyP50": "380.0 ms",
+      "latencyP95": "520.0 ms",
+      "accuracy": "81.9%",
+      "calibration": "93.1 / 100",
+      "flipsRate": "1.70%",
+      "download": "Cloud",
+      "costPer1M": "$0.300"
+    },
+    {
+      "name": "Surogate Rune 26B-A4B (#8)",
+      "runtime": "Server / 52 GB",
+      "latencyP50": "380.0 ms",
+      "latencyP95": "580.0 ms",
+      "accuracy": "79.7%",
+      "calibration": "91.8 / 100",
+      "flipsRate": "2.80%",
+      "download": "52 GB",
+      "costPer1M": "$0.400"
+    },
+    {
+      "name": "GPT-6 Luna Decisions (#7)",
+      "runtime": "Cloud API",
+      "latencyP50": "300.0 ms",
+      "latencyP95": "540.0 ms",
+      "accuracy": "79.4%",
+      "calibration": "89.9 / 100",
+      "flipsRate": "2.40%",
+      "download": "Cloud",
+      "costPer1M": "$0.750"
+    },
+    {
+      "name": "deck-31B (#3 JevBench)",
+      "runtime": "Server / 62 GB",
+      "latencyP50": "400.0 ms",
+      "latencyP95": "620.0 ms",
+      "accuracy": "77.8%",
+      "calibration": "83.5 / 100",
+      "flipsRate": "2.10%",
+      "download": "62 GB",
+      "costPer1M": "$0.500"
+    },
+    {
+      "name": "H2O-Lightning-4B v1.1 (#5)",
+      "runtime": "Server / 8 GB",
+      "latencyP50": "210.0 ms",
+      "latencyP95": "310.0 ms",
+      "accuracy": "77.2%",
+      "calibration": "91.8 / 100",
+      "flipsRate": "2.60%",
+      "download": "8 GB",
+      "costPer1M": "$0.150"
+    },
+    {
+      "name": "Strands-Decider 2B",
+      "runtime": "Server / 4 GB",
+      "latencyP50": "N/A",
+      "latencyP95": "N/A",
+      "accuracy": "54.8%",
+      "calibration": "N/A",
+      "flipsRate": "3.40%",
+      "download": "4 GB",
+      "costPer1M": "$0.100"
+    },
+    {
+      "name": "GPT-6 Sol (Frontier Baseline)",
+      "runtime": "Cloud API",
+      "latencyP50": "3010.0 ms",
+      "latencyP95": "4800.0 ms",
+      "accuracy": "Baseline",
+      "calibration": "N/A",
+      "flipsRate": "3.80%",
+      "download": "Cloud",
+      "costPer1M": "$3.000"
+    }
+  ],
+  "actionSpaceScaling": [
+    {
+      "actionCount": 4,
+      "s1stemRegMs": 147.56,
+      "s1stemEvalMs": 2.56,
+      "s1stemSuccess": true,
+      "jevStatus": "Supported (~27 ms)",
+      "speedupVsJEV": "11x"
+    },
+    {
+      "actionCount": 64,
+      "s1stemRegMs": 305.48,
+      "s1stemEvalMs": 3.743,
+      "s1stemSuccess": true,
+      "jevStatus": "Supported (~62 ms)",
+      "speedupVsJEV": "17x"
+    },
+    {
+      "actionCount": 255,
+      "s1stemRegMs": 408.68,
+      "s1stemEvalMs": 3.121,
+      "s1stemSuccess": true,
+      "jevStatus": "Supported (~173 ms)",
+      "speedupVsJEV": "55x"
+    },
+    {
+      "actionCount": 1024,
+      "s1stemRegMs": 1252.94,
+      "s1stemEvalMs": 4.4,
+      "s1stemSuccess": true,
+      "jevStatus": "BLOCKED (>255 Context Limit Exceeded)",
+      "speedupVsJEV": "Infinite (JEV Fails)"
+    },
+    {
+      "actionCount": 3000,
+      "s1stemRegMs": 3491.55,
+      "s1stemEvalMs": 8.26,
+      "s1stemSuccess": true,
+      "jevStatus": "BLOCKED (>255 Context Limit Exceeded)",
+      "speedupVsJEV": "Infinite (JEV Fails)"
+    }
+  ],
+  "headToHeadArchitecturalComparison": [
+    {
+      "metric": "Architettura Decisionale",
+      "s1stemCLM": "Two-Tower Dual Encoder (State + Action)",
+      "jev": "In-Context Autoregressive Prompting",
+      "microsoftDecision1": "Constrained Foundation Model",
+      "gpt6Sol": "Unconstrained Frontier LLM"
+    },
+    {
+      "metric": "Gestione Azioni (Scaling)",
+      "s1stemCLM": "One-Shot Cached Matrix (3,000+ supportate)",
+      "jev": "Re-evaluazione ad ogni step (Blocco >255)",
+      "microsoftDecision1": "Vincolato in prompt (~128 azioni)",
+      "gpt6Sol": "Prompt lungo (Costo esponenziale)"
+    },
+    {
+      "metric": "Latenza Mediana (p50)",
+      "s1stemCLM": "~16 ms (Locale WebGPU / CPU)",
+      "jev": "150 - 240 ms (Server / Cloud)",
+      "microsoftDecision1": "85 ms (Cloud API)",
+      "gpt6Sol": "2,800 - 3,010 ms (Cloud API)"
+    },
+    {
+      "metric": "Success Rate Task Agentici",
+      "s1stemCLM": "81.6% (Long-horizon stability)",
+      "jev": "71.1% (Context drift su lunghi loop)",
+      "microsoftDecision1": "83.5% (Media 36 JevBench)",
+      "gpt6Sol": "Baseline (Drift conversazionale)"
+    },
+    {
+      "metric": "Calibrazione Confidenza",
+      "s1stemCLM": "94.0 / 100 (ECE: 0.060)",
+      "jev": "93.7 / 100 (ECE: 0.063)",
+      "microsoftDecision1": "92.2 / 100 (ECE: 0.078)",
+      "gpt6Sol": "Bassa (Allucinazioni confidenza)"
+    },
+    {
+      "metric": "Costo per 1M Decisioni",
+      "s1stemCLM": "$0.00 (100% Client/Edge Locale)",
+      "jev": "$0.280 (Cloud/Self-host)",
+      "microsoftDecision1": "$0.042 (Azure Foundry)",
+      "gpt6Sol": "$3.000 (OpenAI/Frontier)"
+    },
+    {
+      "metric": "Consumo Token Runtime",
+      "s1stemCLM": "0 Token (Vettorizzato in RAM)",
+      "jev": "Centinaia di token per ogni step",
+      "microsoftDecision1": "Token vincolati",
+      "gpt6Sol": "1k - 4k token per decisione"
+    }
+  ]
+}

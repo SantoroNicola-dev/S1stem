@@ -33,11 +33,25 @@ const promptDisplay = document.getElementById('prompt-display');
 const barsContainer = document.getElementById('candidate-bars');
 const goalsContainer = document.getElementById('goals-list');
 
+let currentEvaluationMode = 'visual'; // 'visual' | 'text'
+
 const btnToggle = document.getElementById('btn-toggle-play');
 const btnStep = document.getElementById('btn-step-frame');
 const btnReset = document.getElementById('btn-reset-game');
+const btnModeToggle = document.getElementById('btn-mode-toggle');
 const speedSlider = document.getElementById('speed-slider');
 const speedLabel = document.getElementById('speed-val');
+
+if (btnModeToggle) {
+  btnModeToggle.addEventListener('click', () => {
+    currentEvaluationMode = currentEvaluationMode === 'visual' ? 'text' : 'visual';
+    btnModeToggle.textContent = currentEvaluationMode === 'visual' ? '👁️ Visual Frame' : '📝 Text State';
+    const badge = document.getElementById('ai-status-badge');
+    if (badge) {
+      badge.textContent = currentEvaluationMode === 'visual' ? 'QWEN3.5 VISION' : 'QWEN3.5 TEXT';
+    }
+  });
+}
 
 // Render Goals List
 function renderGoals() {
@@ -238,8 +252,13 @@ async function stepSimulation() {
   // 2. Generate descriptive state prompt
   const statePrompt = game.generateStatePrompt();
 
-  // 3. Query S1stem engine with dedicated Snake weights & policy priors
-  const decision = await s1.choice(statePrompt, { mask: safeMask, biases });
+  // 3. Query S1stem v1.1.0 engine (Qwen3.5 VLM)
+  let decision;
+  if (currentEvaluationMode === 'visual') {
+    decision = await s1.choice(canvas, { text: statePrompt, mask: safeMask, biases });
+  } else {
+    decision = await s1.choice(statePrompt, { mask: safeMask, biases });
+  }
 
   // Extract chosen direction
   let chosenDir = 'RIGHT';
