@@ -1,19 +1,17 @@
 import { S1stemEngine } from '../../core/s1stem.js';
 import { SnakeGame, SNAKE_ACTIONS, HIERARCHICAL_GOALS } from './snake-game.js';
-import { SNAKE_WEIGHTS } from './snake-weights.js';
 import { NerdTelemetry } from '../../core/nerd-telemetry.js';
 
-// Dedicated Snake S1stem Instance with specialized weights
+// Dedicated Snake S1stem Instance
 const s1 = new S1stemEngine({
-  weights: SNAKE_WEIGHTS,
   temperature: 0.07,
 });
 const game = new SnakeGame(16, 25);
 const telemetry = new NerdTelemetry({
   domain: 'snake',
   temperature: 0.07,
-  stateDim: 384,
-  projDim: 128,
+  stateDim: 1024,
+  projDim: 1024,
   streamId: 'log-stream',
   statsContainerId: 'nerd-stats-grid',
 });
@@ -165,7 +163,7 @@ function renderCanvas() {
 function updateTelemetry(decision, chosenDir, statePrompt, evals) {
   if (scoreEl) scoreEl.textContent = `${game.score}`;
   if (movesEl) movesEl.textContent = `${game.movesCount}`;
-  if (applesEl) applesEl.textContent = `${game.applesEaten || Math.floor(game.score / 25)}`;
+  if (applesEl) applesEl.textContent = `${game.foodsEaten}`;
   if (promptDisplay && statePrompt) promptDisplay.textContent = statePrompt;
 
   if (latencyEl && decision) {
@@ -238,21 +236,33 @@ async function stepSimulation() {
   const safeMask = mask.some(Boolean) ? mask : evals.map((e) => e.isSafe);
 
   // Policy Biases (beta_i):
-  // Priority 4: Shortest BFS geodesic corridor receives strong positive bonus
-  // Target proximity and reachable open space bonuses
+  // Priority 1: Survive is already enforced via safeMask.
+  // Priority 2: Prevent Traps - penalize dead-end pockets.
+  // Priority 3 & 4: Reach target directly along geodesic shortest BFS corridor.
+  const hasValidPath = evals.some((e) => e.isSafe && e.distanceToFood < 999);
   const biases = evals.map((e) => {
     if (!e.isSafe) return -999;
     let b = 0;
-    if (e.isOptimalShortest) b += 5.0;
-    else if (e.distanceToFood < 999) b += Math.max(0, (20 - e.distanceToFood) * 0.3);
-    b += (e.freeSpace / 256) * 1.5;
+    if (e.isDeadEnd) b -= 5.0;
+
+    if (hasValidPath) {
+      if (e.isOptimalShortest) {
+        b += 3.0;
+      } else if (e.distanceToFood < 999) {
+        b += Math.max(0, (20 - e.distanceToFood) * 0.05);
+      }
+      b += (e.freeSpace / 256) * 0.1;
+    } else {
+      // When target is blocked by snake body, maximize reachable open space
+      b += (e.freeSpace / 256) * 2.0;
+    }
     return b;
   });
 
   // 2. Generate descriptive state prompt
   const statePrompt = game.generateStatePrompt();
 
-  // 3. Query S1stem v1.1.0 engine (Qwen3.5 VLM)
+  // 3. Query S1stem engine
   let decision;
   if (currentEvaluationMode === 'visual') {
     decision = await s1.choice(canvas, { text: statePrompt, mask: safeMask, biases });
@@ -275,8 +285,22 @@ async function stepSimulation() {
   updateTelemetry(decision, chosenDir, statePrompt, evals);
 }
 
+async function gameLoop() {
+  if (!isRunning) return;
+  await stepSimulation();
+  if (isRunning && !game.isGameOver && !game.isGameWon) {
+    const intervalMs = Math.round(1000 / ticksPerSec);
+    loopTimer = setTimeout(gameLoop, intervalMs);
+  } else if (game.isGameOver || game.isGameWon) {
+    pauseGame();
+  }
+}
+
 function playGame() {
   if (isRunning) return;
+  if (game.isGameOver || game.isGameWon) {
+    resetGame();
+  }
   isRunning = true;
   if (btnToggle) {
     btnToggle.innerHTML = `<span>⏸ Pause</span>`;
@@ -285,11 +309,11 @@ function playGame() {
   }
 
   const intervalMs = Math.round(1000 / ticksPerSec);
-  loopTimer = setInterval(stepSimulation, intervalMs);
+  loopTimer = setTimeout(gameLoop, intervalMs);
 }
 
 function pauseGame() {
-  if (!isRunning) return;
+  if (!isRunning && !loopTimer) return;
   isRunning = false;
   if (btnToggle) {
     btnToggle.innerHTML = `<span>▶ Play</span>`;
@@ -297,7 +321,7 @@ function pauseGame() {
     btnToggle.classList.add('btn-emerald');
   }
   if (loopTimer) {
-    clearInterval(loopTimer);
+    clearTimeout(loopTimer);
     loopTimer = null;
   }
 }
@@ -340,7 +364,7 @@ async function boot() {
   await s1.registerActions(SNAKE_ACTIONS);
   renderGoals();
   renderCanvas();
-  telemetry.logSystem('Snake S1stem initialized (384 -> 128).');
+  telemetry.logSystem('Snake S1stem initialized (1024-dim bge-large-en-v1.5).');
 }
 
 boot();

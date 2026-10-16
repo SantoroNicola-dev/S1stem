@@ -2,7 +2,7 @@
  * S1stem vs Competitors Head-to-Head Extended Benchmark Suite
  * ============================================================
  * Benchmark comparing:
- *   1. S1stem v1.2.0 (BGE-Base 109M Dual-Encoder CLM)
+ *   1. S1stem v1.3.0 (BGE-Large 335M Dual-Encoder CLM)
  *   2. Microsoft-Decision-1 (official Azure Foundry SystemOne API)
  *   3. gpt-6.1-sol (Azure Foundry OpenAI chat completions API)
  * 
@@ -483,7 +483,7 @@ async function main() {
     },
     headlineTestResults: {
       s1stem: {
-        name: 'S1stem v1.2.0 (BGE-Base CLM)',
+        name: 'S1stem v1.3.0 (BGE-Large CLM)',
         runtime: 'Local WebGPU / ONNX (In-Process CPU/GPU)',
         accuracy: s1Wilson.point,
         wilsonCi95: [s1Wilson.low, s1Wilson.high],

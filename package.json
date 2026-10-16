@@ -1,7 +1,7 @@
 {
   "name": "S1stem",
-  "version": "1.2.0",
-  "description": "S1stem v1.2.0 — Fast System 1 Contrastive Decision Engine (CLM) for Local AI Agents (Edge WebGPU / ONNX Inference).",
+  "version": "1.3.0",
+  "description": "S1stem v1.3.0 — Fast System 1 Contrastive Decision Engine (CLM) for Local AI Agents (Edge WebGPU / ONNX Inference).",
   "type": "module",
   "main": "./core/s1stem.js",
   "module": "./core/s1stem.js",

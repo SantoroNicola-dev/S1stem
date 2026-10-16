@@ -1,7 +1,7 @@
 /**
  * S1stem: Fast System 1 Contrastive Decision Engine (CLM) for Local AI Agents
  * ===========================================================================
- * Version: 1.2.0 (BGE-Base 109M Dual-Encoder Backbone)
+ * Version: 1.3.0 (BGE-Large 335M Dual-Encoder Backbone)
  * Pure Vanilla JavaScript (ES Module) — Edge WebGPU / ONNX Inference
  * 
  * S1stem implements a Contrastive Language Model (CLM) architecture for local AI agents,
@@ -32,12 +32,13 @@
 
 export const DEFAULT_CONFIG = {
   modelId: 'onnx-community/Qwen2.5-0.5B-Instruct',
-  embeddingModelId: 'Xenova/bge-base-en-v1.5',
+  embeddingModelId: 'Xenova/bge-large-en-v1.5',
   device: typeof navigator !== 'undefined' && navigator.gpu ? 'webgpu' : 'cpu',
   dtype: 'q4',      // INT4 quantized weights
   temperature: 0.04,
   maxNewTokens: 4,
-  embeddingDim: 768,
+  embeddingDim: 1024,
+  embeddingPooling: 'cls',
   autoLoadModel: true,
   enableArbiter: false,
   arbitrationThreshold: 0.18,
@@ -155,12 +156,14 @@ export class S1stemEngine {
    * @param {number} [config.temperature]
    * @param {number} [config.maxNewTokens]
    * @param {number} [config.embeddingDim]
+   * @param {string} [config.embeddingPooling]
    */
   constructor(config = {}) {
     this.config = { ...DEFAULT_CONFIG, ...config };
     this.modelId = this.config.modelId;
     this.visionModelId = this.config.modelId;
-    this.embeddingDim = this.config.embeddingDim || 768;
+    this.embeddingDim = this.config.embeddingDim || 1024;
+    this.embeddingPooling = this.config.embeddingPooling || this.config.pooling || 'cls';
 
     /** @type {Array<{ action: any, id: string, label: string, description: string }>} */
     this.actionCache = [];
@@ -230,7 +233,8 @@ export class S1stemEngine {
     const cleanStr = String(text || '').trim();
 
     if (this.extractor) {
-      const res = await this.extractor(cleanStr, { pooling: 'mean', normalize: true });
+      const pooling = this.config.embeddingPooling || this.config.pooling || 'cls';
+      const res = await this.extractor(cleanStr, { pooling, normalize: true });
       return res.data;
     }
     return embedText(cleanStr, this.embeddingDim);
@@ -284,7 +288,8 @@ export class S1stemEngine {
       }
 
       if (this.extractor) {
-        const res = await this.extractor(batchTexts, { pooling: 'mean', normalize: true });
+        const pooling = this.config.embeddingPooling || this.config.pooling || 'cls';
+        const res = await this.extractor(batchTexts, { pooling, normalize: true });
         const batchData = res.data;
         for (let i = start; i < end; i++) {
           const bIdx = i - start;
