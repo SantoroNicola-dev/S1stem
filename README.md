@@ -179,9 +179,14 @@ powershell -ExecutionPolicy Bypass -File .\powershell\install.ps1
 
 ## 4. Quickstart & Minimal Working Example
 
-### Prerequisites
+### Prerequisites & Setup
 * **Node.js** $\ge$ 18.0.0 or any **modern browser** with WebGPU and ES Modules support.
 * Local HTTP server (`python -m http.server 8080` or `npx serve .`).
+
+```bash
+# Clone the repository and install dependencies
+npm install
+```
 
 ### Minimal Working Example (MWE)
 
@@ -327,7 +332,8 @@ docker run -d -p 8000:8000 --name s1stem s1stem:latest
 
 ##### Python Example (Container HTTP Client):
 
-Save as `test_docker_client.py` and run with `python test_docker_client.py` (zero external packages, uses standard `urllib`):
+> [!TIP]
+> A complete standalone client is available at [`examples/clients/python_client.py`](examples/clients/python_client.py). You can also run the self-contained script below directly (zero external packages, uses standard `urllib`):
 
 ```python
 import json
@@ -405,7 +411,8 @@ pip install onnxruntime numpy tokenizers
 
 ##### 3. Python Example (Direct In-Process ONNX):
 
-Save as `test_onnx_direct.py` and run with `python test_onnx_direct.py`:
+> [!TIP]
+> A complete standalone client is available at [`examples/clients/python_onnx_direct.py`](examples/clients/python_onnx_direct.py). You can also run the self-contained script below directly:
 
 ```python
 import os
@@ -430,6 +437,10 @@ class S1stemOnnxDirect:
         self.tokenizer.enable_truncation(max_length=512)
         self.tokenizer.enable_padding(length=512)
 
+        # 3. Action Cache & Matrix A (K x 1024)
+        self.action_cache = []
+        self.action_matrix = None
+
     def encode(self, text: str) -> np.ndarray:
         """Encodes text to a 1024-dim L2-normalized vector."""
         enc = self.tokenizer.encode(text)
@@ -447,37 +458,48 @@ class S1stemOnnxDirect:
         norm = np.linalg.norm(cls_vec)
         return cls_vec / max(norm, 1e-12)
 
-    def choice(self, state: str, actions: list, mask: list = None, biases: list = None):
-        t0 = time.perf_counter()
+    def register_actions(self, actions: list) -> int:
+        """One-Shot candidate action space pre-computation into RAM Action Matrix A."""
         k = len(actions)
-        
-        # Step A: Encode candidate actions into Action Matrix A (K x 1024)
-        action_matrix = np.zeros((k, 1024), dtype=np.float32)
+        self.action_matrix = np.zeros((k, 1024), dtype=np.float32)
+        self.action_cache = actions
         for i, a in enumerate(actions):
             desc = f"{a['label']}. {a.get('description', '')}".strip()
-            action_matrix[i] = self.encode(f"{a['id']}: {desc}")
+            self.action_matrix[i] = self.encode(f"{a['id']}: {desc}")
+        return k
 
-        # Step B: Encode incoming state vector v_s (1024)
+    def choice(self, state: str, actions: list = None, mask: list = None, biases: list = None):
+        """Instant runtime decision (encodes only incoming state against pre-cached actions)."""
+        t0 = time.perf_counter()
+        if actions is not None:
+            self.register_actions(actions)
+        if self.action_matrix is None or len(self.action_cache) == 0:
+            raise ValueError("No actions registered. Provide actions or call register_actions() first.")
+
+        k = len(self.action_cache)
+
+        # Step A: Encode only the incoming state vector v_s (1024)
         v_s = self.encode(state)
 
-        # Step C: Inner Product + Temperature: logits = (A · v_s) / tau
-        logits = np.dot(action_matrix, v_s) / self.temperature
+        # Step B: Fast Inner Product + Softmax Scaling: logits = (A · v_s) / tau
+        logits = np.dot(self.action_matrix, v_s) / self.temperature
 
         # Apply Biases and Mask
         if biases:
-            for i, b in enumerate(biases): logits[i] += b / self.temperature
+            for i, b in enumerate(biases):
+                if i < k: logits[i] += b / self.temperature
         if mask:
             for i, m in enumerate(mask):
-                if not m: logits[i] = -1e9
+                if i < k and not m: logits[i] = -1e9
 
-        # Softmax
+        # Numerically stable Softmax
         exp_logits = np.exp(logits - np.max(logits))
         probs = exp_logits / np.sum(exp_logits)
         winner_idx = int(np.argmax(probs))
 
         return {
-            "winner": actions[winner_idx]["id"],
-            "selectedAction": actions[winner_idx],
+            "winner": self.action_cache[winner_idx]["id"],
+            "selectedAction": self.action_cache[winner_idx],
             "confidence": float(probs[winner_idx]),
             "latencyMs": (time.perf_counter() - t0) * 1000
         }
@@ -485,14 +507,18 @@ class S1stemOnnxDirect:
 # --- Usage Example ---
 engine = S1stemOnnxDirect("models/s1stem-bge-large")
 
-actions = [
+candidate_actions = [
     {"id": "EVADE_LEFT",     "label": "Evade Left",     "description": "Clear escape path to the west corridor."},
     {"id": "HOLD_POSITION",  "label": "Hold Position",  "description": "Stop and monitor target movements."},
     {"id": "ADVANCE_FORWARD","label": "Advance Forward", "description": "Move directly toward target through debris."}
 ]
 
+# 1. One-Shot pre-computation of actions into RAM (performed once at startup)
+engine.register_actions(candidate_actions)
+
+# 2. Fast runtime inference (encodes only state: ~12-16 ms, zero prompt overhead)
 state = "Threat detected: incoming missile bearing 010. West flank is unobstructed."
-decision = engine.choice(state, actions, mask=[True, True, False]) # Forward is masked out
+decision = engine.choice(state, mask=[True, True, False]) # Forward is masked out
 
 print(f"Winning Action: {decision['winner']}")       # EVADE_LEFT
 print(f"Confidence:     {decision['confidence']:.2%}") # 99.4%
@@ -519,6 +545,12 @@ The benchmark evaluated **312 held-out test cases** drawn from 6 standard public
 | **gpt-6.1-sol (Frontier)** | Azure OpenAI Chat Completions | 73.4% [68.2% - 78.0%] | 2,042.4 ms | 6043.1 ms | N/A | 5.7% | ~$0.745 | ~64 *(Prompt bloat)* | No (Cloud API) |
 
 *Paired McNemar Test vs S1stem: Microsoft-Decision-1 ($p = 0.0077$, significant), gpt-6-luna ($p = 0.0402$, significant), gpt-6.1-sol ($p = 0.0966$, **statistically non-significant**).*
+
+> [!NOTE]
+> **Understanding the Latency Metrics:**
+> * **~10–16 ms (WebGPU / Pre-cached RAM Inner Product):** Pure neural dispatch latency for active agent loops where candidate tools/actions are pre-cached in RAM and query matching runs on local GPU/NPU or against pre-computed vectors.
+> * **525.2 ms (CPU p50 Benchmark):** End-to-end unaccelerated CPU latency measured across the 312-item held-out test suite (including on-the-fly tokenization and transformer feature extraction via single-threaded Node.js).
+> * **34.7 ms (@ 3,000 actions):** Sub-linear inner product decision latency when matching against 3,000 pre-cached candidates simultaneously in memory.
 
 ---
 
