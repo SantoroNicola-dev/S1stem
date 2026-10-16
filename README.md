@@ -217,62 +217,286 @@ npm test
 
 ---
 
-### Frictionless Deployment (Container & Standalone ONNX)
+### Frictionless Deployment & Integration Guide (Container & Standalone ONNX)
 
-S1stem is designed for zero-friction integration into any stack (Python, Node.js, Go, Rust, or air-gapped robotics):
+S1stem is designed for **zero-friction, zero-dependency adoption** into any agent framework, backend, or air-gapped system (Python, Node.js, Go, Rust, C++):
 
-#### 1. Instant Docker Container (Zero-Setup REST API Microservice)
-Run S1stem as a self-contained local decision microservice with a single command:
+```
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                          TWO FRICTIONLESS DEPLOYMENT MODES                      │
+├───────────────────────────────────────┬─────────────────────────────────────────┤
+│    MODE 1: DOCKER CONTAINER (API)     │     MODE 2: STANDALONE ONNX (DIRECT)    │
+│  • Microservice HTTP REST on port 8000│   • Direct in-process execution         │
+│  • Plug-and-play for any language     │   • Runs via onnxruntime in Python / C++│
+│  • Pre-baked weights, zero downloads  │   • Single local folder (1.27 GB ONNX)  │
+│  • Ideal for agent squads & microserv │   • Ideal for embedded, robots & desktop│
+└───────────────────────────────────────┴─────────────────────────────────────────┘
+```
+
+---
+
+#### The System 1 Decision Contract (Input & Output Specification)
+
+Both modes (Docker HTTP and Direct ONNX) adhere to the **exact same deterministic object schema**:
+
+##### 1. Input Contract (What you send to S1stem)
+
+```json
+{
+  "state": "Thermal alarm high in Reactor Core B. Temperature rising rapidly at 42°C/min.",
+  "actions": [
+    {
+      "id": "ENGAGE_COOLANT",
+      "label": "Engage Coolant",
+      "description": "Trigger emergency liquid nitrogen coolant flood into core chambers."
+    },
+    {
+      "id": "SCRAM_REACTOR",
+      "label": "SCRAM Reactor",
+      "description": "Drop safety control rods immediately for complete emergency shutdown."
+    },
+    {
+      "id": "VENT_PRESSURE",
+      "label": "Vent Steam",
+      "description": "Open bypass relief valves to dump secondary steam loop pressure."
+    }
+  ],
+  "mask": [true, true, true],
+  "biases": [0.0, 1.5, 0.0],
+  "temperature": 0.04
+}
+```
+
+* **`state`** *(string, Required)*: The context, sensory observation, visual summary, compiler error, or user prompt that the model must react to.
+* **`actions`** *(array of objects, Required)*: The candidate action space. Each candidate action contains:
+  * **`id`** *(string, Required)*: Unique identifier returned as `winner` (e.g. `'TOOL_SQL_QUERY'`, `'MOVE_EAST'`).
+  * **`label`** *(string, Required)*: Human-readable action title.
+  * **`description`** *(string, Optional but Recommended)*: Semantic description clarifying when and how to choose this action.
+* **`mask`** *(array of booleans, Optional)*: Hard safety veto guardrail. `false` sets logits to $-\infty$, mathematically preventing the action from ever winning regardless of confidence.
+* **`biases`** *(array of floats, Optional)*: Additive policy logit biases $\beta_i$ (e.g. penalizing risky corridors or prioritizing goals).
+* **`temperature`** *(float, Optional, Default: `0.04`)*: Calibrated Softmax scaling parameter $\tau$. Lower values yield sharper deterministic decisions.
+
+##### 2. Output Contract (What S1stem returns)
+
+```json
+{
+  "winner": "SCRAM_REACTOR",
+  "selectedAction": {
+    "id": "SCRAM_REACTOR",
+    "label": "SCRAM Reactor",
+    "description": "Drop safety control rods immediately for complete emergency shutdown."
+  },
+  "confidence": 0.9982,
+  "ranking": [
+    { "id": "SCRAM_REACTOR",  "label": "SCRAM Reactor",  "probability": 0.9982, "rank": 1 },
+    { "id": "ENGAGE_COOLANT", "label": "Engage Coolant", "probability": 0.0017, "rank": 2 },
+    { "id": "VENT_PRESSURE",  "label": "Vent Steam",     "probability": 0.0001, "rank": 3 }
+  ],
+  "latencyMs": 28.45,
+  "cachedActionsCount": 3
+}
+```
+
+* **`winner`** *(string)*: The `id` of the top-ranked action candidate.
+* **`selectedAction`** *(object)*: Full object matching the selected input candidate.
+* **`confidence`** *(float)*: Softmax probability of the winning action $[0.0, 1.0]$.
+* **`ranking`** *(array)*: Complete probability distribution over all candidates, sorted by rank.
+* **`latencyMs`** *(float)*: Pure neural computation time in milliseconds.
+
+---
+
+#### Mode 1: Docker Container (REST API Microservice)
+
+The Docker container runs an optimized HTTP server exposing the decision engine on port **`8000`**.
+
+##### Start the Container:
 ```bash
-# Start container with pre-baked 1024-dim model (zero download on startup)
+# Option A: With Docker Compose (Recommended)
 docker compose up -d
 
-# Check health
-curl http://localhost:8000/health
+# Option B: With Docker CLI
+docker build -t s1stem:latest .
+docker run -d -p 8000:8000 --name s1stem s1stem:latest
 ```
 
-* **`POST /choice`**: Send `{ state, actions: [...] }` to resolve discrete decisions in ~28 ms.
-* **`POST /register-actions`**: Pre-cache 100–3,000 tool actions once in RAM.
-* **`POST /step`**: Run sub-millisecond $O(1)$ matrix queries against pre-cached actions.
+##### Endpoints:
+* **`GET /health`**: Healthcheck, model status, uptime, and memory usage.
+* **`POST /choice`**: Full decision resolution (`{ state, actions, mask?, biases? }`).
+* **`POST /register-actions`**: Pre-caches 100–3,000 actions in RAM once.
+* **`POST /step`**: Ultra-fast sub-millisecond query against pre-cached actions.
 
-#### 2. Standalone Offline ONNX Model (Air-gapped / Local Asset)
-Download and export the full-precision 1024-dim ONNX model and tokenizer for 100% offline usage:
+##### Python Example (Container HTTP Client):
+
+Save as `test_docker_client.py` and run with `python test_docker_client.py` (zero external packages, uses standard `urllib`):
+
+```python
+import json
+import urllib.request
+
+class S1stemContainerClient:
+    def __init__(self, base_url: str = "http://localhost:8000"):
+        self.base_url = base_url.rstrip("/")
+
+    def choice(self, state: str, actions: list, mask: list = None, biases: list = None, temperature: float = 0.04):
+        payload = {"state": state, "actions": actions, "temperature": temperature}
+        if mask: payload["mask"] = mask
+        if biases: payload["biases"] = biases
+        
+        req = urllib.request.Request(
+            f"{self.base_url}/choice",
+            data=json.dumps(payload).encode("utf-8"),
+            headers={"Content-Type": "application/json"}
+        )
+        with urllib.request.urlopen(req) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+
+# --- Usage Example ---
+client = S1stemContainerClient("http://localhost:8000")
+
+# Candidate Actions / Tools
+agent_tools = [
+    {
+        "id": "TOOL_SQL",
+        "label": "Execute SQL Query",
+        "description": "Run SELECT query against PostgreSQL customer database."
+    },
+    {
+        "id": "TOOL_EMAIL",
+        "label": "Send Email",
+        "description": "Send confirmation or notification email to client."
+    },
+    {
+        "id": "TOOL_SEARCH",
+        "label": "Web Search",
+        "description": "Look up external technical documentation online."
+    }
+]
+
+# Sensory Observation
+user_intent = "Find all enterprise accounts with subscriptions expiring in the next 14 days"
+
+# Execute Discrete Decision (~28 ms, $0.00 tokens)
+result = client.choice(state=user_intent, actions=agent_tools)
+
+print(f"Selected Tool: {result['winner']}")       # TOOL_SQL
+print(f"Confidence:    {result['confidence']:.2%}") # 99.8%
+print(f"Latency:       {result['latencyMs']:.2f} ms")
+```
+
+---
+
+#### Mode 2: Standalone ONNX (Direct In-Process Python)
+
+In this mode, you execute the full **`1.27 GB` BGE-Large ONNX model** directly in your Python process using `onnxruntime`, completely eliminating network overhead and container setup.
+
+##### 1. Export the Standalone Model Files (Run Once):
 ```bash
 npm run model:download
-# Exports to ./models/s1stem-bge-large (~1.25 GB, model.onnx + tokenizer.json)
 ```
-Once exported, `S1stemEngine` **automatically detects** `./models/s1stem-bge-large` and runs completely offline without touching the network.
+This downloads and verifies the model into `./models/s1stem-bge-large/`:
+* `models/s1stem-bge-large/onnx/model.onnx` (1.27 GB)
+* `models/s1stem-bge-large/tokenizer.json` (711 KB)
+* `models/s1stem-bge-large/config.json`
 
-#### 3. Python Integration (LangChain, AutoGen, CrewAI, Custom Agents)
-Use the zero-dependency Python client ([`examples/clients/python_client.py`](examples/clients/python_client.py)):
-```python
-from examples.clients.python_client import S1stemClient
-
-client = S1stemClient("http://localhost:8000")
-
-# Discrete decision with 0.00 token burn in ~28 ms:
-decision = client.choice(
-    state="High thermal alert in Core B. Temperature rising rapidly.",
-    actions=[
-        {"id": "ENGAGE_COOLANT", "label": "Engage Coolant", "description": "Trigger emergency coolant flood."},
-        {"id": "SCRAM_REACTOR",  "label": "SCRAM Reactor",  "description": "Drop control rods immediately."}
-    ]
-)
-print(decision["winner"])     # "SCRAM_REACTOR"
-print(decision["confidence"]) # 0.998
-```
-
-#### 4. cURL Quickstart
+##### 2. Install Python Dependencies:
 ```bash
-curl -X POST http://localhost:8000/choice \
-  -H "Content-Type: application/json" \
-  -d '{
-    "state": "User requested database backup before migration",
-    "actions": [
-      { "id": "BACKUP_DB", "label": "Backup Database", "description": "Export snapshot of SQL database." },
-      { "id": "DROP_DB",   "label": "Drop Database",   "description": "Delete database tables." }
-    ]
-  }'
+pip install onnxruntime numpy tokenizers
+```
+
+##### 3. Python Example (Direct In-Process ONNX):
+
+Save as `test_onnx_direct.py` and run with `python test_onnx_direct.py`:
+
+```python
+import os
+import time
+import numpy as np
+import onnxruntime as ort
+from tokenizers import Tokenizer
+
+class S1stemOnnxDirect:
+    def __init__(self, model_dir: str = "models/s1stem-bge-large", temperature: float = 0.04):
+        self.temperature = temperature
+        onnx_file = os.path.join(model_dir, "onnx", "model.onnx")
+        tokenizer_file = os.path.join(model_dir, "tokenizer.json")
+        
+        # 1. Initialize ONNX Runtime Session
+        opts = ort.SessionOptions()
+        opts.graph_optimization_level = ort.GraphOptimizationLevel.ORT_ENABLE_ALL
+        self.session = ort.InferenceSession(onnx_file, opts, providers=["CPUExecutionProvider"])
+        
+        # 2. Initialize Tokenizer
+        self.tokenizer = Tokenizer.from_file(tokenizer_file)
+        self.tokenizer.enable_truncation(max_length=512)
+        self.tokenizer.enable_padding(length=512)
+
+    def encode(self, text: str) -> np.ndarray:
+        """Encodes text to a 1024-dim L2-normalized vector."""
+        enc = self.tokenizer.encode(text)
+        input_ids = np.array([enc.ids], dtype=np.int64)
+        attention_mask = np.array([enc.attention_mask], dtype=np.int64)
+        token_type_ids = np.zeros_like(input_ids)
+        
+        outputs = self.session.run(None, {
+            "input_ids": input_ids,
+            "attention_mask": attention_mask,
+            "token_type_ids": token_type_ids
+        })
+        # [CLS] pooling at index 0 + L2 normalization
+        cls_vec = outputs[0][:, 0, :][0]
+        norm = np.linalg.norm(cls_vec)
+        return cls_vec / max(norm, 1e-12)
+
+    def choice(self, state: str, actions: list, mask: list = None, biases: list = None):
+        t0 = time.perf_counter()
+        k = len(actions)
+        
+        # Step A: Encode candidate actions into Action Matrix A (K x 1024)
+        action_matrix = np.zeros((k, 1024), dtype=np.float32)
+        for i, a in enumerate(actions):
+            desc = f"{a['label']}. {a.get('description', '')}".strip()
+            action_matrix[i] = self.encode(f"{a['id']}: {desc}")
+
+        # Step B: Encode incoming state vector v_s (1024)
+        v_s = self.encode(state)
+
+        # Step C: Inner Product + Temperature: logits = (A · v_s) / tau
+        logits = np.dot(action_matrix, v_s) / self.temperature
+
+        # Apply Biases and Mask
+        if biases:
+            for i, b in enumerate(biases): logits[i] += b / self.temperature
+        if mask:
+            for i, m in enumerate(mask):
+                if not m: logits[i] = -1e9
+
+        # Softmax
+        exp_logits = np.exp(logits - np.max(logits))
+        probs = exp_logits / np.sum(exp_logits)
+        winner_idx = int(np.argmax(probs))
+
+        return {
+            "winner": actions[winner_idx]["id"],
+            "selectedAction": actions[winner_idx],
+            "confidence": float(probs[winner_idx]),
+            "latencyMs": (time.perf_counter() - t0) * 1000
+        }
+
+# --- Usage Example ---
+engine = S1stemOnnxDirect("models/s1stem-bge-large")
+
+actions = [
+    {"id": "EVADE_LEFT",     "label": "Evade Left",     "description": "Clear escape path to the west corridor."},
+    {"id": "HOLD_POSITION",  "label": "Hold Position",  "description": "Stop and monitor target movements."},
+    {"id": "ADVANCE_FORWARD","label": "Advance Forward", "description": "Move directly toward target through debris."}
+]
+
+state = "Threat detected: incoming missile bearing 010. West flank is unobstructed."
+decision = engine.choice(state, actions, mask=[True, True, False]) # Forward is masked out
+
+print(f"Winning Action: {decision['winner']}")       # EVADE_LEFT
+print(f"Confidence:     {decision['confidence']:.2%}") # 99.4%
+print(f"Latency:        {decision['latencyMs']:.2f} ms")
 ```
 
 ---
