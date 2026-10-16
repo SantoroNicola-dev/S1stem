@@ -217,6 +217,66 @@ npm test
 
 ---
 
+### Frictionless Deployment (Container & Standalone ONNX)
+
+S1stem is designed for zero-friction integration into any stack (Python, Node.js, Go, Rust, or air-gapped robotics):
+
+#### 1. Instant Docker Container (Zero-Setup REST API Microservice)
+Run S1stem as a self-contained local decision microservice with a single command:
+```bash
+# Start container with pre-baked 1024-dim model (zero download on startup)
+docker compose up -d
+
+# Check health
+curl http://localhost:8000/health
+```
+
+* **`POST /choice`**: Send `{ state, actions: [...] }` to resolve discrete decisions in ~28 ms.
+* **`POST /register-actions`**: Pre-cache 100–3,000 tool actions once in RAM.
+* **`POST /step`**: Run sub-millisecond $O(1)$ matrix queries against pre-cached actions.
+
+#### 2. Standalone Offline ONNX Model (Air-gapped / Local Asset)
+Download and export the full-precision 1024-dim ONNX model and tokenizer for 100% offline usage:
+```bash
+npm run model:download
+# Exports to ./models/s1stem-bge-large (~1.25 GB, model.onnx + tokenizer.json)
+```
+Once exported, `S1stemEngine` **automatically detects** `./models/s1stem-bge-large` and runs completely offline without touching the network.
+
+#### 3. Python Integration (LangChain, AutoGen, CrewAI, Custom Agents)
+Use the zero-dependency Python client ([`examples/clients/python_client.py`](examples/clients/python_client.py)):
+```python
+from examples.clients.python_client import S1stemClient
+
+client = S1stemClient("http://localhost:8000")
+
+# Discrete decision with 0.00 token burn in ~28 ms:
+decision = client.choice(
+    state="High thermal alert in Core B. Temperature rising rapidly.",
+    actions=[
+        {"id": "ENGAGE_COOLANT", "label": "Engage Coolant", "description": "Trigger emergency coolant flood."},
+        {"id": "SCRAM_REACTOR",  "label": "SCRAM Reactor",  "description": "Drop control rods immediately."}
+    ]
+)
+print(decision["winner"])     # "SCRAM_REACTOR"
+print(decision["confidence"]) # 0.998
+```
+
+#### 4. cURL Quickstart
+```bash
+curl -X POST http://localhost:8000/choice \
+  -H "Content-Type: application/json" \
+  -d '{
+    "state": "User requested database backup before migration",
+    "actions": [
+      { "id": "BACKUP_DB", "label": "Backup Database", "description": "Export snapshot of SQL database." },
+      { "id": "DROP_DB",   "label": "Drop Database",   "description": "Delete database tables." }
+    ]
+  }'
+```
+
+---
+
 ## 5. Benchmarks & Honest Comparison
 
 To keep things completely transparent, we tested **S1stem v1.3.0 (BGE-Large 335M CLM Backbone, 1024-dim, cls pooling)** against live cloud models: **Microsoft-Decision-1** (official Azure Foundry SystemOne API), **gpt-6-luna** (Azure Foundry OpenAI Responses API), and **gpt-6.1-sol** (Azure Foundry OpenAI Chat Completions API).

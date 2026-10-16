@@ -1,0 +1,8 @@
+node_modules
+.git
+.agents
+Benchmark/results
+scratch
+.tempmediaStorage
+*.log
+.env

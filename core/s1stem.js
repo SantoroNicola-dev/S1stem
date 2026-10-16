@@ -33,6 +33,7 @@
 export const DEFAULT_CONFIG = {
   modelId: 'onnx-community/Qwen2.5-0.5B-Instruct',
   embeddingModelId: 'Xenova/bge-large-en-v1.5',
+  localModelPath: (typeof process !== 'undefined' && process.env?.S1STEM_MODEL_PATH) || null,
   device: typeof navigator !== 'undefined' && navigator.gpu ? 'webgpu' : 'cpu',
   dtype: 'q4',      // INT4 quantized weights
   temperature: 0.04,
@@ -200,16 +201,41 @@ export class S1stemEngine {
         transformersModule = await import('@huggingface/transformers');
       }
       const { pipeline, env } = transformersModule;
+
+      let localPath = this.config.localModelPath;
+      if (!localPath && typeof process !== 'undefined' && process.cwd) {
+        try {
+          const fs = await import('fs');
+          const path = await import('path');
+          const defaultLocal = path.join(process.cwd(), 'models', 's1stem-bge-large');
+          if (fs.existsSync(defaultLocal)) {
+            localPath = defaultLocal;
+          }
+        } catch {
+          // Ignore in environments without fs
+        }
+      }
+
       if (env) {
-        env.allowLocalModels = false;
+        if (localPath) {
+          env.allowLocalModels = true;
+          env.allowRemoteModels = false;
+        } else {
+          env.allowLocalModels = typeof window === 'undefined';
+        }
         if (typeof window !== 'undefined' && typeof caches !== 'undefined') {
           env.useBrowserCache = true;
         }
       }
+
       const device = (typeof navigator !== 'undefined' && navigator.gpu && this.config.device === 'webgpu') ? 'webgpu' : 'cpu';
-      this.extractor = await pipeline('feature-extraction', this.config.embeddingModelId, {
-        device,
-      });
+      const modelTarget = localPath || this.config.embeddingModelId;
+      const pipelineOptions = { device };
+      if (localPath) {
+        pipelineOptions.local_files_only = true;
+      }
+
+      this.extractor = await pipeline('feature-extraction', modelTarget, pipelineOptions);
       this.isModelActive = true;
       return this.extractor;
     } catch (err) {
