@@ -13,6 +13,12 @@
   "scripts": {
     "start": "python -m http.server 8080",
     "serve": "npx serve .",
+    "server": "node server/s1stem-server.js",
+    "serve:api": "node server/s1stem-server.js",
+    "model:download": "node scripts/download-model.js",
+    "docker:build": "docker compose build",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
     "test": "node internal/test_s1stem.js",
     "test:powershell": "node internal/test_powershell_s1stem.js",
     "powershell:daemon": "node powershell/s1stem-daemon.js",

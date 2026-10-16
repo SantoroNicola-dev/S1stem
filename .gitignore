@@ -45,5 +45,8 @@ __pycache__/
 # Benchmark subproject & competitor cloud credentials
 Benchmark/config.json
 
+# Local Standalone ONNX Models
+models/
+
 # Antigravity Workspace Customizations (Local Skills, Rules, and Prompts)
 .agents/

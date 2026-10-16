@@ -1,0 +1,30 @@
+services:
+  s1stem:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PREBAKE_MODEL: "true"
+    image: s1stem:latest
+    container_name: s1stem-engine
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - HOST=0.0.0.0
+      - S1STEM_MODEL_PATH=/app/models/s1stem-bge-large
+      - NODE_ENV=production
+    volumes:
+      # Mount local models directory to avoid downloading or to share with host
+      - ./models:/app/models:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 20s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    deploy:
+      resources:
+        limits:
+          memory: 2G
