@@ -87,8 +87,9 @@ export function loadBenchmarkConfig() {
     },
     s1stem: {
       temperature: fileConfig.s1stem?.temperature ?? 0.04,
-      embeddingModelId: fileConfig.s1stem?.embeddingModelId || 'Xenova/bge-base-en-v1.5',
-      embeddingDim: fileConfig.s1stem?.embeddingDim || 768
+      embeddingModelId: fileConfig.s1stem?.embeddingModelId || 'Xenova/bge-large-en-v1.5',
+      embeddingDim: fileConfig.s1stem?.embeddingDim || 1024,
+      embeddingPooling: fileConfig.s1stem?.embeddingPooling || 'cls'
     },
     benchmark_settings: {
       default_samples: fileConfig.benchmark_settings?.default_samples || 50,
@@ -103,11 +104,12 @@ export function loadBenchmarkConfig() {
 
 export class S1stemAdapter {
   constructor(config = {}) {
-    this.name = 'S1stem v1.2.0 (BGE-Base CLM)';
+    this.name = 'S1stem v1.3.0 (BGE-Large CLM)';
     this.runtime = 'Local WebGPU / ONNX (In-Process CPU/GPU)';
     this.engine = new S1stemEngine({
-      embeddingModelId: config.embeddingModelId || 'Xenova/bge-base-en-v1.5',
-      embeddingDim: config.embeddingDim || 768,
+      embeddingModelId: config.embeddingModelId || 'Xenova/bge-large-en-v1.5',
+      embeddingDim: config.embeddingDim || 1024,
+      embeddingPooling: config.embeddingPooling || 'cls',
       temperature: config.temperature ?? 0.04
     });
     this.initialized = false;

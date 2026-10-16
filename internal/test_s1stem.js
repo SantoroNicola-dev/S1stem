@@ -1,8 +1,8 @@
 /**
- * S1stem v1.1.0 — Unified Multimodal Decision Engine Verification Suite
+ * S1stem v1.3.0 — Unified Multimodal Decision Engine Verification Suite
  * ======================================================================
- * Tests S1stemEngine with Qwen3.5-0.8B VLM across:
- *   1. Engine Initialization & Default Configuration
+ * Tests S1stemEngine with Qwen3.5-0.8B VLM and BGE-Large 335M CLM across:
+ *   1. Engine Initialization & Default Configuration (BGE-Large 1024-dim, cls pooling)
  *   2. Candidate Action Registration
  *   3. Mode A: Visual Frame Evaluation (Canvas / Camera Image QA)
  *   4. Mode B: Text Observation Evaluation (Structured Sensory QA)
@@ -16,21 +16,25 @@ import { S1stemEngine, S1stemCDREngine, DEFAULT_CONFIG } from '../core/index.js'
 
 async function runTestSuite() {
   console.log('╔════════════════════════════════════════════════════════════════════════════════╗');
-  console.log('║       S1STEM v1.1.0 — UNIFIED QWEN3.5-0.8B VLM ENGINE VERIFICATION SUITE       ║');
+  console.log('║       S1STEM v1.3.0 — UNIFIED BGE-LARGE CLM ENGINE VERIFICATION SUITE          ║');
   console.log('╚════════════════════════════════════════════════════════════════════════════════╝\n');
 
   // Test 1: Engine Initialization & Configuration
   console.log('1. Verifying Engine Configuration:');
   const engine = new S1stemEngine();
   console.log(`   ✓ Model ID: "${engine.config.modelId}"`);
+  console.log(`   ✓ Embedding Model ID: "${engine.config.embeddingModelId}" (dim: ${engine.config.embeddingDim}, pooling: "${engine.config.embeddingPooling}")`);
   console.log(`   ✓ Default Device: "${engine.config.device}", Dtype: "${engine.config.dtype}"`);
   if (!engine.config.modelId.includes('Qwen')) {
     throw new Error('Default modelId does not specify Qwen family model!');
   }
+  if (engine.config.embeddingModelId !== 'Xenova/bge-large-en-v1.5' || engine.config.embeddingDim !== 1024 || engine.config.embeddingPooling !== 'cls') {
+    throw new Error('Default embedding config does not match Xenova/bge-large-en-v1.5 (1024-dim, cls pooling)!');
+  }
   if (typeof S1stemCDREngine !== 'function') {
     throw new Error('S1stemCDREngine alias is not exported!');
   }
-  console.log('   ✓ PASS: S1stemEngine initialized with Qwen3.5 defaults.');
+  console.log('   ✓ PASS: S1stemEngine initialized with Qwen3.5 & BGE-Large defaults.');
 
   // Test 2: Action Registration
   console.log('\n2. Testing Candidate Action Registration:');
@@ -192,7 +196,7 @@ async function runTestSuite() {
   console.log('   ✓ PASS: Autonomous tool dispatching operates cleanly.');
 
   console.log('\n╔════════════════════════════════════════════════════════════════════════════════╗');
-  console.log('║       ALL S1STEM v1.1.0 QWEN3.5 CLM VERIFICATION TESTS PASSED (100%)            ║');
+  console.log('║       ALL S1STEM v1.3.0 BGE-LARGE CLM VERIFICATION TESTS PASSED (100%)          ║');
   console.log('╚════════════════════════════════════════════════════════════════════════════════╝\n');
 }
 

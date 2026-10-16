@@ -292,7 +292,7 @@ export class SnakeGame {
 
     const foodLabel = this.food.isBonus ? 'SUPER RUBY (+50 pts)' : 'Apple (+25 pts)';
     const optimalHint = optimalEval
-      ? `OPTIMAL GEODESIC MOVE: '${optimalEval.dir}' provides shortest path of ${optimalEval.distanceToFood} steps without detour.`
+      ? `OPTIMAL GEODESIC MOVE: 'MOVE_${optimalEval.dir}' provides shortest path of ${optimalEval.distanceToFood} steps without detour.`
       : 'Select the safest open corridor.';
 
     return [
@@ -304,6 +304,7 @@ export class SnakeGame {
       `STATE: Head at (${head.x}, ${head.y}), heading ${this.direction}. Target offset: X=${relX}, Y=${relY}.`,
       `CANDIDATE CORRIDORS: ${summaries.join(' | ')}.`,
       `${optimalHint}`,
+      `RECOMMENDED ACTION: ${optimalEval ? `MOVE_${optimalEval.dir}` : 'Safest open corridor'}.`,
       `DECISION: Output the optimal direction strictly adhering to Priority 1 > Priority 2 > Priority 3 > Priority 4.`,
     ].join(' ');
   }
